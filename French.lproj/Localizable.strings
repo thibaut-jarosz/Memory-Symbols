@@ -1,0 +1,28 @@
+/* 
+   Localizable.strings
+   Memory
+
+   Created by Thibaut on 3/8/10.
+   Copyright 2010 Thibaut Jarosz. All rights reserved.
+ */
+"RESTART"						=	"recommencer";
+"GAME_OVER"						=	"Bravo !";
+"GAME_SCORE"					=	"Tu as touché l'écran\n%i fois pour terminer ce jeu.";
+"BEST_SCORE"					=	"Ton meilleur score %@ %i.";
+"IS"							=	"est";
+"WAS"							=	"était";
+
+"CONFIRM_RESTART"				=	"Veux-tu vraiment recommencer ?";
+"RESTART_BUTTON"				=	"Recommencer";
+"CANCEL_BUTTON"					=	"Annuler";
+"CHANGE_BUTTON"					=	"Changer";
+
+"DIFFICULTY"					=	"Difficulté";
+"NORMAL"						=	"Normal";
+"HARD"							=	"Difficile";
+"EXTREME"						=	"Extrême";
+"DIFFICULTY_DESCRIPTION"		=	"Les difficultés Difficile et Extrême réorganiseront respectivement la table toutes les 60 et 30 secondes.";
+"CONFIRM_DIFFICULTY_CHANGE"		=	"Changer la difficulté nécésite de redémarrer la partie.";
+
+"INFO_DEV"						=	"Développement : Thibaut Jarosz";
+"INFO_ADAPT"					=	"Adapté d'un jeu flash de kek";

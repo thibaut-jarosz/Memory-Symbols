@@ -1,0 +1,169 @@
+//
+//  CardsContainerViewController.m
+//  Memory
+//
+//  Created by Thibaut on 3/14/10.
+//  Copyright 2010 Thibaut Jarosz. All rights reserved.
+//
+
+#import "CardsContainerViewController.h"
+
+
+@implementation CardsContainerViewController
+
+@synthesize delegate=_delegate;
+@synthesize counter=_counter;
+@synthesize returnedCardsList=_returnedCardsList;
+
+
+#pragma mark -
+#pragma mark View initialization & deallocation
+- (id)init {
+	self = [super init];
+	if (self != nil) {
+		self.counter = 0;
+		self.returnedCardsList = [NSMutableArray arrayWithCapacity:2];
+	}
+	return self;
+}
+
+- (void)dealloc {
+	self.delegate = nil;
+	self.returnedCardsList = nil;
+	[super dealloc];
+}
+
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	
+	CGRect frame = CGRectMake(3, 75, 314, 349);
+	self.view.frame = frame;
+	
+	CGRect cardFrame = CGRectMake(frame.size.width/2, frame.size.height/2, 0, 0);
+	for (NSUInteger i=0; i<45; i++) {
+		UIColor *anImage = [UIColor colorWithPatternImage:[UIImage imageNamed:[NSString stringWithFormat:@"%i.png", i]]];
+		for (NSUInteger j=0; j<2; j++) {
+			CardView *cardView = [[CardView alloc] initWithFrame:cardFrame];
+			cardView.frontImage = anImage;
+			cardView.delegate = self;
+			cardView.imageID = i;
+			cardView.cardID = i+45*j;
+			[self.view addSubview:cardView];
+			[cardView release], cardView = nil;
+		}
+	}
+	
+	[self reorganizeCards];
+}
+
+
+#pragma mark -
+#pragma mark Reorganization
+- (void)reorganizeCards {
+	NSMutableArray *cardList = [self.view.subviews mutableCopy];
+	NSUInteger nbItems = [cardList count];
+	
+	[UIView beginAnimations:@"CardReorganization" context:nil];
+	[UIView	setAnimationDuration:0.5];
+	for (NSUInteger i=0; i<nbItems; i++) {
+		NSUInteger randomNumber = arc4random()%[cardList count];
+		
+		CardView *cardView = [cardList objectAtIndex:randomNumber];
+		[cardList removeObjectAtIndex:randomNumber];
+		cardView.frame = CGRectMake(35*((NSInteger)(i/10)%9), 35*((NSUInteger)i%10), 34, 34);
+	}
+	[UIView commitAnimations];
+	[cardList release], cardList = nil;
+}
+
+- (void)hideAllCards {
+	for (CardView *aCardView in [self.view subviews]) {
+		aCardView.frontVisible = NO;
+		aCardView.alpha = 1;
+	}
+}
+
+
+#pragma mark -
+#pragma mark Restart
+- (void)restartGameAfterGameFinished:(BOOL)gameFinished {
+	self.counter = 0;
+	[self.returnedCardsList removeAllObjects];
+	if (gameFinished) {
+		CGFloat containerHalfWidth = self.view.frame.size.width/2;
+		for (CardView *aCardView in [self.view subviews]) {
+			CGPoint cardCenter = aCardView.center;
+			aCardView.center = CGPointMake((cardCenter.x < containerHalfWidth ? cardCenter.x+containerHalfWidth+30 : cardCenter.x-containerHalfWidth-30), cardCenter.y);
+		}
+	}
+	else {
+		for (CardView *aCardView in [self.view subviews]) {
+			aCardView.alpha = 1;
+			aCardView.frontVisible = NO;
+		}
+	}
+}
+
+
+#pragma mark -
+#pragma mark Finish
+- (void)finishGame {
+	CGFloat containerHalfWidth = self.view.frame.size.width/2;
+	for (CardView *aCardView in [self.view subviews]) {
+		CGPoint cardCenter = aCardView.center;
+		aCardView.center = CGPointMake((cardCenter.x < containerHalfWidth ? cardCenter.x-containerHalfWidth-30 : cardCenter.x+containerHalfWidth+30), cardCenter.y);
+	}
+}
+
+
+#pragma mark -
+#pragma mark Animation delegate
+- (void)animationDidStop:(NSString*)animationID finished:(NSNumber*)finished context:(void*)context {
+	if ([animationID isEqualToString:@"CardViewValidation"]) {
+		BOOL gameFinished = YES;
+		for (CardView *aCardView in [self.view subviews]) {
+			if (!aCardView.frontVisible) {
+				gameFinished = NO;
+				break;
+			}
+		}
+		if (gameFinished && [self.delegate respondsToSelector:@selector(gameFinishedInCardsContainer:)])
+			[self.delegate gameFinishedInCardsContainer:self];
+	}
+}
+
+
+#pragma mark -
+#pragma mark CardView delegate
+- (void)touchesBeganOnCardView:(CardView*)aCardView {
+	if (!aCardView.frontVisible) {
+		self.counter++;
+		if ([self.returnedCardsList count] == 1) {
+			CardView *cardView = [self.returnedCardsList objectAtIndex:0];
+			aCardView.frontVisible = YES;
+			if (aCardView.frontImage == cardView.frontImage) {
+				[UIView beginAnimations:@"CardViewValidation" context:nil];
+				[UIView setAnimationDelegate:self];
+				[UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
+				[UIView setAnimationDuration:0.5];
+				cardView.alpha = 0.5;
+				aCardView.alpha = 0.5;
+				[UIView commitAnimations];
+				[self.returnedCardsList removeAllObjects];
+			}
+			else {
+				[self.returnedCardsList addObject:aCardView];
+			}
+		}
+		else {
+			for (CardView *cardView in self.returnedCardsList)
+				cardView.frontVisible = NO;
+			aCardView.frontVisible = YES;
+			[self.returnedCardsList removeAllObjects];
+			[self.returnedCardsList addObject:aCardView];
+		}
+	}
+}
+
+
+@end

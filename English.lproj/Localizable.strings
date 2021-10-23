@@ -1,0 +1,28 @@
+/* 
+   Localizable.strings
+   Memory
+
+   Created by Thibaut on 3/8/10.
+   Copyright 2010 Thibaut Jarosz. All rights reserved.
+ */
+"RESTART"						=	"restart";
+"GAME_OVER"						=	"Well done!";
+"GAME_SCORE"					=	"You have touched the screen\n%i times to finish this game.";
+"BEST_SCORE"					=	"Your best score %@ %i.";
+"IS"							=	"is";
+"WAS"							=	"was";
+
+"CONFIRM_RESTART"				=	"Do you really want to restart the game?";
+"RESTART_BUTTON"				=	"Restart";
+"CANCEL_BUTTON"					=	"Cancel";
+"CHANGE_BUTTON"					=	"Change";
+
+"DIFFICULTY"					=	"Difficulty";
+"NORMAL"						=	"Normal";
+"HARD"							=	"Hard";
+"EXTREME"						=	"Extreme";
+"DIFFICULTY_DESCRIPTION"		=	"Hard and Extreme difficulties will respectivelly reorganize the table every 60 and 30 seconds.";
+"CONFIRM_DIFFICULTY_CHANGE"		=	"Changing difficulty needs to restart the game.";
+
+"INFO_DEV"						=	"Development: Thibaut Jarosz";
+"INFO_ADAPT"					=	"Adapted from a kek's flash game";
