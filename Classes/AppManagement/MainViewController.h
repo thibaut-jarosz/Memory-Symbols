@@ -11,7 +11,7 @@
 #import "CardsContainerViewController.h"
 #import "CardView.h"
 
-@interface MainViewController : UIViewController <CardViewDelegate,UIActionSheetDelegate,InfoViewControllerDelegate,CardsContainerViewControllerDelegate> {
+@interface MainViewController : UIViewController <CardViewDelegate,InfoViewControllerDelegate,CardsContainerViewControllerDelegate> {
 	InfoViewController *_infoViewController;
 	CardsContainerViewController *_cardsContainerViewController;
 	NSTimer *_difficultyTimer;

@@ -11,7 +11,7 @@
 @protocol InfoViewControllerDelegate;
 
 #pragma mark -
-@interface InfoViewController : UIViewController <UIActionSheetDelegate> {
+@interface InfoViewController : UIViewController {
 	id<InfoViewControllerDelegate> _delegate;
 	UISegmentedControl *_difficultyControl;
 	BOOL _lockConfirmDifficultyChanged;
@@ -36,9 +36,6 @@
 
 #pragma mark Difficulty management
 - (void)confirmDifficultyChanged:(id)sender;
-
-#pragma mark ActionSheet delegate
-- (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 @end
 

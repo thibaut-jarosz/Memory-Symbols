@@ -245,14 +245,15 @@
 
 - (void)confirmDifficultyChanged:(id)sender {
 	if (!self.gameFinishedView) {
-		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"CONFIRM_DIFFICULTY_CHANGE" value:@"Changing difficulty needs to restart the game." table:nil]
-																 delegate:self
-														cancelButtonTitle:[[NSBundle mainBundle] localizedStringForKey:@"CANCEL_BUTTON" value:@"Cancel" table:nil]
-												   destructiveButtonTitle:[[NSBundle mainBundle] localizedStringForKey:@"CHANGE_BUTTON" value:@"Change" table:nil]
-														otherButtonTitles:nil];
-		[actionSheet showInView:self.view];
-		[actionSheet release];
-        actionSheet = nil;
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"CONFIRM_DIFFICULTY_CHANGE" value:@"Changing difficulty needs to restart the game." table:nil] message:nil preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"CANCEL_BUTTON" value:@"Cancel" table:nil] style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            // hide the alert controller?
+        }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"CHANGE_BUTTON" value:@"Change" table:nil] style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            // hide the alert controller?
+            // also change the difficulty?
+        }]];
+        [self presentViewController:alertController animated:YES completion:nil];
 	}
 	else {
 		[self setDifficulty:((UISegmentedControl*)sender).selectedSegmentIndex];

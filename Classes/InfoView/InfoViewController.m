@@ -146,34 +146,23 @@
 - (void)confirmDifficultyChanged:(id)sender {
 	if (!self.lockConfirmDifficultyChanged) {
 		if ([self.delegate respondsToSelector:@selector(difficultyChangeConfirmationNeeded)] && [self.delegate difficultyChangeConfirmationNeeded]) {
-			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"CONFIRM_DIFFICULTY_CHANGE" value:@"Changing difficulty needs to restart the game." table:nil]
-																	 delegate:self
-															cancelButtonTitle:[[NSBundle mainBundle] localizedStringForKey:@"CANCEL_BUTTON" value:@"Cancel" table:nil]
-													   destructiveButtonTitle:[[NSBundle mainBundle] localizedStringForKey:@"CHANGE_BUTTON" value:@"Change" table:nil]
-															otherButtonTitles:nil];
-			[actionSheet showInView:self.view];
-			[actionSheet release];
-            actionSheet = nil;
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"CONFIRM_DIFFICULTY_CHANGE" value:@"Changing difficulty needs to restart the game." table:nil] message:nil preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"CANCEL_BUTTON" value:@"Cancel" table:nil] style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                // hide the alert controller?
+                [self.delegate setDifficulty:self.difficultyControl.selectedSegmentIndex];
+            }]];
+            [alertController addAction:[UIAlertAction actionWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"CHANGE_BUTTON" value:@"Change" table:nil] style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                // hide the alert controller?
+                self.lockConfirmDifficultyChanged = YES;
+                self.difficultyControl.selectedSegmentIndex = [self.delegate getDifficulty];
+                self.lockConfirmDifficultyChanged = NO;
+            }]];
+            [self presentViewController:alertController animated:YES completion:nil];
 		}
 		else {
 			[self.delegate setDifficulty:((UISegmentedControl*)sender).selectedSegmentIndex];
 		}
 	}
 }
-
-
-#pragma mark -
-#pragma mark ActionSheet delegate
-- (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex == 0) {
-		[self.delegate setDifficulty:self.difficultyControl.selectedSegmentIndex];
-	}
-	else {
-		self.lockConfirmDifficultyChanged = YES;
-		self.difficultyControl.selectedSegmentIndex = [self.delegate getDifficulty];
-		self.lockConfirmDifficultyChanged = NO;
-	}
-}
-
 
 @end
