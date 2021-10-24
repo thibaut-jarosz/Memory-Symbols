@@ -70,7 +70,7 @@
 
 - (void)hideAllCards {
 	for (CardView *aCardView in [self.view subviews]) {
-		aCardView.frontVisible = NO;
+		aCardView.visible = NO;
 		aCardView.alpha = 1;
 	}
 }
@@ -91,7 +91,7 @@
 	else {
 		for (CardView *aCardView in [self.view subviews]) {
 			aCardView.alpha = 1;
-			aCardView.frontVisible = NO;
+			aCardView.visible = NO;
 		}
 	}
 }
@@ -114,7 +114,7 @@
 	if ([animationID isEqualToString:@"CardViewValidation"]) {
 		BOOL gameFinished = YES;
 		for (CardView *aCardView in [self.view subviews]) {
-			if (!aCardView.frontVisible) {
+			if (!aCardView.visible) {
 				gameFinished = NO;
 				break;
 			}
@@ -128,11 +128,11 @@
 #pragma mark -
 #pragma mark CardView delegate
 - (void)touchesBeganOnCardView:(CardView*)aCardView {
-	if (!aCardView.frontVisible) {
+	if (!aCardView.visible) {
 		self.counter++;
 		if ([self.returnedCardsList count] == 1) {
 			CardView *cardView = [self.returnedCardsList objectAtIndex:0];
-			aCardView.frontVisible = YES;
+			aCardView.visible = YES;
 			if (aCardView.imageID == cardView.imageID) {
 				[UIView beginAnimations:@"CardViewValidation" context:nil];
 				[UIView setAnimationDelegate:self];
@@ -149,8 +149,8 @@
 		}
 		else {
 			for (CardView *cardView in self.returnedCardsList)
-				cardView.frontVisible = NO;
-			aCardView.frontVisible = YES;
+				cardView.visible = NO;
+			aCardView.visible = YES;
 			[self.returnedCardsList removeAllObjects];
 			[self.returnedCardsList addObject:aCardView];
 		}

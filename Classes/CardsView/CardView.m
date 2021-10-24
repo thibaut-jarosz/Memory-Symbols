@@ -13,7 +13,7 @@
 
 @synthesize delegate=_delegate;
 @synthesize frontImage=_frontImage;
-@synthesize frontVisible=_frontVisible;
+@synthesize visible=_visible;
 @synthesize imageID=_imageID;
 @synthesize cardID=_cardID;
 
@@ -23,7 +23,7 @@
 - (id) initWithFrame:(CGRect)aFrame {
 	self = [super initWithFrame:aFrame];
 	if (self != nil) {
-		self.frontVisible = NO;
+		self.visible = NO;
 		self.backgroundColor = [UIColor whiteColor];
 	}
 	return self;
@@ -31,11 +31,11 @@
 
 
 #pragma mark -
-#pragma mark frontVisible setter
-- (void)setFrontVisible:(BOOL)visible {
-	[self willChangeValueForKey:@"frontVisible"];
-	if (_frontVisible != visible) {
-		_frontVisible=visible;
+#pragma mark visible setter
+- (void)setVisible:(BOOL)visible {
+	[self willChangeValueForKey:@"visible"];
+	if (_visible != visible) {
+		_visible=visible;
 		[UIView beginAnimations:@"CardViewRotation" context:nil];
 		[UIView setAnimationDuration:0.5];
 		if (visible) {
@@ -48,7 +48,7 @@
 		}
 		[UIView commitAnimations];
 	}
-	[self didChangeValueForKey:@"frontVisible"];
+	[self didChangeValueForKey:@"visible"];
 }
 
 
@@ -58,7 +58,7 @@
 	if ([self.delegate respondsToSelector:@selector(touchesBeganOnCardView:)])
 		[self.delegate touchesBeganOnCardView:self];
 	else
-		self.frontVisible = (self.frontVisible ? NO : YES);
+		self.visible = (self.visible ? NO : YES);
 }
 
 
