@@ -35,10 +35,10 @@
 	
 	CGRect cardFrame = CGRectMake(frame.size.width/2, frame.size.height/2, 0, 0);
 	for (NSUInteger i=0; i<45; i++) {
-		UIColor *anImage = [UIColor colorWithPatternImage:[UIImage imageNamed:[NSString stringWithFormat:@"%lu.png", i]]];
+        UIImage *anImage = [UIImage imageNamed:[NSString stringWithFormat:@"%lu.png", i]];
 		for (NSUInteger j=0; j<2; j++) {
 			CardView *cardView = [[CardView alloc] initWithFrame:cardFrame];
-			cardView.frontImage = anImage;
+			cardView.image = anImage;
 			cardView.delegate = self;
 			cardView.imageID = i;
 			cardView.cardID = i+45*j;

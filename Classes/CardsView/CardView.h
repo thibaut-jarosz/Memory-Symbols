@@ -13,14 +13,14 @@
 #pragma mark -
 @interface CardView : UIView {
 	id<CardViewDelegate> _delegate;
-	UIColor *_frontImage;
+	UIImage *_image;
 	BOOL _visible;
 	NSUInteger _imageID;
 	NSUInteger _cardID;
 }
 
 @property(nonatomic,retain) id<CardViewDelegate> delegate;
-@property(nonatomic,retain) UIColor *frontImage;
+@property(nonatomic,retain) UIImage *image;
 @property(nonatomic,assign,readonly) BOOL visible;
 @property(nonatomic,assign) NSUInteger imageID;
 @property(nonatomic,assign) NSUInteger cardID;

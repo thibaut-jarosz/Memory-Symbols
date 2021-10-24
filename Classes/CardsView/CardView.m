@@ -12,7 +12,7 @@
 @implementation CardView
 
 @synthesize delegate=_delegate;
-@synthesize frontImage=_frontImage;
+@synthesize image=_image;
 @synthesize visible=_visible;
 @synthesize imageID=_imageID;
 @synthesize cardID=_cardID;
@@ -40,7 +40,7 @@
 		[UIView setAnimationDuration:0.5];
 		if (visible) {
 			[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self cache:NO];
-			self.backgroundColor = self.frontImage;
+			self.backgroundColor = [UIColor colorWithPatternImage:self.image];
 		}
 		else {
 			[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self cache:NO];
