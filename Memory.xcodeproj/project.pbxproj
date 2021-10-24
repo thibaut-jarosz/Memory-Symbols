@@ -61,7 +61,6 @@
 		BF4CB77A116BD9EB00F40DD8 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF36B37F114C5F8F001E9FB6 /* MainViewController.m */; };
 		BF4CB77B116BD9EB00F40DD8 /* CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF36B38A114C5FD0001E9FB6 /* CardView.m */; };
 		BF4CB77C116BD9EB00F40DD8 /* CardsContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF36B38D114D27A3001E9FB6 /* CardsContainerViewController.m */; };
-		BF4CB77D116BD9EB00F40DD8 /* InfoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD7BB9711595C6B00EAB5D1 /* InfoButton.m */; };
 		BF4CB77F116BD9EB00F40DD8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		BF4CB780116BD9EB00F40DD8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		BF7CA2BC11FF86E700A6F3D1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF7CA2BB11FF86E700A6F3D1 /* CoreGraphics.framework */; };
@@ -136,8 +135,6 @@
 		BF5C0E4B27254888007E6808 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BF5C0E4C2725488A007E6808 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BF7CA2BB11FF86E700A6F3D1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		BFD7BB9611595C6B00EAB5D1 /* InfoButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoButton.h; sourceTree = "<group>"; };
-		BFD7BB9711595C6B00EAB5D1 /* InfoButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoButton.m; sourceTree = "<group>"; };
 		BFEB54BE129421DE00615F82 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		BFFF3E671176541A0003039D /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		BFFF3E8D1176647D0003039D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -276,8 +273,6 @@
 		BF36B362114C5D6F001E9FB6 /* InfoView */ = {
 			isa = PBXGroup;
 			children = (
-				BFD7BB9611595C6B00EAB5D1 /* InfoButton.h */,
-				BFD7BB9711595C6B00EAB5D1 /* InfoButton.m */,
 				BF36B369114C5DB6001E9FB6 /* InfoViewController.h */,
 				BF36B36A114C5DB6001E9FB6 /* InfoViewController.m */,
 			);
@@ -423,7 +418,6 @@
 				BF4CB77A116BD9EB00F40DD8 /* MainViewController.m in Sources */,
 				BF4CB77B116BD9EB00F40DD8 /* CardView.m in Sources */,
 				BF4CB77C116BD9EB00F40DD8 /* CardsContainerViewController.m in Sources */,
-				BF4CB77D116BD9EB00F40DD8 /* InfoButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

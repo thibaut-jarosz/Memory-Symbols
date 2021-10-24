@@ -8,7 +8,6 @@
 
 #import "MainViewController.h"
 #import "AppDelegate.h"
-#import "InfoButton.h"
 
 @implementation MainViewController
 
@@ -55,7 +54,8 @@
 	[self.headerView addSubview:titleLabel];
     titleLabel = nil;
 	
-	InfoButton *infoButton = [InfoButton buttonWithType:UIButtonTypeInfoLight];
+	UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    infoButton.tintColor = UIColor.whiteColor;
 	infoButton.center = CGPointMake(self.headerView.frame.size.width-25, 25);
 	[infoButton addTarget:self action:@selector(infoButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 	[self.headerView addSubview:infoButton];
