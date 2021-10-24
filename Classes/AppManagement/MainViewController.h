@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "InfoViewController.h"
-#import "CardsContainerViewController.h"
+#import "Memory-Swift.h"
 
 @interface MainViewController : UIViewController <InfoViewControllerDelegate,CardsContainerViewControllerDelegate> {
 	InfoViewController *_infoViewController;

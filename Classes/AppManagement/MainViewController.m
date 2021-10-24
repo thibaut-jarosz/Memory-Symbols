@@ -77,7 +77,7 @@
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
 	[UIView setAnimationDuration:0.5];
-	[self.cardsContainerViewController restartGameAfterGameFinished:(self.gameFinishedView ? YES :NO)];
+	[self.cardsContainerViewController restartGameAfterMovingCardsAway:(self.gameFinishedView ? YES :NO)];
 	self.gameFinishedView.alpha = 0;
 	[UIView commitAnimations];
 }
@@ -85,7 +85,7 @@
 
 #pragma mark -
 #pragma mark CardsContainerViewController delegate
-- (void)gameFinishedInCardsContainer:(CardsContainerViewController*)aCardsContainer {
+- (void)gameDidEnd:(CardsContainerViewController *)cardContainer {
 	[self.difficultyTimer invalidate];
 	self.difficultyTimer = nil;
 	
@@ -115,7 +115,7 @@
     resetButton = nil;
 	
 	
-	NSInteger currentScore = self.cardsContainerViewController.counter;
+	NSInteger currentScore = self.cardsContainerViewController.revealCounter;
 	NSInteger bestScore = [self getBestScore];
 	
 	UILabel *score = [[UILabel alloc] initWithFrame:CGRectMake(0, 125, mainFrame.size.width, 50)];
@@ -146,8 +146,8 @@
     score = nil;
 	
 	
-	if (!bestScore || bestScore >= self.cardsContainerViewController.counter) {
-		bestScore = self.cardsContainerViewController.counter;
+	if (!bestScore || bestScore >= self.cardsContainerViewController.revealCounter) {
+		bestScore = self.cardsContainerViewController.revealCounter;
 		[self setBestScore:bestScore];
 	}
 	
@@ -156,7 +156,7 @@
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
 	[UIView setAnimationDuration:0.5];
-	[self.cardsContainerViewController finishGame];
+	[self.cardsContainerViewController moveCardsAway];
 	self.gameFinishedView.alpha = 1;
 	[UIView commitAnimations];
 }
@@ -169,7 +169,7 @@
 			[self.gameFinishedView removeFromSuperview];
 			self.gameFinishedView = nil;
 		}
-		[self.cardsContainerViewController reorganizeCards];
+		[self.cardsContainerViewController shuffleCards];
 		[self timerInit];
 	}
 	else if ([animationID isEqualToString:@"GameFinished"]) {
@@ -266,7 +266,7 @@
 }
 
 - (void)timerFireMethod:(NSTimer*)theTimer {
-	[self.cardsContainerViewController reorganizeCards];
+	[self.cardsContainerViewController shuffleCards];
 }
 
 

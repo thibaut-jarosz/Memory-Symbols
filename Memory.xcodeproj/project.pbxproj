@@ -59,10 +59,10 @@
 		BF4CB778116BD9EB00F40DD8 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF36B36A114C5DB6001E9FB6 /* InfoViewController.m */; };
 		BF4CB779116BD9EB00F40DD8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF36B37D114C5F8F001E9FB6 /* AppDelegate.m */; };
 		BF4CB77A116BD9EB00F40DD8 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF36B37F114C5F8F001E9FB6 /* MainViewController.m */; };
-		BF4CB77C116BD9EB00F40DD8 /* CardsContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF36B38D114D27A3001E9FB6 /* CardsContainerViewController.m */; };
 		BF4CB77F116BD9EB00F40DD8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		BF4CB780116BD9EB00F40DD8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		BF5C0E9327258EA7007E6808 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5C0E9227258EA7007E6808 /* CardView.swift */; };
+		BF5C0E972725D509007E6808 /* CardsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5C0E962725D509007E6808 /* CardsContainerViewController.swift */; };
 		BF7CA2BC11FF86E700A6F3D1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF7CA2BB11FF86E700A6F3D1 /* CoreGraphics.framework */; };
 		BFFF3E681176541A0003039D /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = BFFF3E671176541A0003039D /* iTunesArtwork */; };
 		BFFF3E8E1176647D0003039D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BFFF3E8D1176647D0003039D /* Default.png */; };
@@ -128,12 +128,11 @@
 		BF36B37D114C5F8F001E9FB6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BF36B37E114C5F8F001E9FB6 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		BF36B37F114C5F8F001E9FB6 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		BF36B38C114D27A3001E9FB6 /* CardsContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardsContainerViewController.h; sourceTree = "<group>"; };
-		BF36B38D114D27A3001E9FB6 /* CardsContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardsContainerViewController.m; sourceTree = "<group>"; };
 		BF5C0E4B27254888007E6808 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BF5C0E4C2725488A007E6808 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BF5C0E9127258EA6007E6808 /* Memory-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Memory-Bridging-Header.h"; sourceTree = "<group>"; };
 		BF5C0E9227258EA7007E6808 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		BF5C0E962725D509007E6808 /* CardsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsContainerViewController.swift; sourceTree = "<group>"; };
 		BF7CA2BB11FF86E700A6F3D1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		BFEB54BE129421DE00615F82 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		BFFF3E671176541A0003039D /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
@@ -294,8 +293,7 @@
 		BF36B382114C5F97001E9FB6 /* CardsView */ = {
 			isa = PBXGroup;
 			children = (
-				BF36B38C114D27A3001E9FB6 /* CardsContainerViewController.h */,
-				BF36B38D114D27A3001E9FB6 /* CardsContainerViewController.m */,
+				BF5C0E962725D509007E6808 /* CardsContainerViewController.swift */,
 				BF5C0E9227258EA7007E6808 /* CardView.swift */,
 			);
 			path = CardsView;
@@ -418,11 +416,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF5C0E9327258EA7007E6808 /* CardView.swift in Sources */,
+				BF5C0E972725D509007E6808 /* CardsContainerViewController.swift in Sources */,
 				BF4CB777116BD9EB00F40DD8 /* main.m in Sources */,
 				BF4CB778116BD9EB00F40DD8 /* InfoViewController.m in Sources */,
 				BF4CB779116BD9EB00F40DD8 /* AppDelegate.m in Sources */,
 				BF4CB77A116BD9EB00F40DD8 /* MainViewController.m in Sources */,
-				BF4CB77C116BD9EB00F40DD8 /* CardsContainerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
