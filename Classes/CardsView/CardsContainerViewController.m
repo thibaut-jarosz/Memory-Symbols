@@ -133,7 +133,7 @@
 		if ([self.returnedCardsList count] == 1) {
 			CardView *cardView = [self.returnedCardsList objectAtIndex:0];
 			aCardView.frontVisible = YES;
-			if (aCardView.frontImage == cardView.frontImage) {
+			if (aCardView.imageID == cardView.imageID) {
 				[UIView beginAnimations:@"CardViewValidation" context:nil];
 				[UIView setAnimationDelegate:self];
 				[UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
