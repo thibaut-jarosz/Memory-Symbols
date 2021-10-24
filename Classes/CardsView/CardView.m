@@ -15,7 +15,6 @@
 @synthesize image=_image;
 @synthesize visible=_visible;
 @synthesize imageID=_imageID;
-@synthesize cardID=_cardID;
 
 
 #pragma mark -

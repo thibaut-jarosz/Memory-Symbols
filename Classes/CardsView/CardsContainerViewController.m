@@ -41,7 +41,6 @@
 			cardView.image = anImage;
 			cardView.delegate = self;
 			cardView.imageID = i;
-			cardView.cardID = i+45*j;
 			[self.view addSubview:cardView];
 		}
 	}
