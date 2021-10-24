@@ -283,13 +283,13 @@
 - (NSInteger)getBestScore {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults synchronize];
-	return [userDefaults integerForKey:[NSString stringWithFormat:@"bestScore%i", [self getDifficulty]]];
+	return [userDefaults integerForKey:[NSString stringWithFormat:@"bestScore%lu", [self getDifficulty]]];
 }
 
 - (void)setBestScore:(NSInteger)bestScore {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults synchronize];
-	[userDefaults setInteger:bestScore forKey:[NSString stringWithFormat:@"bestScore%i", [self getDifficulty]]];
+	[userDefaults setInteger:bestScore forKey:[NSString stringWithFormat:@"bestScore%lu", [self getDifficulty]]];
 	[userDefaults synchronize];
 }
 
