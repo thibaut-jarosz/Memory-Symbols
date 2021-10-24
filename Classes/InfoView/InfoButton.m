@@ -32,7 +32,8 @@
 			[self setImage:[infoButton imageForState:UIControlStateNormal] forState:UIControlStateNormal];
 			self.showsTouchWhenHighlighted = YES;
 		}
-		[infoButton release], infoButton = nil;
+		[infoButton release];
+        infoButton = nil;
 	}
 	return self;
 }

@@ -63,7 +63,8 @@
 	titleLabel.backgroundColor = [UIColor clearColor];
 	titleLabel.textColor = [UIColor whiteColor];
 	[self.headerView addSubview:titleLabel];
-	[titleLabel release], titleLabel = nil;
+	[titleLabel release];
+    titleLabel = nil;
 	
 	InfoButton *infoButton = [InfoButton buttonWithType:UIButtonTypeInfoLight];
 	infoButton.center = CGPointMake(self.headerView.frame.size.width-25, 25);
@@ -113,7 +114,8 @@
 	titleLabel.textColor = [UIColor whiteColor];
 	titleLabel.font = [UIFont fontWithName:@"Marker Felt" size:40];
 	[self.gameFinishedView addSubview:titleLabel];
-	[titleLabel release], titleLabel = nil;
+	[titleLabel release];
+    titleLabel = nil;
 	
 	UIButton *resetButton = [[UIButton alloc] initWithFrame:CGRectMake(75, mainFrame.size.height-40, mainFrame.size.width-150, 40)];
 	[resetButton setTitle:[[NSBundle mainBundle] localizedStringForKey:@"RESTART" value:@"Restart" table:nil] forState:UIControlStateNormal];
@@ -122,7 +124,8 @@
 	resetButton.titleLabel.textColor = [UIColor whiteColor];
 	resetButton.titleLabel.font = [UIFont fontWithName:@"Marker Felt" size:28];
 	[self.gameFinishedView addSubview:resetButton];
-	[resetButton release], resetButton = nil;
+	[resetButton release];
+    resetButton = nil;
 	
 	
 	NSInteger currentScore = self.cardsContainerViewController.counter;
@@ -139,7 +142,8 @@
 	score.textColor = [UIColor whiteColor];
 	score.font = [UIFont fontWithName:@"Marker Felt" size:20];
 	[self.gameFinishedView addSubview:score];
-	[score release], score = nil;
+	[score release];
+    score = nil;
 	
 	score = [[UILabel alloc] initWithFrame:CGRectMake(0, 200, mainFrame.size.width, 50)];
 	score.text = [NSString stringWithFormat:
@@ -153,7 +157,8 @@
 	score.textColor = [UIColor whiteColor];
 	score.font = [UIFont fontWithName:@"Marker Felt" size:20];
 	[self.gameFinishedView addSubview:score];
-	[score release], score = nil;
+	[score release];
+    score = nil;
 	
 	
 	if (!bestScore || bestScore >= self.cardsContainerViewController.counter) {
@@ -246,7 +251,8 @@
 												   destructiveButtonTitle:[[NSBundle mainBundle] localizedStringForKey:@"CHANGE_BUTTON" value:@"Change" table:nil]
 														otherButtonTitles:nil];
 		[actionSheet showInView:self.view];
-		[actionSheet release], actionSheet = nil;
+		[actionSheet release];
+        actionSheet = nil;
 	}
 	else {
 		[self setDifficulty:((UISegmentedControl*)sender).selectedSegmentIndex];

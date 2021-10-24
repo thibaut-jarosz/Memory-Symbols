@@ -54,13 +54,15 @@
 					  @"blog.zanorg.com"
 					  ];
 	[self.view addSubview:textView];
-	[textView release], textView = nil;
+	[textView release];
+    textView = nil;
 	
 	
 	UIView *separationView = [[UIView alloc] initWithFrame:CGRectMake(20, 290, self.view.frame.size.width-40, 1)];
 	separationView.backgroundColor = [UIColor whiteColor];
 	[self.view addSubview:separationView];
-	[separationView release], separationView = nil;
+	[separationView release];
+    separationView = nil;
 }
 
 - (void)addDifficultyViews {
@@ -74,7 +76,8 @@
 	difficultyTitle.font = [UIFont fontWithName:@"Marker Felt" size:25];
 	difficultyTitle.text = [[NSBundle mainBundle] localizedStringForKey:@"DIFFICULTY" value:@"Difficulty" table:nil];
 	[self.view addSubview:difficultyTitle];
-	[difficultyTitle release], difficultyTitle = nil;
+	[difficultyTitle release];
+    difficultyTitle = nil;
 	
 	
 	self.difficultyControl = [[[UISegmentedControl alloc] initWithItems:
@@ -96,7 +99,8 @@
 	difficultyDescription.numberOfLines = 3;
 	difficultyDescription.text = [[NSBundle mainBundle] localizedStringForKey:@"DIFFICULTY_DESCRIPTION" value:@"Hard and Extreme difficulties will respectivelly reorganize the table every 60 and 30 seconds." table:nil];
 	[self.view addSubview:difficultyDescription];
-	[difficultyDescription release], difficultyDescription = nil;
+	[difficultyDescription release];
+    difficultyDescription = nil;
 }
 
 
@@ -148,7 +152,8 @@
 													   destructiveButtonTitle:[[NSBundle mainBundle] localizedStringForKey:@"CHANGE_BUTTON" value:@"Change" table:nil]
 															otherButtonTitles:nil];
 			[actionSheet showInView:self.view];
-			[actionSheet release], actionSheet = nil;
+			[actionSheet release];
+            actionSheet = nil;
 		}
 		else {
 			[self.delegate setDifficulty:((UISegmentedControl*)sender).selectedSegmentIndex];
