@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.lockConfirmDifficultyChanged = NO;
-	CGRect frame = [[UIScreen mainScreen] applicationFrame];
+	CGRect frame = [[UIScreen mainScreen] bounds];
 	frame.origin = CGPointMake(0, frame.size.height);
 	self.view.frame = frame;
 	self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
@@ -41,7 +41,7 @@
 	UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(20, 90, self.view.frame.size.width-40, 160)];
 	textView.backgroundColor = [UIColor clearColor];
 	textView.textColor = [UIColor whiteColor];
-	textView.textAlignment = UITextAlignmentCenter;
+	textView.textAlignment = NSTextAlignmentCenter;
 	textView.editable = NO;
 	textView.scrollEnabled = NO;
 	textView.dataDetectorTypes = UIDataDetectorTypeLink;
@@ -69,7 +69,7 @@
 	UILabel *difficultyTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, frame.size.height-160, frame.size.width-30, 30)];
 	difficultyTitle.backgroundColor = [UIColor clearColor];
 	difficultyTitle.textColor = [UIColor whiteColor];
-	difficultyTitle.textAlignment = UITextAlignmentCenter;
+	difficultyTitle.textAlignment = NSTextAlignmentCenter;
 	difficultyTitle.numberOfLines = 2;
 	difficultyTitle.font = [UIFont fontWithName:@"Marker Felt" size:25];
 	difficultyTitle.text = [[NSBundle mainBundle] localizedStringForKey:@"DIFFICULTY" value:@"Difficulty" table:nil];
@@ -83,7 +83,6 @@
 								[[NSBundle mainBundle] localizedStringForKey:@"HARD" value:@"Hard" table:nil],
 								[[NSBundle mainBundle] localizedStringForKey:@"EXTREME" value:@"Extreme" table:nil],
 								nil]] autorelease];
-	[self.difficultyControl setSegmentedControlStyle:UISegmentedControlStyleBordered];
 	self.difficultyControl.selectedSegmentIndex = [self.delegate getDifficulty];
 	self.difficultyControl.center = CGPointMake(frame.size.width/2, frame.size.height-100);
 	[self.difficultyControl addTarget:self action:@selector(confirmDifficultyChanged:) forControlEvents:UIControlEventValueChanged];
@@ -93,7 +92,7 @@
 	difficultyDescription.backgroundColor = [UIColor clearColor];
 	difficultyDescription.font = [UIFont fontWithName:@"Marker Felt" size:difficultyDescription.font.pointSize];
 	difficultyDescription.textColor = [UIColor whiteColor];
-	difficultyDescription.textAlignment = UITextAlignmentCenter;
+	difficultyDescription.textAlignment = NSTextAlignmentCenter;
 	difficultyDescription.numberOfLines = 3;
 	difficultyDescription.text = [[NSBundle mainBundle] localizedStringForKey:@"DIFFICULTY_DESCRIPTION" value:@"Hard and Extreme difficulties will respectivelly reorganize the table every 60 and 30 seconds." table:nil];
 	[self.view addSubview:difficultyDescription];

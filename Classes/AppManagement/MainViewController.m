@@ -37,11 +37,8 @@
 
 #pragma mark -
 #pragma mark View management
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-	if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
-		return YES;
-	}
-	return NO;
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 
@@ -62,7 +59,7 @@
 	UILabel *titleLabel = [[UILabel alloc] initWithFrame:self.headerView.frame];
 	titleLabel.text = @"Memory";
 	titleLabel.font = [UIFont fontWithName:@"Marker Felt" size:25];
-	titleLabel.textAlignment = UITextAlignmentCenter;
+	titleLabel.textAlignment = NSTextAlignmentCenter;
 	titleLabel.backgroundColor = [UIColor clearColor];
 	titleLabel.textColor = [UIColor whiteColor];
 	[self.headerView addSubview:titleLabel];
@@ -111,7 +108,7 @@
 	
 	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, mainFrame.size.width, 40)];
 	titleLabel.text = [[NSBundle mainBundle] localizedStringForKey:@"GAME_OVER" value:@"Well done!" table:nil];
-	titleLabel.textAlignment = UITextAlignmentCenter;
+	titleLabel.textAlignment = NSTextAlignmentCenter;
 	titleLabel.backgroundColor = [UIColor clearColor];
 	titleLabel.textColor = [UIColor whiteColor];
 	titleLabel.font = [UIFont fontWithName:@"Marker Felt" size:40];
@@ -137,7 +134,7 @@
 				  currentScore
 				  ];
 	score.numberOfLines = 2;
-	score.textAlignment = UITextAlignmentCenter;
+	score.textAlignment = NSTextAlignmentCenter;
 	score.backgroundColor = [UIColor clearColor];
 	score.textColor = [UIColor whiteColor];
 	score.font = [UIFont fontWithName:@"Marker Felt" size:20];
@@ -151,7 +148,7 @@
 				  (bestScore ? bestScore : currentScore)
 				  ];
 	score.numberOfLines = 2;
-	score.textAlignment = UITextAlignmentCenter;
+	score.textAlignment = NSTextAlignmentCenter;
 	score.backgroundColor = [UIColor clearColor];
 	score.textColor = [UIColor whiteColor];
 	score.font = [UIFont fontWithName:@"Marker Felt" size:20];
