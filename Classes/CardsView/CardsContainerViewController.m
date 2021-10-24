@@ -35,12 +35,10 @@
 	
 	CGRect cardFrame = CGRectMake(frame.size.width/2, frame.size.height/2, 0, 0);
 	for (NSUInteger i=0; i<45; i++) {
-        UIImage *anImage = [UIImage imageNamed:[NSString stringWithFormat:@"%lu.png", i]];
 		for (NSUInteger j=0; j<2; j++) {
-			CardView *cardView = [[CardView alloc] initWithFrame:cardFrame];
-			cardView.image = anImage;
+			CardView *cardView = [[CardView alloc] initWithImageID:i];
+            cardView.frame = cardFrame;
 			cardView.delegate = self;
-			cardView.imageID = i;
 			[self.view addSubview:cardView];
 		}
 	}
@@ -69,7 +67,7 @@
 
 - (void)hideAllCards {
 	for (CardView *aCardView in [self.view subviews]) {
-		aCardView.visible = NO;
+		[aCardView reveal:NO animated:YES];
 		aCardView.alpha = 1;
 	}
 }
@@ -90,7 +88,7 @@
 	else {
 		for (CardView *aCardView in [self.view subviews]) {
 			aCardView.alpha = 1;
-			aCardView.visible = NO;
+			[aCardView reveal:NO animated:YES];
 		}
 	}
 }
@@ -113,7 +111,7 @@
 	if ([animationID isEqualToString:@"CardViewValidation"]) {
 		BOOL gameFinished = YES;
 		for (CardView *aCardView in [self.view subviews]) {
-			if (!aCardView.visible) {
+			if (!aCardView.isRevealed) {
 				gameFinished = NO;
 				break;
 			}
@@ -127,11 +125,11 @@
 #pragma mark -
 #pragma mark CardView delegate
 - (void)touchesBeganOnCardView:(CardView*)aCardView {
-	if (!aCardView.visible) {
+	if (!aCardView.isRevealed) {
 		self.counter++;
 		if ([self.returnedCardsList count] == 1) {
 			CardView *cardView = [self.returnedCardsList objectAtIndex:0];
-			aCardView.visible = YES;
+			[aCardView reveal:YES animated:YES];
 			if (aCardView.imageID == cardView.imageID) {
 				[UIView beginAnimations:@"CardViewValidation" context:nil];
 				[UIView setAnimationDelegate:self];
@@ -148,8 +146,8 @@
 		}
 		else {
 			for (CardView *cardView in self.returnedCardsList)
-				cardView.visible = NO;
-			aCardView.visible = YES;
+				[cardView reveal:NO animated:YES];
+			[aCardView reveal:YES animated:YES];
 			[self.returnedCardsList removeAllObjects];
 			[self.returnedCardsList addObject:aCardView];
 		}

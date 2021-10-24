@@ -59,10 +59,10 @@
 		BF4CB778116BD9EB00F40DD8 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF36B36A114C5DB6001E9FB6 /* InfoViewController.m */; };
 		BF4CB779116BD9EB00F40DD8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF36B37D114C5F8F001E9FB6 /* AppDelegate.m */; };
 		BF4CB77A116BD9EB00F40DD8 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF36B37F114C5F8F001E9FB6 /* MainViewController.m */; };
-		BF4CB77B116BD9EB00F40DD8 /* CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF36B38A114C5FD0001E9FB6 /* CardView.m */; };
 		BF4CB77C116BD9EB00F40DD8 /* CardsContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF36B38D114D27A3001E9FB6 /* CardsContainerViewController.m */; };
 		BF4CB77F116BD9EB00F40DD8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		BF4CB780116BD9EB00F40DD8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		BF5C0E9327258EA7007E6808 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5C0E9227258EA7007E6808 /* CardView.swift */; };
 		BF7CA2BC11FF86E700A6F3D1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF7CA2BB11FF86E700A6F3D1 /* CoreGraphics.framework */; };
 		BFFF3E681176541A0003039D /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = BFFF3E671176541A0003039D /* iTunesArtwork */; };
 		BFFF3E8E1176647D0003039D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BFFF3E8D1176647D0003039D /* Default.png */; };
@@ -128,12 +128,12 @@
 		BF36B37D114C5F8F001E9FB6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BF36B37E114C5F8F001E9FB6 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		BF36B37F114C5F8F001E9FB6 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		BF36B389114C5FD0001E9FB6 /* CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardView.h; sourceTree = "<group>"; };
-		BF36B38A114C5FD0001E9FB6 /* CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardView.m; sourceTree = "<group>"; };
 		BF36B38C114D27A3001E9FB6 /* CardsContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardsContainerViewController.h; sourceTree = "<group>"; };
 		BF36B38D114D27A3001E9FB6 /* CardsContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardsContainerViewController.m; sourceTree = "<group>"; };
 		BF5C0E4B27254888007E6808 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BF5C0E4C2725488A007E6808 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BF5C0E9127258EA6007E6808 /* Memory-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Memory-Bridging-Header.h"; sourceTree = "<group>"; };
+		BF5C0E9227258EA7007E6808 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		BF7CA2BB11FF86E700A6F3D1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		BFEB54BE129421DE00615F82 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		BFFF3E671176541A0003039D /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
@@ -179,6 +179,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				BF5C0E9127258EA6007E6808 /* Memory-Bridging-Header.h */,
 				BF14055711739F7C00872873 /* Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -295,8 +296,7 @@
 			children = (
 				BF36B38C114D27A3001E9FB6 /* CardsContainerViewController.h */,
 				BF36B38D114D27A3001E9FB6 /* CardsContainerViewController.m */,
-				BF36B389114C5FD0001E9FB6 /* CardView.h */,
-				BF36B38A114C5FD0001E9FB6 /* CardView.m */,
+				BF5C0E9227258EA7007E6808 /* CardView.swift */,
 			);
 			path = CardsView;
 			sourceTree = "<group>";
@@ -328,6 +328,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					BF4CB718116BD9EB00F40DD8 = {
+						LastSwiftMigration = 1310;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Memory" */;
 			compatibilityVersion = "Xcode 3.1";
@@ -412,11 +417,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF5C0E9327258EA7007E6808 /* CardView.swift in Sources */,
 				BF4CB777116BD9EB00F40DD8 /* main.m in Sources */,
 				BF4CB778116BD9EB00F40DD8 /* InfoViewController.m in Sources */,
 				BF4CB779116BD9EB00F40DD8 /* AppDelegate.m in Sources */,
 				BF4CB77A116BD9EB00F40DD8 /* MainViewController.m in Sources */,
-				BF4CB77B116BD9EB00F40DD8 /* CardView.m in Sources */,
 				BF4CB77C116BD9EB00F40DD8 /* CardsContainerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,6 +445,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = NO;
@@ -471,8 +477,12 @@
 				GCC_WARN_SIGN_COMPARE = NO;
 				GCC_WARN_STRICT_SELECTOR_MATCH = NO;
 				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.thibaut-jarosz.Memory";
 				PRODUCT_NAME = Memory;
+				SWIFT_OBJC_BRIDGING_HEADER = "Memory-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -480,6 +490,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -510,8 +521,11 @@
 				GCC_WARN_SIGN_COMPARE = NO;
 				GCC_WARN_STRICT_SELECTOR_MATCH = NO;
 				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.thibaut-jarosz.Memory";
 				PRODUCT_NAME = Memory;
+				SWIFT_OBJC_BRIDGING_HEADER = "Memory-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

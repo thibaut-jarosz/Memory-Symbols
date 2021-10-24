@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "InfoViewController.h"
 #import "CardsContainerViewController.h"
-#import "CardView.h"
 
-@interface MainViewController : UIViewController <CardViewDelegate,InfoViewControllerDelegate,CardsContainerViewControllerDelegate> {
+@interface MainViewController : UIViewController <InfoViewControllerDelegate,CardsContainerViewControllerDelegate> {
 	InfoViewController *_infoViewController;
 	CardsContainerViewController *_cardsContainerViewController;
 	NSTimer *_difficultyTimer;

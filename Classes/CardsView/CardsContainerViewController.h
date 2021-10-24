@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CardView.h"
+#import "Memory-Swift.h"
 
 @protocol CardsContainerViewControllerDelegate;
 
