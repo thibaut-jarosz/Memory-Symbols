@@ -22,7 +22,6 @@
 @property(nonatomic,assign) BOOL lockConfirmDifficultyChanged;
 
 #pragma mark View initialization & deallocation
-- (void)dealloc;
 - (void)viewDidLoad;
 - (void)addDescritionViews;
 - (void)addDifficultyViews;

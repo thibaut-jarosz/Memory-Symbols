@@ -24,7 +24,6 @@
 
 #pragma mark View initialization & deallocation
 - (id)init;
-- (void)dealloc;
 - (void)viewDidLoad;
 
 #pragma mark Reorganization

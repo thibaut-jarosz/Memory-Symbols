@@ -19,12 +19,6 @@
 
 #pragma mark -
 #pragma mark View initialization & deallocation
-- (void)dealloc {
-	self.delegate = nil;
-	self.difficultyControl = nil;
-	[super dealloc];
-}
-
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.lockConfirmDifficultyChanged = NO;
@@ -54,15 +48,10 @@
 					  @"blog.zanorg.com"
 					  ];
 	[self.view addSubview:textView];
-	[textView release];
-    textView = nil;
-	
 	
 	UIView *separationView = [[UIView alloc] initWithFrame:CGRectMake(20, 290, self.view.frame.size.width-40, 1)];
 	separationView.backgroundColor = [UIColor whiteColor];
 	[self.view addSubview:separationView];
-	[separationView release];
-    separationView = nil;
 }
 
 - (void)addDifficultyViews {
@@ -76,16 +65,13 @@
 	difficultyTitle.font = [UIFont fontWithName:@"Marker Felt" size:25];
 	difficultyTitle.text = [[NSBundle mainBundle] localizedStringForKey:@"DIFFICULTY" value:@"Difficulty" table:nil];
 	[self.view addSubview:difficultyTitle];
-	[difficultyTitle release];
-    difficultyTitle = nil;
 	
-	
-	self.difficultyControl = [[[UISegmentedControl alloc] initWithItems:
-							   [NSArray arrayWithObjects:
-								[[NSBundle mainBundle] localizedStringForKey:@"NORMAL" value:@"Normal" table:nil],
-								[[NSBundle mainBundle] localizedStringForKey:@"HARD" value:@"Hard" table:nil],
-								[[NSBundle mainBundle] localizedStringForKey:@"EXTREME" value:@"Extreme" table:nil],
-								nil]] autorelease];
+	self.difficultyControl = [[UISegmentedControl alloc] initWithItems:
+                              [NSArray arrayWithObjects:
+                               [[NSBundle mainBundle] localizedStringForKey:@"NORMAL" value:@"Normal" table:nil],
+                               [[NSBundle mainBundle] localizedStringForKey:@"HARD" value:@"Hard" table:nil],
+                               [[NSBundle mainBundle] localizedStringForKey:@"EXTREME" value:@"Extreme" table:nil],
+                               nil]];
 	self.difficultyControl.selectedSegmentIndex = [self.delegate getDifficulty];
 	self.difficultyControl.center = CGPointMake(frame.size.width/2, frame.size.height-100);
 	[self.difficultyControl addTarget:self action:@selector(confirmDifficultyChanged:) forControlEvents:UIControlEventValueChanged];
@@ -99,8 +85,6 @@
 	difficultyDescription.numberOfLines = 3;
 	difficultyDescription.text = [[NSBundle mainBundle] localizedStringForKey:@"DIFFICULTY_DESCRIPTION" value:@"Hard and Extreme difficulties will respectivelly reorganize the table every 60 and 30 seconds." table:nil];
 	[self.view addSubview:difficultyDescription];
-	[difficultyDescription release];
-    difficultyDescription = nil;
 }
 
 

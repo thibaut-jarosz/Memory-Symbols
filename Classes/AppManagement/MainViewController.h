@@ -21,13 +21,13 @@
 	UIView *_headerView;
 }
 
-@property(nonatomic,retain) InfoViewController *infoViewController;
-@property(nonatomic,retain) CardsContainerViewController *cardsContainerViewController;
-@property(nonatomic,retain) NSTimer *difficultyTimer;
+@property(nonatomic,strong) InfoViewController *infoViewController;
+@property(nonatomic,strong) CardsContainerViewController *cardsContainerViewController;
+@property(nonatomic,strong) NSTimer *difficultyTimer;
 
 
-@property(nonatomic,retain) UIView *gameFinishedView;
-@property(nonatomic,retain) UIView *headerView;
+@property(nonatomic,strong) UIView *gameFinishedView;
+@property(nonatomic,strong) UIView *headerView;
 
 
 - (void)animationDidStop:(NSString*)animationID finished:(NSNumber*)finished context:(void*)context;

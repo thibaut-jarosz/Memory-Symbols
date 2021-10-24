@@ -23,16 +23,6 @@
 
 #pragma mark -
 #pragma mark Init & Dealloc
-- (void)dealloc {
-	self.infoViewController = nil;
-	self.cardsContainerViewController = nil;
-	self.difficultyTimer = nil;
-	
-	
-	self.gameFinishedView = nil;
-	self.headerView = nil;
-	[super dealloc];
-}
 
 
 #pragma mark -
@@ -63,7 +53,6 @@
 	titleLabel.backgroundColor = [UIColor clearColor];
 	titleLabel.textColor = [UIColor whiteColor];
 	[self.headerView addSubview:titleLabel];
-	[titleLabel release];
     titleLabel = nil;
 	
 	InfoButton *infoButton = [InfoButton buttonWithType:UIButtonTypeInfoLight];
@@ -75,7 +64,7 @@
 }
 
 - (void)addCardsContainerView {
-	self.cardsContainerViewController = [[[CardsContainerViewController alloc] init] autorelease];
+	self.cardsContainerViewController = [[CardsContainerViewController alloc] init];
 	self.cardsContainerViewController.delegate = self;
 	[self.view addSubview:self.cardsContainerViewController.view];
 }
@@ -100,7 +89,7 @@
 	[self.difficultyTimer invalidate];
 	self.difficultyTimer = nil;
 	
-	self.gameFinishedView = [[[UIView alloc] initWithFrame:self.cardsContainerViewController.view.frame] autorelease];
+	self.gameFinishedView = [[UIView alloc] initWithFrame:self.cardsContainerViewController.view.frame];
 	self.gameFinishedView.alpha = 0;
 	[self.view addSubview:self.gameFinishedView];
 	
@@ -114,7 +103,6 @@
 	titleLabel.textColor = [UIColor whiteColor];
 	titleLabel.font = [UIFont fontWithName:@"Marker Felt" size:40];
 	[self.gameFinishedView addSubview:titleLabel];
-	[titleLabel release];
     titleLabel = nil;
 	
 	UIButton *resetButton = [[UIButton alloc] initWithFrame:CGRectMake(75, mainFrame.size.height-40, mainFrame.size.width-150, 40)];
@@ -124,7 +112,6 @@
 	resetButton.titleLabel.textColor = [UIColor whiteColor];
 	resetButton.titleLabel.font = [UIFont fontWithName:@"Marker Felt" size:28];
 	[self.gameFinishedView addSubview:resetButton];
-	[resetButton release];
     resetButton = nil;
 	
 	
@@ -142,7 +129,6 @@
 	score.textColor = [UIColor whiteColor];
 	score.font = [UIFont fontWithName:@"Marker Felt" size:20];
 	[self.gameFinishedView addSubview:score];
-	[score release];
     score = nil;
 	
 	score = [[UILabel alloc] initWithFrame:CGRectMake(0, 200, mainFrame.size.width, 50)];
@@ -157,7 +143,6 @@
 	score.textColor = [UIColor whiteColor];
 	score.font = [UIFont fontWithName:@"Marker Felt" size:20];
 	[self.gameFinishedView addSubview:score];
-	[score release];
     score = nil;
 	
 	
@@ -200,7 +185,7 @@
 		[self.infoViewController hideView];
 	}
 	else {
-		self.infoViewController = [[[InfoViewController alloc] init] autorelease];
+		self.infoViewController = [[InfoViewController alloc] init];
 		self.infoViewController.delegate = self;
 		[self.view addSubview:self.infoViewController.view];
 		[self.view bringSubviewToFront:self.headerView];

@@ -29,12 +29,6 @@
 	return self;
 }
 
-- (void)dealloc {
-	self.delegate = nil;
-	self.frontImage = nil;
-    [super dealloc];
-}
-
 
 #pragma mark -
 #pragma mark frontVisible setter

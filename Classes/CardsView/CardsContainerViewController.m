@@ -27,12 +27,6 @@
 	return self;
 }
 
-- (void)dealloc {
-	self.delegate = nil;
-	self.returnedCardsList = nil;
-	[super dealloc];
-}
-
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
@@ -49,8 +43,6 @@
 			cardView.imageID = i;
 			cardView.cardID = i+45*j;
 			[self.view addSubview:cardView];
-			[cardView release];
-            cardView = nil;
 		}
 	}
 	
@@ -74,8 +66,6 @@
 		cardView.frame = CGRectMake(35*((NSInteger)(i/10)%9), 35*((NSUInteger)i%10), 34, 34);
 	}
 	[UIView commitAnimations];
-	[cardList release];
-    cardList = nil;
 }
 
 - (void)hideAllCards {

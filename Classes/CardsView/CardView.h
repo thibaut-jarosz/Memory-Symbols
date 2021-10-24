@@ -27,7 +27,6 @@
 
 #pragma mark View initialization & deallocation
 - (id)initWithFrame:(CGRect)aFrame;
-- (void)dealloc;
 
 #pragma mark frontVisible setter
 - (void)setFrontVisible:(BOOL)visible;
