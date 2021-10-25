@@ -56,13 +56,13 @@
 		BF4CB71A116BD9EB00F40DD8 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		BF4CB71B116BD9EB00F40DD8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF325E6D114478D40059FDB6 /* Localizable.strings */; };
 		BF4CB777116BD9EB00F40DD8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		BF4CB778116BD9EB00F40DD8 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF36B36A114C5DB6001E9FB6 /* InfoViewController.m */; };
 		BF4CB779116BD9EB00F40DD8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF36B37D114C5F8F001E9FB6 /* AppDelegate.m */; };
 		BF4CB77A116BD9EB00F40DD8 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF36B37F114C5F8F001E9FB6 /* MainViewController.m */; };
 		BF4CB77F116BD9EB00F40DD8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		BF4CB780116BD9EB00F40DD8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		BF5C0E9327258EA7007E6808 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5C0E9227258EA7007E6808 /* CardView.swift */; };
 		BF5C0E972725D509007E6808 /* CardsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5C0E962725D509007E6808 /* CardsContainerViewController.swift */; };
+		BF7A27A527272D6D008BE373 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7A27A427272D6D008BE373 /* InfoViewController.swift */; };
 		BF7CA2BC11FF86E700A6F3D1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF7CA2BB11FF86E700A6F3D1 /* CoreGraphics.framework */; };
 		BFFF3E681176541A0003039D /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = BFFF3E671176541A0003039D /* iTunesArtwork */; };
 		BFFF3E8E1176647D0003039D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BFFF3E8D1176647D0003039D /* Default.png */; };
@@ -122,8 +122,6 @@
 		BF14058411739F8600872873 /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8.png; sourceTree = "<group>"; };
 		BF14058511739F8600872873 /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9.png; sourceTree = "<group>"; };
 		BF1406B411739FF400872873 /* Memory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memory.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BF36B369114C5DB6001E9FB6 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
-		BF36B36A114C5DB6001E9FB6 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		BF36B37C114C5F8F001E9FB6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BF36B37D114C5F8F001E9FB6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BF36B37E114C5F8F001E9FB6 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -133,6 +131,7 @@
 		BF5C0E9127258EA6007E6808 /* Memory-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Memory-Bridging-Header.h"; sourceTree = "<group>"; };
 		BF5C0E9227258EA7007E6808 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		BF5C0E962725D509007E6808 /* CardsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsContainerViewController.swift; sourceTree = "<group>"; };
+		BF7A27A427272D6D008BE373 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		BF7CA2BB11FF86E700A6F3D1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		BFEB54BE129421DE00615F82 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		BFFF3E671176541A0003039D /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
@@ -273,8 +272,7 @@
 		BF36B362114C5D6F001E9FB6 /* InfoView */ = {
 			isa = PBXGroup;
 			children = (
-				BF36B369114C5DB6001E9FB6 /* InfoViewController.h */,
-				BF36B36A114C5DB6001E9FB6 /* InfoViewController.m */,
+				BF7A27A427272D6D008BE373 /* InfoViewController.swift */,
 			);
 			path = InfoView;
 			sourceTree = "<group>";
@@ -418,7 +416,7 @@
 				BF5C0E9327258EA7007E6808 /* CardView.swift in Sources */,
 				BF5C0E972725D509007E6808 /* CardsContainerViewController.swift in Sources */,
 				BF4CB777116BD9EB00F40DD8 /* main.m in Sources */,
-				BF4CB778116BD9EB00F40DD8 /* InfoViewController.m in Sources */,
+				BF7A27A527272D6D008BE373 /* InfoViewController.swift in Sources */,
 				BF4CB779116BD9EB00F40DD8 /* AppDelegate.m in Sources */,
 				BF4CB77A116BD9EB00F40DD8 /* MainViewController.m in Sources */,
 			);

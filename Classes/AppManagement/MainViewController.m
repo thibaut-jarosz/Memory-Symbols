@@ -182,32 +182,35 @@
 #pragma mark Information view management & InfoViewControllerDelegate
 - (void)infoButtonAction:(id)sender {
 	if (self.infoViewController) {
-		[self.infoViewController hideView];
+		[self.infoViewController hide];
 	}
 	else {
 		self.infoViewController = [[InfoViewController alloc] init];
 		self.infoViewController.delegate = self;
 		[self.view addSubview:self.infoViewController.view];
 		[self.view bringSubviewToFront:self.headerView];
-		[self.infoViewController displayView];
+		[self.infoViewController show];
 	}
 }
 
-- (void)infoViewDidHide:(InfoViewController*)infoViewConroller {
+- (void)didShowInfoViewConroller:(InfoViewController *)infoViewConroller {
+}
+
+- (void)didHideInfoViewConroller:(InfoViewController *)infoViewConroller {
 	if (infoViewConroller == self.infoViewController) {
 		[self.infoViewController.view removeFromSuperview];
 		self.infoViewController = nil;
 	}
 }
 
-- (BOOL)difficultyChangeConfirmationNeeded {
+- (BOOL)shouldConfirmDifficultyChange {
 	return (self.gameFinishedView ? NO : YES);
 }
 
 
 #pragma mark -
 #pragma mark Difficulty management
-- (NSInteger)getDifficulty {
+- (NSInteger)difficulty {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults synchronize];
 	NSInteger difficulty = [userDefaults integerForKey:@"difficulty"];
@@ -254,7 +257,7 @@
 		self.difficultyTimer = nil;
 	}
 	
-	NSInteger difficulty = [self getDifficulty];
+	NSInteger difficulty = self.difficulty;
 	
 	if (difficulty) {
 		self.difficultyTimer = [NSTimer scheduledTimerWithTimeInterval:(difficulty == 2 ? 30 : 60)
@@ -275,13 +278,13 @@
 - (NSInteger)getBestScore {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults synchronize];
-	return [userDefaults integerForKey:[NSString stringWithFormat:@"bestScore%lu", [self getDifficulty]]];
+	return [userDefaults integerForKey:[NSString stringWithFormat:@"bestScore%lu", self.difficulty]];
 }
 
 - (void)setBestScore:(NSInteger)bestScore {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults synchronize];
-	[userDefaults setInteger:bestScore forKey:[NSString stringWithFormat:@"bestScore%lu", [self getDifficulty]]];
+	[userDefaults setInteger:bestScore forKey:[NSString stringWithFormat:@"bestScore%lu", self.difficulty]];
 	[userDefaults synchronize];
 }
 

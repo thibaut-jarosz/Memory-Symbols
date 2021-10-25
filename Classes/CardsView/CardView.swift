@@ -1,7 +1,7 @@
 import UIKit
 
 /// Delegate of CardView
-protocol CardViewDelegate {
+protocol CardViewDelegate: AnyObject {
     /// Forward the touchesBegan to delegate
     func touchesBegan(on cardView: CardView)
 }
@@ -20,7 +20,7 @@ class CardView: UIView {
     }
     
     /// Delegate of the CardView
-    var delegate: CardViewDelegate?
+    weak var delegate: CardViewDelegate?
     
     /// Is the card revealed or is it showing its back
     var status: Status = .hidden {

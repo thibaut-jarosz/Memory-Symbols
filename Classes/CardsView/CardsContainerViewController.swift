@@ -10,7 +10,7 @@ import UIKit
 /// A controller that manage all game cards
 class CardsContainerViewController: UIViewController {
     /// Delegate of the CardsContainerViewController
-    @objc var delegate: CardsContainerViewControllerDelegate?
+    @objc weak var delegate: CardsContainerViewControllerDelegate?
     
     /// Number of cards revealed. One card can be revealed multiple times.
     @objc var revealCounter: Int = 0

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "InfoViewController.h"
 #import "Memory-Swift.h"
 
 @interface MainViewController : UIViewController <InfoViewControllerDelegate,CardsContainerViewControllerDelegate> {
@@ -34,8 +33,6 @@
 - (void)restartAction:(id)sender;
 - (void)addHeaderView;
 - (void)addCardsContainerView;
-- (NSInteger)getDifficulty;
-- (void)setDifficulty:(NSInteger)difficulty;
 - (void)confirmDifficultyChanged:(id)sender;
 - (void)timerInit;
 - (void)timerFireMethod:(NSTimer*)theTimer;
