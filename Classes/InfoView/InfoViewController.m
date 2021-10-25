@@ -132,14 +132,12 @@
 		if ([self.delegate respondsToSelector:@selector(difficultyChangeConfirmationNeeded)] && [self.delegate difficultyChangeConfirmationNeeded]) {
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"CONFIRM_DIFFICULTY_CHANGE" value:@"Changing difficulty needs to restart the game." table:nil] message:nil preferredStyle:UIAlertControllerStyleAlert];
             [alertController addAction:[UIAlertAction actionWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"CANCEL_BUTTON" value:@"Cancel" table:nil] style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                // hide the alert controller?
-                [self.delegate setDifficulty:self.difficultyControl.selectedSegmentIndex];
-            }]];
-            [alertController addAction:[UIAlertAction actionWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"CHANGE_BUTTON" value:@"Change" table:nil] style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-                // hide the alert controller?
                 self.lockConfirmDifficultyChanged = YES;
                 self.difficultyControl.selectedSegmentIndex = [self.delegate getDifficulty];
                 self.lockConfirmDifficultyChanged = NO;
+            }]];
+            [alertController addAction:[UIAlertAction actionWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"CHANGE_BUTTON" value:@"Change" table:nil] style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                [self.delegate setDifficulty:self.difficultyControl.selectedSegmentIndex];
             }]];
             [self presentViewController:alertController animated:YES completion:nil];
 		}
