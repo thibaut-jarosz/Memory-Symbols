@@ -84,11 +84,7 @@ extension CardsContainerViewController {
         revealedCards.removeAll()
         if afterMovingCardsAway {
             // Put back all the cards that were moved away
-            let containerHalfWidth = view.frame.width/2
-            for cardView in allCards {
-                let centerX = cardView.center.x
-                cardView.center.x = centerX < containerHalfWidth ? (centerX + containerHalfWidth + 30) : (centerX - containerHalfWidth - 30)
-            }
+            moveCards(away: false)
         }
         else {
             // Just hide the cards
@@ -98,10 +94,15 @@ extension CardsContainerViewController {
     
     /// Move away all cards
     @objc func moveCardsAway() {
+        moveCards(away: true)
+    }
+    
+    private func moveCards(away: Bool) {
         let containerHalfWidth = view.frame.width/2
         for cardView in allCards {
             let centerX = cardView.center.x
-            cardView.center.x = centerX < containerHalfWidth ? (centerX - containerHalfWidth - 30) : (centerX + containerHalfWidth + 30)
+            let moveLeft: Bool = away && centerX < containerHalfWidth || !away && centerX >= containerHalfWidth
+            cardView.center.x = moveLeft ? (centerX - containerHalfWidth - 30) : (centerX + containerHalfWidth + 30)
         }
     }
 }
