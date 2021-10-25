@@ -33,7 +33,6 @@
 - (void)restartAction:(id)sender;
 - (void)addHeaderView;
 - (void)addCardsContainerView;
-- (void)confirmDifficultyChanged:(id)sender;
 - (void)timerInit;
 - (void)timerFireMethod:(NSTimer*)theTimer;
 - (NSInteger)getBestScore;

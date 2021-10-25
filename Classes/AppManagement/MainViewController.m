@@ -20,15 +20,6 @@
 @synthesize headerView=_headerView;
 
 
-#pragma mark -
-#pragma mark Init & Dealloc
-
-
-#pragma mark -
-#pragma mark View management
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskPortrait;
-}
 
 
 #pragma mark -
@@ -229,23 +220,6 @@
 	
 	if (!self.gameFinishedView)
 		[self restartAction:self];
-}
-
-- (void)confirmDifficultyChanged:(id)sender {
-	if (!self.gameFinishedView) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"CONFIRM_DIFFICULTY_CHANGE" value:@"Changing difficulty needs to restart the game." table:nil] message:nil preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"CANCEL_BUTTON" value:@"Cancel" table:nil] style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            // hide the alert controller?
-        }]];
-        [alertController addAction:[UIAlertAction actionWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"CHANGE_BUTTON" value:@"Change" table:nil] style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-            // hide the alert controller?
-            // also change the difficulty?
-        }]];
-        [self presentViewController:alertController animated:YES completion:nil];
-	}
-	else {
-		[self setDifficulty:((UISegmentedControl*)sender).selectedSegmentIndex];
-	}
 }
 
 
