@@ -9,15 +9,25 @@ protocol CardViewDelegate {
 
 /// A view representing a single card
 class CardView: UIView {
+    /// Card Status
+    enum Status {
+        /// Card is hidden
+        case hidden
+        /// Card if revealed but not matched with another card
+        case revealed
+        /// Card is matched with another card
+        case matched
+    }
     
     /// Delegate of the CardView
     var delegate: CardViewDelegate?
     
     /// Is the card revealed or is it showing its back
-    private(set) var isRevealed: Bool = false {
+    var status: Status = .hidden {
         didSet {
             // Show or hide image when isRevealed is changed
-            backgroundColor = isRevealed ? .init(patternImage: image) : .white
+            backgroundColor = status == .hidden ? .white : .init(patternImage: image)
+            alpha = status == .matched ? 0.5 : 1
         }
     }
     
@@ -42,25 +52,28 @@ class CardView: UIView {
 }
 
 extension CardView {
-    /// Change the visibility of the card
+    /// Change the status of the card
     /// - Parameters:
-    ///   - reveal: reveal or hide the card
-    ///   - animated: animate the visibility change
-    func reveal(_ reveal: Bool, animated: Bool) {
-        guard self.isRevealed != reveal else { return }
+    ///   - status: The new status
+    ///   - completion: Completion block called after animation
+    func setStatusAnimated(_ status: Status, completion: ((Bool) -> Void)? = nil) {
+        guard self.status != status else { return }
         
-        if animated {
-            UIView.transition(
-                with: self,
-                duration: 0.5,
-                options: reveal ? .transitionFlipFromLeft : .transitionFlipFromRight
-            ) {
-                self.isRevealed = reveal
-            }
+        guard self.status != status else { return }
+        
+        let options: UIView.AnimationOptions
+        switch status {
+        case .hidden:
+            options = .transitionFlipFromRight
+        case .revealed:
+            options = .transitionFlipFromLeft
+        case .matched:
+            options = .curveEaseInOut
         }
-        else {
-            isRevealed = reveal
-        }
+        
+        UIView.transition(with: self, duration: 0.5, options: options, animations: {
+            self.status = status
+        }, completion: completion)
     }
 }
 

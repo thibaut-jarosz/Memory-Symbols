@@ -73,8 +73,7 @@ extension CardsContainerViewController {
     /// Hide all the cards
     @objc func hideAllCards() {
         for cardView in allCards {
-            cardView.reveal(false, animated: true)
-            cardView.alpha = 1
+            cardView.setStatusAnimated(.hidden)
         }
     }
     
@@ -114,12 +113,12 @@ extension CardsContainerViewController: CardViewDelegate {
     /// Manage action when card has been touched
     /// - Parameter cardView: the touched card
     func touchesBegan(on cardView: CardView) {
-        // Check if card was not already revealed
-        guard !cardView.isRevealed else { return }
+        // Check if card was hidden
+        guard cardView.status == .hidden else { return }
         
         // Increase counter and reveal card
         revealCounter += 1
-        cardView.reveal(true, animated: true)
+        cardView.setStatusAnimated(.revealed)
         
         // If only 1 card was revealed before touching the card
         if revealedCards.count == 1, let alreadyRevealedCardView = revealedCards.first {
@@ -127,12 +126,10 @@ extension CardsContainerViewController: CardViewDelegate {
             // If card is matching
             if cardView.imageID == alreadyRevealedCardView.imageID {
                 // Make cards as matched
-                UIView.animate(withDuration: 0.5) {
-                    cardView.alpha = 0.5
-                    alreadyRevealedCardView.alpha = 0.5
-                } completion: { _ in
+                cardView.setStatusAnimated(.matched)
+                alreadyRevealedCardView.setStatusAnimated(.matched) { _ in
                     // Check if game ended
-                    if let _ = self.allCards.first(where: { !$0.isRevealed }) {
+                    if self.allCards.allSatisfy({ $0.status == .matched }) {
                         self.delegate?.gameDidEnd(self)
                     }
                 }
@@ -147,7 +144,7 @@ extension CardsContainerViewController: CardViewDelegate {
         else {
             // Unreveal all revealed cards
             for revealedCard in revealedCards {
-                revealedCard.reveal(false, animated: true)
+                revealedCard.setStatusAnimated(.hidden)
             }
             revealedCards.removeAll()
             // Mark touched card as revealed but not matched
