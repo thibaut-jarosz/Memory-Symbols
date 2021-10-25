@@ -1,9 +1,9 @@
 import UIKit
 
 /// Delegate of CardView
-@objc protocol CardViewDelegate {
+protocol CardViewDelegate {
     /// Forward the touchesBegan to delegate
-    @objc(touchesBeganOnCardView:) func touchesBegan(on cardView: CardView)
+    func touchesBegan(on cardView: CardView)
 }
 
 
@@ -11,10 +11,10 @@ import UIKit
 class CardView: UIView {
     
     /// Delegate of the CardView
-    @objc var delegate: CardViewDelegate?
+    var delegate: CardViewDelegate?
     
     /// Is the card revealed or is it showing its back
-    @objc private(set) var isRevealed: Bool = false {
+    private(set) var isRevealed: Bool = false {
         didSet {
             // Show or hide image when isRevealed is changed
             backgroundColor = isRevealed ? .init(patternImage: image) : .white
@@ -22,12 +22,12 @@ class CardView: UIView {
     }
     
     /// Identifier of the image shown by the card
-    @objc let imageID: Int
+    let imageID: Int
     
     /// Image shown by the card
     private let image: UIImage
     
-    @objc init(imageID: Int) {
+    init(imageID: Int) {
         self.imageID = imageID
         self.image = .init(named: "\(imageID).png")!
         
@@ -46,7 +46,7 @@ extension CardView {
     /// - Parameters:
     ///   - reveal: reveal or hide the card
     ///   - animated: animate the visibility change
-    @objc func reveal(_ reveal: Bool, animated: Bool) {
+    func reveal(_ reveal: Bool, animated: Bool) {
         guard self.isRevealed != reveal else { return }
         
         if animated {
