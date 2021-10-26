@@ -1,25 +1,19 @@
 import UIKit
 
 /// Delegate of InfoViewController
-@objc protocol InfoViewControllerDelegate {
+protocol InfoViewControllerDelegate: AnyObject {
     /// Game difficulty
-    @objc var difficulty: Int {get set}
+    var difficulty: Int {get set}
     
     /// Should display a confirmation before changing difficulty
-    @objc var shouldConfirmDifficultyChange: Bool { get }
-    
-    /// ViewController did show
-    @objc(didShowInfoViewConroller:) func didShow(_ infoViewConroller: InfoViewController)
-    
-    /// ViewController did hide
-    @objc(didHideInfoViewConroller:) func didHide(_ infoViewConroller: InfoViewController)
+    var shouldConfirmDifficultyChange: Bool { get }
 }
 
 
 /// Controller that manage the information view
-@objc class InfoViewController: UIViewController {
+class InfoViewController: UIViewController {
     /// Delegate of InfoViewController
-    @objc weak var delegate: InfoViewControllerDelegate?
+    weak var delegate: InfoViewControllerDelegate?
 }
 
 // MARK: - View loading
@@ -98,25 +92,21 @@ extension InfoViewController {
 // MARK: - View show & hide
 extension InfoViewController {
     /// Show the Info view
-    @objc func show() {
+    func show(_ completion: ((Bool) -> Void)? = nil) {
         var frame = view.frame
         frame.origin = .zero
-        UIView.transition(with: view, duration: 0.5, options: .curveEaseInOut) {
+        UIView.transition(with: view, duration: 0.5, options: .curveEaseInOut, animations: {
             self.view.frame = frame
-        } completion: { _ in
-            self.delegate?.didShow(self)
-        }
+        }, completion: completion)
     }
     
     /// Hide the Info view
-    @objc func hide() {
+    func hide(_ completion: ((Bool) -> Void)? = nil) {
         var frame = view.frame
         frame.origin = .init(x: 0, y: frame.height)
-        UIView.transition(with: view, duration: 0.5, options: .curveEaseInOut) {
+        UIView.transition(with: view, duration: 0.5, options: .curveEaseInOut, animations: {
             self.view.frame = frame;
-        } completion: { _ in
-            self.delegate?.didHide(self)
-        }
+        }, completion: completion)
     }
 }
 

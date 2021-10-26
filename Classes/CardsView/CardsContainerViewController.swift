@@ -1,19 +1,19 @@
 import UIKit
 
 /// Delegate of CardsContainerViewController
-@objc protocol CardsContainerViewControllerDelegate {
+protocol CardsContainerViewControllerDelegate: AnyObject {
     /// Called when game did end because all cards are revealed
-    @objc func gameDidEnd(_ cardContainer: CardsContainerViewController)
+    func gameDidEnd(_ cardContainer: CardsContainerViewController)
 }
 
 
 /// A controller that manage all game cards
 class CardsContainerViewController: UIViewController {
     /// Delegate of the CardsContainerViewController
-    @objc weak var delegate: CardsContainerViewControllerDelegate?
+    weak var delegate: CardsContainerViewControllerDelegate?
     
-    /// Number of cards revealed. One card can be revealed multiple times.
-    @objc var revealCounter: Int = 0
+    /// Game score (lower is better)
+    var score: Int = 0
     
     /// Revealed cards but not matched yet
     var revealedCards = Set<CardView>(minimumCapacity: 2)
@@ -53,7 +53,7 @@ extension CardsContainerViewController {
     }
     
     /// Shuffle the cards
-    @objc func shuffleCards() {
+    func shuffleCards() {
         // Get all the cards and shuffle them
         let cards = allCards.shuffled()
         
@@ -71,7 +71,7 @@ extension CardsContainerViewController {
     }
     
     /// Hide all the cards
-    @objc func hideAllCards() {
+    func hideAllCards() {
         for cardView in allCards {
             cardView.setStatusAnimated(.hidden)
         }
@@ -79,8 +79,8 @@ extension CardsContainerViewController {
     
     /// Restart the game by hiding all cards
     /// - Parameter afterMovingCardsAway: Restart occured after moving cards away
-    @objc func restartGame(afterMovingCardsAway: Bool) {
-        revealCounter = 0
+    func restartGame(afterMovingCardsAway: Bool) {
+        score = 0
         revealedCards.removeAll()
         if afterMovingCardsAway {
             // Put back all the cards that were moved away
@@ -93,7 +93,7 @@ extension CardsContainerViewController {
     }
     
     /// Move away all cards
-    @objc func moveCardsAway() {
+    func moveCardsAway() {
         moveCards(away: true)
     }
     
@@ -117,8 +117,8 @@ extension CardsContainerViewController: CardViewDelegate {
         // Check if card was hidden
         guard cardView.status == .hidden else { return }
         
-        // Increase counter and reveal card
-        revealCounter += 1
+        // Increase score and reveal card
+        score += 1
         cardView.setStatusAnimated(.revealed)
         
         // If only 1 card was revealed before touching the card

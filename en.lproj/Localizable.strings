@@ -7,10 +7,9 @@
  */
 "RESTART"						=	"restart";
 "GAME_OVER"						=	"Well done!";
-"GAME_SCORE"					=	"You have touched the screen\n%i times to finish this game.";
-"BEST_SCORE"					=	"Your best score %@ %i.";
-"IS"							=	"is";
-"WAS"							=	"was";
+"GAME_SCORE"					=	"You have touched the screen\n%i times to complete this game.";
+"BEST_SCORE_CURRENT"            =   "Your best score is %i.";
+"BEST_SCORE_PREVIOUS"           =   "Your best score was %i.";
 
 "CONFIRM_RESTART"				=	"Do you really want to restart the game?";
 "RESTART_BUTTON"				=	"Restart";
@@ -21,7 +20,7 @@
 "NORMAL"						=	"Normal";
 "HARD"							=	"Hard";
 "EXTREME"						=	"Extreme";
-"DIFFICULTY_DESCRIPTION"		=	"Hard and Extreme difficulties will respectivelly reorganize the table every 60 and 30 seconds.";
+"DIFFICULTY_DESCRIPTION"		=	"Hard and Extreme difficulties will shuffle the cards respectivelly every 60 and 30 seconds.";
 "CONFIRM_DIFFICULTY_CHANGE"		=	"Changing difficulty needs to restart the game.";
 
 "INFO_DEV"						=	"Development: Thibaut Jarosz";

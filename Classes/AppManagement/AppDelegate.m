@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "MainViewController.h"
+#import "Memory-Swift.h"
 
 @implementation AppDelegate
 

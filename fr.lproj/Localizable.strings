@@ -8,9 +8,8 @@
 "RESTART"						=	"recommencer";
 "GAME_OVER"						=	"Bravo !";
 "GAME_SCORE"					=	"Tu as touché l'écran\n%i fois pour terminer ce jeu.";
-"BEST_SCORE"					=	"Ton meilleur score %@ %i.";
-"IS"							=	"est";
-"WAS"							=	"était";
+"BEST_SCORE_CURRENT"            =   "Ton meilleur score est %i.";
+"BEST_SCORE_PREVIOUS"           =   "Ton meilleur score était %i.";
 
 "CONFIRM_RESTART"				=	"Veux-tu vraiment recommencer ?";
 "RESTART_BUTTON"				=	"Recommencer";
@@ -21,7 +20,7 @@
 "NORMAL"						=	"Normal";
 "HARD"							=	"Difficile";
 "EXTREME"						=	"Extrême";
-"DIFFICULTY_DESCRIPTION"		=	"Les difficultés Difficile et Extrême réorganiseront respectivement la table toutes les 60 et 30 secondes.";
+"DIFFICULTY_DESCRIPTION"		=	"Les difficultés Difficile et Extrême mélangeront les cartes respectivement toutes les 60 et 30 secondes.";
 "CONFIRM_DIFFICULTY_CHANGE"		=	"Changer la difficulté nécésite de redémarrer la partie.";
 
 "INFO_DEV"						=	"Développement : Thibaut Jarosz";
