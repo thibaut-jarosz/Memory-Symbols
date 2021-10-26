@@ -17,9 +17,9 @@
 "CHANGE_BUTTON"					=	"Changer";
 
 "DIFFICULTY"					=	"Difficulté";
-"NORMAL"						=	"Normal";
-"HARD"							=	"Difficile";
-"EXTREME"						=	"Extrême";
+"DIFFICULTY_PICKER_0"			=	"Normal";
+"DIFFICULTY_PICKER_1"			=	"Difficile";
+"DIFFICULTY_PICKER_2"			=	"Extrême";
 "DIFFICULTY_DESCRIPTION"		=	"Les difficultés Difficile et Extrême mélangeront les cartes respectivement toutes les 60 et 30 secondes.";
 "CONFIRM_DIFFICULTY_CHANGE"		=	"Changer la difficulté nécésite de redémarrer la partie.";
 

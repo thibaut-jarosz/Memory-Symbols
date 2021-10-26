@@ -3,7 +3,7 @@ import UIKit
 /// Delegate of InfoViewController
 protocol InfoViewControllerDelegate: AnyObject {
     /// Game difficulty
-    var difficulty: Int {get set}
+    var difficulty: GameDifficulty {get set}
     
     /// Should display a confirmation before changing difficulty
     var shouldConfirmDifficultyChange: Bool { get }
@@ -68,12 +68,12 @@ extension InfoViewController {
         difficultyTitle.text = NSLocalizedString("DIFFICULTY", value: "Difficulty", comment: "")
         view.addSubview(difficultyTitle)
         
-        let difficultyControl = UISegmentedControl(items: [
-            NSLocalizedString("NORMAL", value: "Normal", comment: ""),
-            NSLocalizedString("HARD", value: "Hard", comment: ""),
-            NSLocalizedString("EXTREME", value: "Extreme", comment: ""),
-        ])
-        difficultyControl.selectedSegmentIndex = delegate?.difficulty ?? 0
+        let difficultyControl = UISegmentedControl(
+            items: GameDifficulty.allCases.map {
+                NSLocalizedString("DIFFICULTY_PICKER_\($0.rawValue)", value: "", comment: "")
+            }
+        )
+        difficultyControl.selectedSegmentIndex = (delegate?.difficulty ?? .normal).rawValue
         difficultyControl.center = .init(x: view.frame.width/2, y: 310)
         difficultyControl.addTarget(self, action: #selector(difficultyChanged), for: .valueChanged)
         view.addSubview(difficultyControl)
@@ -120,7 +120,7 @@ extension InfoViewController {
         
         // Just forward the new value if the confirmation is not required
         guard delegate.shouldConfirmDifficultyChange else {
-            delegate.difficulty = sender.selectedSegmentIndex
+            delegate.difficulty = .init(rawValue: sender.selectedSegmentIndex) ?? .normal
             return
         }
         
@@ -134,14 +134,14 @@ extension InfoViewController {
             title: NSLocalizedString("CANCEL_BUTTON", value: "Cancel", comment: ""),
             style: .cancel, handler: { _ in
                 // Revert to old value if cancelled
-                sender.selectedSegmentIndex = delegate.difficulty
+                sender.selectedSegmentIndex = delegate.difficulty.rawValue
             }
         ))
         alertController.addAction(UIAlertAction(
             title: NSLocalizedString("CHANGE_BUTTON", value: "Change", comment: ""),
             style: .destructive, handler: { _ in
                 // Forward the new value to delegate if confirmed
-                delegate.difficulty = sender.selectedSegmentIndex
+                delegate.difficulty = .init(rawValue: sender.selectedSegmentIndex) ?? .normal
             }
         ))
         present(alertController, animated: true)

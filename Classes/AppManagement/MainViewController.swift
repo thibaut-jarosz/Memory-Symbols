@@ -114,11 +114,8 @@ extension MainViewController {
         stopDifficultyTimer()
         
         // Start new timer is needed
-        if difficulty > 0 {
-            difficultyTimer = .scheduledTimer(
-                withTimeInterval: (difficulty == 2 ? 30 : 60),
-                repeats: true
-            ) { [weak self] _ in
+        if let shuffleTime = difficulty.shuffleTime {
+            difficultyTimer = .scheduledTimer(withTimeInterval: shuffleTime, repeats: true) { [weak self] _ in
                 self?.cardsContainerViewController.shuffleCards()
             }
         }
@@ -143,16 +140,12 @@ extension MainViewController: InfoViewControllerDelegate {
     /// Get and set the  difficulty
     ///
     /// Setting difficulty will restart the game if it is not ended
-    var difficulty: Int {
+    var difficulty: GameDifficulty {
         get {
-            let value = UserDefaults.standard.integer(forKey: "difficulty")
-            guard 0...2 ~= value else {
-                return 0
-            }
-            return value
+            GameDifficulty(rawValue: UserDefaults.standard.integer(forKey: "difficulty")) ?? .normal
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "difficulty")
+            UserDefaults.standard.set(newValue.rawValue, forKey: "difficulty")
             if !isGameEnded {
                 restartGame()
             }

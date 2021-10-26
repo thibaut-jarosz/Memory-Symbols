@@ -17,9 +17,9 @@
 "CHANGE_BUTTON"					=	"Change";
 
 "DIFFICULTY"					=	"Difficulty";
-"NORMAL"						=	"Normal";
-"HARD"							=	"Hard";
-"EXTREME"						=	"Extreme";
+"DIFFICULTY_PICKER_0"			=	"Normal";
+"DIFFICULTY_PICKER_1"			=	"Hard";
+"DIFFICULTY_PICKER_2"			=	"Extreme";
 "DIFFICULTY_DESCRIPTION"		=	"Hard and Extreme difficulties will shuffle the cards respectivelly every 60 and 30 seconds.";
 "CONFIRM_DIFFICULTY_CHANGE"		=	"Changing difficulty needs to restart the game.";
 
