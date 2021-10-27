@@ -25,7 +25,7 @@ extension CardsContainerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let frame = CGRect(x: 3, y: 75, width: 314, height: 349)
+        let frame = CGRect(x: 3, y: 125, width: 314, height: 349)
         view.frame = frame
         
         // Create all cards

@@ -28,8 +28,6 @@ extension MainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .init(red: 0.278, green: 0.388, blue: 0.478, alpha: 1)
-        
         // Add header
         insertHeaderView()
         
@@ -71,20 +69,19 @@ extension MainViewController {
     @objc func infoButtonAction(_ sender: UIButton) {
         // If there is an info view
         if let infoViewController = infoViewController {
-            // Dismiss the info view
-            infoViewController.hide { _ in
-                infoViewController.view.removeFromSuperview()
-                self.infoViewController = nil
-            }
+            infoViewController.dismiss(animated: true)
+            self.infoViewController = nil
         }
         else  {
             // Present the info view
             let infoViewController = InfoViewController()
             infoViewController.delegate = self
-            view.bringSubviewToFront(headerView)
-            view.insertSubview(infoViewController.view, belowSubview: headerView)
-            self.infoViewController = infoViewController
-            infoViewController.show()
+//            infoViewController.modalPresentationStyle = .
+            present(infoViewController, animated: true, completion: nil)
+//            view.bringSubviewToFront(headerView)
+//            view.insertSubview(infoViewController.view, belowSubview: headerView)
+//            self.infoViewController = infoViewController
+//            infoViewController.show()
         }
     }
     
