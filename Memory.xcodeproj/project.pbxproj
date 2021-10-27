@@ -149,9 +149,12 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				BF36B378114C5F63001E9FB6 /* AppManagement */,
-				BF36B382114C5F97001E9FB6 /* CardsView */,
-				BF36B362114C5D6F001E9FB6 /* InfoView */,
+				BF6E3CF92728B567008DA1C1 /* AppDelegate.swift */,
+				BF5C0E962725D509007E6808 /* CardsContainerViewController.swift */,
+				BF5C0E9227258EA7007E6808 /* CardView.swift */,
+				BF6E3CF727289AD2008DA1C1 /* GameDifficulty.swift */,
+				BF7A27A427272D6D008BE373 /* InfoViewController.swift */,
+				BF6E3CF52728153A008DA1C1 /* MainViewController.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -159,7 +162,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				080E96DDFE201D6D7F000001 /* Classes */,
+				BF816BAE27293F7500BD48D5 /* Memory */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				BF1406B511739FF400872873 /* Products */,
@@ -251,31 +254,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BF36B362114C5D6F001E9FB6 /* InfoView */ = {
+		BF816BAE27293F7500BD48D5 /* Memory */ = {
 			isa = PBXGroup;
 			children = (
-				BF7A27A427272D6D008BE373 /* InfoViewController.swift */,
+				080E96DDFE201D6D7F000001 /* Classes */,
 			);
-			path = InfoView;
-			sourceTree = "<group>";
-		};
-		BF36B378114C5F63001E9FB6 /* AppManagement */ = {
-			isa = PBXGroup;
-			children = (
-				BF6E3CF92728B567008DA1C1 /* AppDelegate.swift */,
-				BF6E3CF727289AD2008DA1C1 /* GameDifficulty.swift */,
-				BF6E3CF52728153A008DA1C1 /* MainViewController.swift */,
-			);
-			path = AppManagement;
-			sourceTree = "<group>";
-		};
-		BF36B382114C5F97001E9FB6 /* CardsView */ = {
-			isa = PBXGroup;
-			children = (
-				BF5C0E962725D509007E6808 /* CardsContainerViewController.swift */,
-				BF5C0E9227258EA7007E6808 /* CardView.swift */,
-			);
-			path = CardsView;
+			path = Memory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
