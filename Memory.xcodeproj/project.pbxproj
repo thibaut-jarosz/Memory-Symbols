@@ -15,7 +15,7 @@
 		BF6E3CFA2728B567008DA1C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6E3CF92728B567008DA1C1 /* AppDelegate.swift */; };
 		BF7A27A527272D6D008BE373 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7A27A427272D6D008BE373 /* InfoViewController.swift */; };
 		BF816BB1272940DA00BD48D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF816BB0272940DA00BD48D5 /* Assets.xcassets */; };
-		BFFF3E8E1176647D0003039D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = BFFF3E8D1176647D0003039D /* Default.png */; };
+		BF816BD62729794100BD48D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF816BD52729794100BD48D5 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,7 +30,7 @@
 		BF6E3CF92728B567008DA1C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF7A27A427272D6D008BE373 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		BF816BB0272940DA00BD48D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BFFF3E8D1176647D0003039D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		BF816BD52729794100BD48D5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,10 +86,10 @@
 		BF816BB2272969A700BD48D5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				BFFF3E8D1176647D0003039D /* Default.png */,
 				BF816BB0272940DA00BD48D5 /* Assets.xcassets */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				BF325E6D114478D40059FDB6 /* Localizable.strings */,
+				BF816BD52729794100BD48D5 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -151,8 +151,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF4CB71B116BD9EB00F40DD8 /* Localizable.strings in Resources */,
+				BF816BD62729794100BD48D5 /* LaunchScreen.storyboard in Resources */,
 				BF816BB1272940DA00BD48D5 /* Assets.xcassets in Resources */,
-				BFFF3E8E1176647D0003039D /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
