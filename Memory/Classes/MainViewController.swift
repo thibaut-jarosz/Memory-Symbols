@@ -2,17 +2,8 @@ import UIKit
 
 /// A controller that manage all the app
 class MainViewController: UIViewController {
-    /// The displayed Info view
-    var infoViewController: InfoViewController?
-    
     /// The cards container
     let cardsContainerViewController = CardsContainerViewController()
-    
-    /// Timer that manage cards shuffle on some difficulties
-    var difficultyTimer: Timer?
-    
-    /// Header view containing title and info button
-    let headerView = UIView()
     
     /// A view displayed when game ended
     var gameEndedView: UIView?
@@ -28,63 +19,14 @@ extension MainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Add header
-        insertHeaderView()
-        
         // Add cards container
         cardsContainerViewController.delegate = self
         view.addSubview(cardsContainerViewController.view)
-        
-        // Start difficulty timer
-        self.restartDifficultyTimer()
-    }
-    
-    /// Add and configure  header view
-    private func insertHeaderView() {
-        headerView.frame = .init(x: 0, y: 0, width: view.frame.width, height: 50)
-        view.addSubview(headerView)
-        
-        // Add title
-        let titleLabel = UILabel(frame: headerView.frame)
-        titleLabel.text = "Memory"
-        titleLabel.font = UIFont(name: "Marker Felt", size: 25)
-        titleLabel.textAlignment = .center
-        titleLabel.backgroundColor = .clear
-        titleLabel.textColor = .white
-        headerView.addSubview(titleLabel)
-        
-        // Add info button
-        let infoButton = UIButton(type: .infoLight)
-        infoButton.tintColor = .white
-        infoButton.center = .init(x: headerView.frame.width-25, y: 25)
-        infoButton.addTarget(self, action: #selector(infoButtonAction(_:)), for: .touchUpInside)
-        headerView.addSubview(infoButton)
     }
 }
 
 // MARK: - Actions
 extension MainViewController {
-    /// Show or hide the info view
-    /// - Parameter sender: the info button
-    @objc func infoButtonAction(_ sender: UIButton) {
-        // If there is an info view
-        if let infoViewController = infoViewController {
-            infoViewController.dismiss(animated: true)
-            self.infoViewController = nil
-        }
-        else  {
-            // Present the info view
-            let infoViewController = InfoViewController()
-            infoViewController.delegate = self
-//            infoViewController.modalPresentationStyle = .
-            present(infoViewController, animated: true, completion: nil)
-//            view.bringSubviewToFront(headerView)
-//            view.insertSubview(infoViewController.view, belowSubview: headerView)
-//            self.infoViewController = infoViewController
-//            infoViewController.show()
-        }
-    }
-    
     /// Restart the game
     @objc func restartGame() {
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {
@@ -95,26 +37,6 @@ extension MainViewController {
             // Remove gameEndedView, shuffle the cards and restart timer
             self.gameEndedView?.removeFromSuperview()
             self.cardsContainerViewController.shuffleCards()
-            self.restartDifficultyTimer()
-        }
-    }
-    
-    /// Stop the difficulty time
-    func stopDifficultyTimer() {
-        difficultyTimer?.invalidate()
-        difficultyTimer = nil
-    }
-    
-    /// Restart the difficulty time
-    func restartDifficultyTimer() {
-        // Stop current timer
-        stopDifficultyTimer()
-        
-        // Start new timer is needed
-        if let shuffleTime = difficulty.shuffleTime {
-            difficultyTimer = .scheduledTimer(withTimeInterval: shuffleTime, repeats: true) { [weak self] _ in
-                self?.cardsContainerViewController.shuffleCards()
-            }
         }
     }
 }
@@ -124,43 +46,17 @@ extension MainViewController {
     /// Get and set the best score for the current difficulty
     var bestScore: Int {
         get {
-            UserDefaults.standard.integer(forKey: "bestScore-\(difficulty)")
+            UserDefaults.standard.integer(forKey: "bestScore")
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "bestScore-\(difficulty)")
+            UserDefaults.standard.set(newValue, forKey: "bestScore")
         }
-    }
-}
-
-// MARK: - InfoViewControllerDelegate
-extension MainViewController: InfoViewControllerDelegate {
-    /// Get and set the  difficulty
-    ///
-    /// Setting difficulty will restart the game if it is not ended
-    var difficulty: GameDifficulty {
-        get {
-            GameDifficulty(rawValue: UserDefaults.standard.integer(forKey: "difficulty")) ?? .normal
-        }
-        set {
-            UserDefaults.standard.set(newValue.rawValue, forKey: "difficulty")
-            if !isGameEnded {
-                restartGame()
-            }
-        }
-    }
-    
-    var shouldConfirmDifficultyChange: Bool {
-        // Show confirmation only if game is not ended
-        !isGameEnded
     }
 }
 
 // MARK: - CardsContainerViewControllerDelegate
 extension MainViewController: CardsContainerViewControllerDelegate {
     func gameDidEnd(_ cardContainer: CardsContainerViewController) {
-        // Stop difficulty timer
-        stopDifficultyTimer()
-        
         // Retrieve current and best score
         let currentScore = cardsContainerViewController.score
         var bestScore: Int {

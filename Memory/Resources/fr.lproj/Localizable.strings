@@ -10,18 +10,3 @@
 "GAME_SCORE"					=	"Tu as touché l'écran\n%i fois pour terminer ce jeu.";
 "BEST_SCORE_CURRENT"            =   "Ton meilleur score est %i.";
 "BEST_SCORE_PREVIOUS"           =   "Ton meilleur score était %i.";
-
-"CONFIRM_RESTART"				=	"Veux-tu vraiment recommencer ?";
-"RESTART_BUTTON"				=	"Recommencer";
-"CANCEL_BUTTON"					=	"Annuler";
-"CHANGE_BUTTON"					=	"Changer";
-
-"DIFFICULTY"					=	"Difficulté";
-"DIFFICULTY_PICKER_0"			=	"Normal";
-"DIFFICULTY_PICKER_1"			=	"Difficile";
-"DIFFICULTY_PICKER_2"			=	"Extrême";
-"DIFFICULTY_DESCRIPTION"		=	"Les difficultés Difficile et Extrême mélangeront les cartes respectivement toutes les 60 et 30 secondes.";
-"CONFIRM_DIFFICULTY_CHANGE"		=	"Changer la difficulté nécésite de redémarrer la partie.";
-
-"INFO_DEV"						=	"Développement : Thibaut Jarosz";
-"INFO_ADAPT"					=	"Adapté d'un jeu flash de kek";
