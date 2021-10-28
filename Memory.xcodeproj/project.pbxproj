@@ -21,6 +21,7 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		BF1406B411739FF400872873 /* Memory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF230D9D272ABB8F003640C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BF230DA5272B2BFA003640C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		BF230DA7272B2C37003640C6 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		BF5C0E4B27254888007E6808 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BF5C0E4C2725488A007E6808 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -28,7 +29,6 @@
 		BF5C0E962725D509007E6808 /* CardsContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsContainerViewController.swift; sourceTree = "<group>"; };
 		BF6E3CF52728153A008DA1C1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		BF6E3CF92728B567008DA1C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BF7357DE272C8A6A00F6CAF7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		BF816BB0272940DA00BD48D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF816BD52729794100BD48D5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -44,17 +44,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				BF6E3CF92728B567008DA1C1 /* AppDelegate.swift */,
-				BF5C0E962725D509007E6808 /* CardsContainerViewController.swift */,
-				BF5C0E9227258EA7007E6808 /* CardView.swift */,
-				BF6E3CF52728153A008DA1C1 /* MainViewController.swift */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
@@ -72,10 +61,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		BF230DAD272B3249003640C6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BF230D9B272ABB53003640C6 /* Main.storyboard */,
+				BF6E3CF52728153A008DA1C1 /* MainViewController.swift */,
+				BF5C0E962725D509007E6808 /* CardsContainerViewController.swift */,
+				BF5C0E9227258EA7007E6808 /* CardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		BF816BAE27293F7500BD48D5 /* Memory */ = {
 			isa = PBXGroup;
 			children = (
-				080E96DDFE201D6D7F000001 /* Classes */,
+				BF6E3CF92728B567008DA1C1 /* AppDelegate.swift */,
+				BF230DAD272B3249003640C6 /* Views */,
 				BF816BB2272969A700BD48D5 /* Resources */,
 			);
 			path = Memory;
@@ -84,7 +85,6 @@
 		BF816BB2272969A700BD48D5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				BF230D9B272ABB53003640C6 /* Main.storyboard */,
 				BF325E6D114478D40059FDB6 /* Localizable.strings */,
 				BF816BB0272940DA00BD48D5 /* Assets.xcassets */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -178,8 +178,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				BF230D9D272ABB8F003640C6 /* Base */,
+				BF230DA5272B2BFA003640C6 /* en */,
 				BF230DA7272B2C37003640C6 /* fr */,
-				BF7357DE272C8A6A00F6CAF7 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
