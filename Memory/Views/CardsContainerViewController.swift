@@ -25,14 +25,17 @@ extension CardsContainerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let cards = try? JSONDecoder()
+            .decode([String].self, from: NSDataAsset(name: "Weather")?.data ?? Data())
+        
         let frame = CGRect(x: 3, y: 125, width: 314, height: 349)
         view.frame = frame
         
         // Create all cards
         let cardFrame = CGRect(x: frame.size.width/2, y: frame.size.height/2, width: 0, height: 0)
         for _ in 0..<2 {
-            for i in 0..<45 {
-                let cardView = CardView(imageID: i)
+            for card in cards ?? [] {
+                let cardView = CardView(cardValue: card)
                 cardView.frame = cardFrame
                 cardView.delegate = self
                 view.addSubview(cardView)
@@ -125,7 +128,7 @@ extension CardsContainerViewController: CardViewDelegate {
         if revealedCards.count == 1, let alreadyRevealedCardView = revealedCards.first {
             
             // If card is matching
-            if cardView.imageID == alreadyRevealedCardView.imageID {
+            if cardView.cardValue == alreadyRevealedCardView.cardValue {
                 // Make cards as matched
                 cardView.setStatusAnimated(.matched)
                 alreadyRevealedCardView.setStatusAnimated(.matched) { _ in

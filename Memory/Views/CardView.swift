@@ -26,28 +26,37 @@ class CardView: UIView {
     var status: Status = .hidden {
         didSet {
             // Show or hide image when isRevealed is changed
-            backgroundColor = status == .hidden ? .white : .init(patternImage: image)
+            imageView.isHidden = status == .hidden
             alpha = status == .matched ? 0.5 : 1
         }
     }
     
     /// Identifier of the image shown by the card
-    let imageID: Int
+    let cardValue: String
     
     /// Image shown by the card
-    private let image: UIImage
+    private let imageView = UIImageView()
     
-    init(imageID: Int) {
-        self.imageID = imageID
-        self.image = .init(named: "\(imageID).png")!
+    init(cardValue: String) {
+        self.cardValue = cardValue
+        imageView.image = UIImage(systemName: cardValue)
+        imageView.contentMode = .scaleAspectFit
+        imageView.isHidden = true
+        imageView.tintColor = .init(named: "Card")
         
         super.init(frame: .zero)
         
-        self.backgroundColor = .white
+        backgroundColor = .white
+        addSubview(imageView)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        imageView.frame = bounds.inset(by: .init(top: 5, left: 5, bottom: 5, right: 5))
+        super.layoutSubviews()
     }
 }
 
