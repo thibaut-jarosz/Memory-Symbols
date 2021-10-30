@@ -9,6 +9,9 @@ protocol CardsContainerViewControllerDelegate: AnyObject {
 
 /// A controller that manage all game cards
 class CardsContainerViewController: UIViewController {
+    /// A set of cards
+    var cardSet: CardSet?
+    
     /// Delegate of the CardsContainerViewController
     weak var delegate: CardsContainerViewControllerDelegate?
     
@@ -25,16 +28,13 @@ extension CardsContainerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let cards = try? JSONDecoder()
-            .decode([String].self, from: NSDataAsset(name: "Weather")?.data ?? Data())
-        
         let frame = CGRect(x: 3, y: 125, width: 314, height: 349)
         view.frame = frame
         
         // Create all cards
         let cardFrame = CGRect(x: frame.size.width/2, y: frame.size.height/2, width: 0, height: 0)
         for _ in 0..<2 {
-            for card in cards ?? [] {
+            for card in cardSet?.names ?? [] {
                 let cardView = CardView(cardValue: card)
                 cardView.frame = cardFrame
                 cardView.delegate = self

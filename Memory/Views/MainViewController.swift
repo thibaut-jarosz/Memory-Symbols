@@ -2,6 +2,9 @@ import UIKit
 
 /// A controller that manage all the app
 class MainViewController: UIViewController {
+    /// A set of cards
+    var cardSet: CardSet? = .weather
+    
     /// The cards container
     let cardsContainerViewController = CardsContainerViewController()
     
@@ -21,6 +24,7 @@ extension MainViewController {
         
         // Add cards container
         cardsContainerViewController.delegate = self
+        cardsContainerViewController.cardSet = cardSet
         view.addSubview(cardsContainerViewController.view)
     }
 }
