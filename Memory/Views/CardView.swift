@@ -9,37 +9,24 @@ protocol CardViewDelegate: AnyObject {
 
 /// A view representing a single card
 class CardView: UIView {
-    /// Card Status
-    enum Status {
-        /// Card is hidden
-        case hidden
-        /// Card if revealed but not matched with another card
-        case revealed
-        /// Card is matched with another card
-        case matched
+    /// Card associated to the view
+    private(set) var card: Card {
+        didSet {
+            // Show or hide image when isRevealed is changed
+            imageView.isHidden = card.status == .hidden
+            alpha = card.status == .matched ? 0.5 : 1
+        }
     }
     
     /// Delegate of the CardView
     weak var delegate: CardViewDelegate?
     
-    /// Is the card revealed or is it showing its back
-    var status: Status = .hidden {
-        didSet {
-            // Show or hide image when isRevealed is changed
-            imageView.isHidden = status == .hidden
-            alpha = status == .matched ? 0.5 : 1
-        }
-    }
-    
-    /// Identifier of the image shown by the card
-    let cardValue: String
-    
     /// Image shown by the card
     private let imageView = UIImageView()
     
-    init(cardValue: String) {
-        self.cardValue = cardValue
-        imageView.image = UIImage(systemName: cardValue)
+    init(card: Card) {
+        self.card = card
+        imageView.image = card.image
         imageView.contentMode = .scaleAspectFit
         imageView.isHidden = true
         imageView.tintColor = .init(named: "Card")
@@ -65,10 +52,8 @@ extension CardView {
     /// - Parameters:
     ///   - status: The new status
     ///   - completion: Completion block called after animation
-    func setStatusAnimated(_ status: Status, completion: ((Bool) -> Void)? = nil) {
-        guard self.status != status else { return }
-        
-        guard self.status != status else { return }
+    func setStatusAnimated(_ status: Card.Status, completion: ((Bool) -> Void)? = nil) {
+        guard card.status != status else { return }
         
         let options: UIView.AnimationOptions
         switch status {
@@ -81,7 +66,7 @@ extension CardView {
         }
         
         UIView.transition(with: self, duration: 0.5, options: options, animations: {
-            self.status = status
+            self.card.status = status
         }, completion: completion)
     }
 }

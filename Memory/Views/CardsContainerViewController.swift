@@ -33,13 +33,11 @@ extension CardsContainerViewController {
         
         // Create all cards
         let cardFrame = CGRect(x: frame.size.width/2, y: frame.size.height/2, width: 0, height: 0)
-        for _ in 0..<2 {
-            for card in cardSet?.names ?? [] {
-                let cardView = CardView(cardValue: card)
-                cardView.frame = cardFrame
-                cardView.delegate = self
-                view.addSubview(cardView)
-            }
+        for card in cardSet?.generateCards() ?? [] {
+            let cardView = CardView(card: card)
+            cardView.frame = cardFrame
+            cardView.delegate = self
+            view.addSubview(cardView)
         }
         
         // Shuffle cards after creating them
@@ -51,18 +49,18 @@ extension CardsContainerViewController {
 // MARK: - Cards management
 extension CardsContainerViewController {
     /// Returns all cards
-    private var allCards: [CardView] {
+    private var allCardViews: [CardView] {
         view.subviews.compactMap { $0 as? CardView }
     }
     
     /// Shuffle the cards
     func shuffleCards() {
         // Get all the cards and shuffle them
-        let cards = allCards.shuffled()
+        let cardViews = allCardViews.shuffled()
         
         // Update the cards frames
         UIView.transition(with: view, duration: 0.5) {
-            for (index, cardView) in cards.enumerated() {
+            for (index, cardView) in cardViews.enumerated() {
                 cardView.frame = .init(
                     x: 35*((index/10)%9),
                     y: 35*(index%10),
@@ -75,7 +73,7 @@ extension CardsContainerViewController {
     
     /// Hide all the cards
     func hideAllCards() {
-        for cardView in allCards {
+        for cardView in allCardViews {
             cardView.setStatusAnimated(.hidden)
         }
     }
@@ -102,7 +100,7 @@ extension CardsContainerViewController {
     
     private func moveCards(away: Bool) {
         let containerHalfWidth = view.frame.width/2
-        for cardView in allCards {
+        for cardView in allCardViews {
             let centerX = cardView.center.x
             let moveLeft: Bool = away && centerX < containerHalfWidth || !away && centerX >= containerHalfWidth
             cardView.center.x = moveLeft ? (centerX - containerHalfWidth - 30) : (centerX + containerHalfWidth + 30)
@@ -118,7 +116,7 @@ extension CardsContainerViewController: CardViewDelegate {
     /// - Parameter cardView: the touched card
     func touchesBegan(on cardView: CardView) {
         // Check if card was hidden
-        guard cardView.status == .hidden else { return }
+        guard cardView.card.status == .hidden else { return }
         
         // Increase score and reveal card
         score += 1
@@ -128,12 +126,12 @@ extension CardsContainerViewController: CardViewDelegate {
         if revealedCards.count == 1, let alreadyRevealedCardView = revealedCards.first {
             
             // If card is matching
-            if cardView.cardValue == alreadyRevealedCardView.cardValue {
+            if cardView.card.name == alreadyRevealedCardView.card.name {
                 // Make cards as matched
                 cardView.setStatusAnimated(.matched)
                 alreadyRevealedCardView.setStatusAnimated(.matched) { _ in
                     // Check if game ended
-                    if self.allCards.allSatisfy({ $0.status == .matched }) {
+                    if self.allCardViews.allSatisfy({ $0.card.status == .matched }) {
                         self.delegate?.gameDidEnd(self)
                     }
                 }

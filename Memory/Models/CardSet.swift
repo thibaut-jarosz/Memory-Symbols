@@ -5,13 +5,23 @@ enum CardSet: String, CaseIterable {
     case weather
 }
 
-
 extension CardSet {
-    /// Name of all cards in set
-    var names: [String]? {
+    /// Generate cards
+    /// - Returns: generated cards
+    func generateCards() -> [Card] {
         guard let data = NSDataAsset(name: rawValue)?.data else {
-            return nil
+            return []
         }
-        return try? JSONDecoder().decode([String].self, from: data)
+        
+        let cards = try? JSONDecoder()
+            .decode([String].self, from: data)
+            .map { name in
+                Card(name: name)
+            }
+        
+        guard let cards = cards else {
+            return []
+        }
+        return cards + cards
     }
 }
