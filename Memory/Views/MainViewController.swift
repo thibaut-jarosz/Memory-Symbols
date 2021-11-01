@@ -80,7 +80,38 @@ extension MainViewController {
 
 // MARK: - CardsContainerViewControllerDelegate
 extension MainViewController: CardsContainerViewControllerDelegate {
-    func gameDidEnd(_ cardContainer: CardsContainerViewController) {
+    func cardsContainer(
+        _ cardsContainer: CardsContainerViewController,
+        didRevealCardView cardView: CardView,
+        otherRevealedCardViews: [CardView]
+    ) {
+        // Increase score and reveal card
+        cardsContainer.score += 1
+        
+        // If only 1 card was revealed before touching the card
+        if otherRevealedCardViews.count == 1, let otherRevealedCardView = otherRevealedCardViews.first {
+            
+            // If card is matching
+            if cardView.card.name == otherRevealedCardView.card.name {
+                // Make cards as matched
+                cardView.setStatusAnimated(.matched)
+                otherRevealedCardView.setStatusAnimated(.matched) { _ in
+                    // Check if game ended
+                    if cardsContainer.cardViews.allSatisfy({ $0.card.status == .matched }) {
+                        self.gameDidEnd()
+                    }
+                }
+            }
+        }
+        else {
+            // Unreveal all revealed cards
+            for otherRevealedCardView in otherRevealedCardViews {
+                otherRevealedCardView.setStatusAnimated(.hidden)
+            }
+        }
+    }
+    
+    private func gameDidEnd() {
         // Retrieve current and best score
         let currentScore = cardsContainerViewController.score
         var bestScore: Int {

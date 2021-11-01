@@ -2,8 +2,12 @@ import UIKit
 
 /// Delegate of CardsContainerViewController
 protocol CardsContainerViewControllerDelegate: AnyObject {
-    /// Called when game did end because all cards are revealed
-    func gameDidEnd(_ cardContainer: CardsContainerViewController)
+    /// Called when a card is revealed
+    func cardsContainer(
+        _ cardsContainer: CardsContainerViewController,
+        didRevealCardView cardView: CardView,
+        otherRevealedCardViews: [CardView]
+    )
 }
 
 
@@ -148,32 +152,12 @@ extension CardsContainerViewController: CardViewDelegate {
         // Check if card was hidden
         guard cardView.card.status == .hidden else { return }
         
-        let alreadyRevealedCards = cardViews.filter { $0.card.status == .revealed }
+        // Get currently revealed CardViews
+        let otherRevealedCardViews = cardViews.filter { $0.card.status == .revealed }
         
-        // Increase score and reveal card
-        score += 1
+        // Reveal card
         cardView.setStatusAnimated(.revealed)
         
-        // If only 1 card was revealed before touching the card
-        if alreadyRevealedCards.count == 1, let alreadyRevealedCardView = alreadyRevealedCards.first {
-            
-            // If card is matching
-            if cardView.card.name == alreadyRevealedCardView.card.name {
-                // Make cards as matched
-                cardView.setStatusAnimated(.matched)
-                alreadyRevealedCardView.setStatusAnimated(.matched) { _ in
-                    // Check if game ended
-                    if self.cardViews.allSatisfy({ $0.card.status == .matched }) {
-                        self.delegate?.gameDidEnd(self)
-                    }
-                }
-            }
-        }
-        else {
-            // Unreveal all revealed cards
-            for revealedCard in alreadyRevealedCards {
-                revealedCard.setStatusAnimated(.hidden)
-            }
-        }
+        delegate?.cardsContainer(self, didRevealCardView: cardView, otherRevealedCardViews: otherRevealedCardViews)
     }
 }
