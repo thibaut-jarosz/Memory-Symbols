@@ -9,17 +9,20 @@ protocol CardsContainerViewControllerDelegate: AnyObject {
 
 /// A controller that manage all game cards
 class CardsContainerViewController: UIViewController {
-    /// A set of cards
-    var cardSet: CardSet?
-    
     /// Delegate of the CardsContainerViewController
     weak var delegate: CardsContainerViewControllerDelegate?
     
     /// Game score (lower is better)
     var score: Int = 0
     
-    /// Revealed cards but not matched yet
-    var revealedCards = Set<CardView>(minimumCapacity: 2)
+    /// A set of cards
+    var cardSet: CardSet?
+    
+    /// List of CardView
+    var cardViews: [CardView] = []
+    
+    /// All constraints that manage CardViews position
+    var cardLayoutContraints: [NSLayoutConstraint] = []
 }
 
 
@@ -28,83 +31,136 @@ extension CardsContainerViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let frame = CGRect(x: 3, y: 125, width: 314, height: 349)
-        view.frame = frame
+        view.translatesAutoresizingMaskIntoConstraints = false
         
-        // Create all cards
-        let cardFrame = CGRect(x: frame.size.width/2, y: frame.size.height/2, width: 0, height: 0)
-        for card in cardSet?.generateCards() ?? [] {
-            let cardView = CardView(card: card)
-            cardView.frame = cardFrame
+        // Create all CardViews
+        cardViews = cardSet?.generateCards().shuffled().compactMap(CardView.init(card:)) ?? []
+        
+        // Configure CardViews
+        cardViews.forEach { cardView in
             cardView.delegate = self
             view.addSubview(cardView)
         }
         
-        // Shuffle cards after creating them
-        shuffleCards()
+        // update layout
+        updateCardViewsContraints(animated: false)
+        self.view.transform = .init(scaleX: 0, y: 0)
+        self.view.alpha = 0
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        UIView.transition(with: view, duration: 0.5) {
+            self.view.transform = .init(scaleX: 1, y: 1)
+            self.view.alpha = 1
+        }
     }
 }
 
 
 // MARK: - Cards management
 extension CardsContainerViewController {
-    /// Returns all cards
-    private var allCardViews: [CardView] {
-        view.subviews.compactMap { $0 as? CardView }
-    }
-    
-    /// Shuffle the cards
-    func shuffleCards() {
-        // Get all the cards and shuffle them
-        let cardViews = allCardViews.shuffled()
+    /// Update CardViews positions as grid
+    private func updateCardViewsContraints(animated: Bool) {
+        view.removeConstraints(cardLayoutContraints)
+        cardLayoutContraints = constraintsForGrid()
+        view.addConstraints(cardLayoutContraints)
         
-        // Update the cards frames
-        UIView.transition(with: view, duration: 0.5) {
-            for (index, cardView) in cardViews.enumerated() {
-                cardView.frame = .init(
-                    x: 35*((index/10)%9),
-                    y: 35*(index%10),
-                    width: 34,
-                    height: 34
-                )
+        if animated {
+            UIView.transition(with: view, duration: 0.5) {
+                self.view.layoutIfNeeded()
             }
         }
     }
     
+    /// Shuffle the cards
+    func shuffleCards() {
+        cardViews = cardViews.shuffled()
+        updateCardViewsContraints(animated: true)
+    }
+    
     /// Hide all the cards
     func hideAllCards() {
-        for cardView in allCardViews {
+        for cardView in cardViews {
             cardView.setStatusAnimated(.hidden)
         }
     }
     
-    /// Restart the game by hiding all cards
-    /// - Parameter afterMovingCardsAway: Restart occured after moving cards away
-    func restartGame(afterMovingCardsAway: Bool) {
+    /// Restart the game by moving back all cards
+    func restartGame() {
         score = 0
-        revealedCards.removeAll()
-        if afterMovingCardsAway {
-            // Put back all the cards that were moved away
-            moveCards(away: false)
-        }
-        else {
-            // Just hide the cards
-            hideAllCards()
-        }
+        self.view.transform = .init(scaleX: 1, y: 1)
+        self.view.alpha = 1
     }
     
     /// Move away all cards
     func moveCardsAway() {
-        moveCards(away: true)
+        self.view.transform = .init(scaleX: 5, y: 5)
+        self.view.alpha = 0
     }
-    
-    private func moveCards(away: Bool) {
-        let containerHalfWidth = view.frame.width/2
-        for cardView in allCardViews {
-            let centerX = cardView.center.x
-            let moveLeft: Bool = away && centerX < containerHalfWidth || !away && centerX >= containerHalfWidth
-            cardView.center.x = moveLeft ? (centerX - containerHalfWidth - 30) : (centerX + containerHalfWidth + 30)
+}
+
+// MARK: - Constraints
+extension CardsContainerViewController {
+    private func constraintsForGrid() -> [NSLayoutConstraint] {
+        guard let firstCardView = cardViews.first else { return [] }
+        
+        var constraints: [NSLayoutConstraint] = []
+        let spaceBetweenCards = CGFloat(2)
+        var previousCardView = firstCardView
+        
+        constraints.append(contentsOf: [
+            // Align first card top to top of superview
+            firstCardView.topAnchor.constraint(equalTo: view.topAnchor),
+            
+            // Align last card bottom to bottom of superview
+            cardViews[cardViews.count-1].bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        
+        for (index, cardView) in cardViews.enumerated() {
+            let column: Int = index%9
+            
+            switch column {
+            
+            case 0: // First card in column
+                constraints.append(
+                    // Align leading with superview
+                    cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+                )
+                let row: Int = index/9
+                
+                if row != 0 { // Not first card but still first in column
+                    constraints.append(
+                        // Constrain top to bottom of previous view
+                        cardView.topAnchor.constraint(equalTo: previousCardView.bottomAnchor, constant: spaceBetweenCards)
+                    )
+                }
+                
+            case 8: // Last card in column
+                constraints.append(
+                    // Align trailing with superview
+                    cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+                )
+                // Also apply default constraints
+                fallthrough
+                
+            default:
+                constraints.append(contentsOf: [
+                    // Set leading after trailing of previous card
+                    cardView.leadingAnchor.constraint(equalTo: previousCardView.trailingAnchor, constant: spaceBetweenCards),
+                    
+                    // Align top with top of previous card
+                    cardView.topAnchor.constraint(equalTo: previousCardView.topAnchor),
+                
+                    // Make cards same height
+                    cardView.heightAnchor.constraint(equalTo: previousCardView.heightAnchor)
+                ])
+            }
+            
+            previousCardView = cardView
         }
+        
+        return constraints
     }
 }
 
@@ -118,12 +174,14 @@ extension CardsContainerViewController: CardViewDelegate {
         // Check if card was hidden
         guard cardView.card.status == .hidden else { return }
         
+        let alreadyRevealedCards = cardViews.filter { $0.card.status == .revealed }
+        
         // Increase score and reveal card
         score += 1
         cardView.setStatusAnimated(.revealed)
         
         // If only 1 card was revealed before touching the card
-        if revealedCards.count == 1, let alreadyRevealedCardView = revealedCards.first {
+        if alreadyRevealedCards.count == 1, let alreadyRevealedCardView = alreadyRevealedCards.first {
             
             // If card is matching
             if cardView.card.name == alreadyRevealedCardView.card.name {
@@ -131,26 +189,17 @@ extension CardsContainerViewController: CardViewDelegate {
                 cardView.setStatusAnimated(.matched)
                 alreadyRevealedCardView.setStatusAnimated(.matched) { _ in
                     // Check if game ended
-                    if self.allCardViews.allSatisfy({ $0.card.status == .matched }) {
+                    if self.cardViews.allSatisfy({ $0.card.status == .matched }) {
                         self.delegate?.gameDidEnd(self)
                     }
                 }
-                // Remove all revealed but not matched cards
-                revealedCards.removeAll()
-            }
-            else {
-                // Insert touched card in revealed but not matched list
-                revealedCards.insert(cardView)
             }
         }
         else {
             // Unreveal all revealed cards
-            for revealedCard in revealedCards {
+            for revealedCard in alreadyRevealedCards {
                 revealedCard.setStatusAnimated(.hidden)
             }
-            revealedCards.removeAll()
-            // Mark touched card as revealed but not matched
-            revealedCards.insert(cardView)
         }
     }
 }

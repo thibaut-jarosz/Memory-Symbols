@@ -10,11 +10,6 @@ class MainViewController: UIViewController {
     
     /// A view displayed when game ended
     var gameEndedView: UIView?
-    
-    /// Is game ended
-    var isGameEnded: Bool {
-        gameEndedView != nil
-    }
 }
 
 // MARK: - View Loading
@@ -25,7 +20,20 @@ extension MainViewController {
         // Add cards container
         cardsContainerViewController.delegate = self
         cardsContainerViewController.cardSet = cardSet
+        self.addChild(cardsContainerViewController)
         view.addSubview(cardsContainerViewController.view)
+        
+        view.addConstraints([
+            cardsContainerViewController.view.centerYAnchor.constraint(
+                equalTo: view.centerYAnchor
+            ),
+            cardsContainerViewController.view.leadingAnchor.constraint(
+                equalTo: view.layoutMarginsGuide.leadingAnchor
+            ),
+            cardsContainerViewController.view.trailingAnchor.constraint(
+                equalTo: view.layoutMarginsGuide.trailingAnchor
+            )
+        ])
     }
 }
 
@@ -35,7 +43,7 @@ extension MainViewController {
     @objc func restartGame() {
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {
             // Restart the game and hide gameEndedView
-            self.cardsContainerViewController.restartGame(afterMovingCardsAway: self.isGameEnded)
+            self.cardsContainerViewController.restartGame()
             self.gameEndedView?.alpha = 0
         } completion: { _ in
             // Remove gameEndedView, shuffle the cards and restart timer

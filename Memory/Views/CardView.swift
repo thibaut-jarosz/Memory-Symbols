@@ -40,6 +40,10 @@ class CardView: UIView {
         
         // Configure view
         backgroundColor = .white
+        translatesAutoresizingMaskIntoConstraints = false
+        addConstraint(widthAnchor.constraint(
+            equalTo: heightAnchor
+        ))
         
         // Configure imageView
         imageView.image = card.image
