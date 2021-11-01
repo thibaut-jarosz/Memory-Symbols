@@ -44,15 +44,6 @@ extension CardsContainerViewController {
         
         // update layout
         updateCardViewsContraints(animated: false)
-        self.view.transform = .init(scaleX: 0, y: 0)
-        self.view.alpha = 0
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        UIView.transition(with: view, duration: 0.5) {
-            self.view.transform = .init(scaleX: 1, y: 1)
-            self.view.alpha = 1
-        }
     }
 }
 
@@ -83,19 +74,6 @@ extension CardsContainerViewController {
         for cardView in cardViews {
             cardView.setStatusAnimated(.hidden)
         }
-    }
-    
-    /// Restart the game by moving back all cards
-    func restartGame() {
-        score = 0
-        self.view.transform = .init(scaleX: 1, y: 1)
-        self.view.alpha = 1
-    }
-    
-    /// Move away all cards
-    func moveCardsAway() {
-        self.view.transform = .init(scaleX: 5, y: 5)
-        self.view.alpha = 0
     }
 }
 

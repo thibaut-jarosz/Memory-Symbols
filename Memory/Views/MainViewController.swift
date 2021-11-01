@@ -34,6 +34,16 @@ extension MainViewController {
                 equalTo: view.layoutMarginsGuide.trailingAnchor
             )
         ])
+        
+        self.cardsContainerViewController.view.transform = .init(scaleX: 0, y: 0)
+        self.cardsContainerViewController.view.alpha = 0
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        UIView.transition(with: view, duration: 0.5) {
+            self.cardsContainerViewController.view.transform = .init(scaleX: 1, y: 1)
+            self.cardsContainerViewController.view.alpha = 1
+        }
     }
 }
 
@@ -43,7 +53,9 @@ extension MainViewController {
     @objc func restartGame() {
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {
             // Restart the game and hide gameEndedView
-            self.cardsContainerViewController.restartGame()
+            self.cardsContainerViewController.score = 0
+            self.cardsContainerViewController.view.transform = .init(scaleX: 1, y: 1)
+            self.cardsContainerViewController.view.alpha = 1
             self.gameEndedView?.alpha = 0
         } completion: { _ in
             // Remove gameEndedView, shuffle the cards and restart timer
@@ -88,8 +100,9 @@ extension MainViewController: CardsContainerViewControllerDelegate {
         }
         
         // Move cards away and present gameEndedView
-        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {
-            self.cardsContainerViewController.moveCardsAway()
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {            
+            self.cardsContainerViewController.view.transform = .init(scaleX: 5, y: 5)
+            self.cardsContainerViewController.view.alpha = 0
             self.gameEndedView?.alpha = 1
         } completion: { _ in
             self.cardsContainerViewController.hideAllCards()
