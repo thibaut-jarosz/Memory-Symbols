@@ -16,9 +16,6 @@ class CardsContainerViewController: UIViewController {
     /// Delegate of the CardsContainerViewController
     weak var delegate: CardsContainerViewControllerDelegate?
     
-    /// Game score (lower is better)
-    var score: Int = 0
-    
     /// A set of cards
     var cardSet: CardSet?
     

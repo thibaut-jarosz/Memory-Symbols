@@ -10,6 +10,9 @@ class MainViewController: UIViewController {
     
     /// A view displayed when game ended
     var gameEndedView: UIView?
+    
+    /// Game score (lower is better)
+    var score: Int = 0
 }
 
 // MARK: - View Loading
@@ -53,7 +56,7 @@ extension MainViewController {
     @objc func restartGame() {
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {
             // Restart the game and hide gameEndedView
-            self.cardsContainerViewController.score = 0
+            self.score = 0
             self.cardsContainerViewController.view.transform = .init(scaleX: 1, y: 1)
             self.cardsContainerViewController.view.alpha = 1
             self.gameEndedView?.alpha = 0
@@ -86,7 +89,7 @@ extension MainViewController: CardsContainerViewControllerDelegate {
         otherRevealedCardViews: [CardView]
     ) {
         // Increase score and reveal card
-        cardsContainer.score += 1
+        score += 1
         
         // If only 1 card was revealed before touching the card
         if otherRevealedCardViews.count == 1, let otherRevealedCardView = otherRevealedCardViews.first {
@@ -113,21 +116,20 @@ extension MainViewController: CardsContainerViewControllerDelegate {
     
     private func gameDidEnd() {
         // Retrieve current and best score
-        let currentScore = cardsContainerViewController.score
         var bestScore: Int {
             let value = self.bestScore
             if value <= 0 {
-                return currentScore
+                return score
             }
             return value
         }
         
         // Add gameEndedView
-        insertGameEndedView(currentScore: currentScore, bestScore: bestScore)
+        insertGameEndedView(bestScore: bestScore)
         
         // Update best score
-        if bestScore > currentScore {
-            self.bestScore = currentScore
+        if bestScore > score {
+            self.bestScore = score
         }
         
         // Move cards away and present gameEndedView
@@ -141,7 +143,7 @@ extension MainViewController: CardsContainerViewControllerDelegate {
     }
     
     /// Add and configure  gameEndedView
-    private func insertGameEndedView(currentScore: Int, bestScore: Int) {
+    private func insertGameEndedView(bestScore: Int) {
         let mainFrame = cardsContainerViewController.view.frame
         
         // Add gameEndedView
@@ -176,7 +178,7 @@ extension MainViewController: CardsContainerViewControllerDelegate {
                 value: "You have touch the screen %i times to complete this game.",
                 comment: ""
             ),
-            currentScore
+            score
         )
         scoreLabel.numberOfLines = 2
         scoreLabel.textAlignment = .center
@@ -189,7 +191,7 @@ extension MainViewController: CardsContainerViewControllerDelegate {
         let bestScoreLabel = UILabel(frame: .init(x: 0, y: 200, width: mainFrame.size.width, height: 50))
         bestScoreLabel.text = String(
             format: NSLocalizedString(
-                bestScore > currentScore ? "BEST_SCORE_PREVIOUS" : "BEST_SCORE_CURRENT",
+                bestScore > score ? "BEST_SCORE_PREVIOUS" : "BEST_SCORE_CURRENT",
                 value: "Your best score is %i.",
                 comment: ""
             ),
