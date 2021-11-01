@@ -60,7 +60,7 @@ extension MainViewController {
         } completion: { _ in
             // Remove gameEndedView, shuffle the cards and restart timer
             self.gameEndedView?.removeFromSuperview()
-            self.cardsContainerViewController.shuffleCards()
+            self.cardsContainerViewController.shuffleCards(animated: true)
         }
     }
 }

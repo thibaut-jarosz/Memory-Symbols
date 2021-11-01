@@ -22,7 +22,7 @@ class CardsContainerViewController: UIViewController {
     var cardViews: [CardView] = []
     
     /// All constraints that manage CardViews position
-    var cardLayoutContraints: [NSLayoutConstraint] = []
+    var cardsLayoutContraints: [NSLayoutConstraint] = []
 }
 
 
@@ -43,30 +43,22 @@ extension CardsContainerViewController {
         }
         
         // update layout
-        updateCardViewsContraints(animated: false)
+        updateCardsLayoutContraints()
     }
 }
 
 
 // MARK: - Cards management
 extension CardsContainerViewController {
-    /// Update CardViews positions as grid
-    private func updateCardViewsContraints(animated: Bool) {
-        view.removeConstraints(cardLayoutContraints)
-        cardLayoutContraints = constraintsForGrid()
-        view.addConstraints(cardLayoutContraints)
-        
+    /// Shuffle the cards
+    func shuffleCards(animated: Bool) {
+        cardViews = cardViews.shuffled()
+        updateCardsLayoutContraints()
         if animated {
             UIView.transition(with: view, duration: 0.5) {
                 self.view.layoutIfNeeded()
             }
         }
-    }
-    
-    /// Shuffle the cards
-    func shuffleCards() {
-        cardViews = cardViews.shuffled()
-        updateCardViewsContraints(animated: true)
     }
     
     /// Hide all the cards
@@ -78,9 +70,12 @@ extension CardsContainerViewController {
 }
 
 // MARK: - Constraints
-extension CardsContainerViewController {
-    private func constraintsForGrid() -> [NSLayoutConstraint] {
-        guard let firstCardView = cardViews.first else { return [] }
+private extension CardsContainerViewController {
+    func updateCardsLayoutContraints() {
+        view.removeConstraints(cardsLayoutContraints)
+        cardsLayoutContraints = []
+        
+        guard let firstCardView = cardViews.first else { return }
         
         var constraints: [NSLayoutConstraint] = []
         let spaceBetweenCards = CGFloat(2)
@@ -138,7 +133,8 @@ extension CardsContainerViewController {
             previousCardView = cardView
         }
         
-        return constraints
+        cardsLayoutContraints = constraints
+        view.addConstraints(cardsLayoutContraints)
     }
 }
 
