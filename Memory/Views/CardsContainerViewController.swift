@@ -2,11 +2,10 @@ import UIKit
 
 /// Delegate of CardsContainerViewController
 protocol CardsContainerViewControllerDelegate: AnyObject {
-    /// Called when a card is revealed
+    /// Called when a card is touched
     func cardsContainer(
         _ cardsContainer: CardsContainerViewController,
-        didRevealCardView cardView: CardView,
-        otherRevealedCardViews: [CardView]
+        touchesBeganOn cardView: CardView
     )
 }
 
@@ -162,15 +161,7 @@ extension CardsContainerViewController: CardViewDelegate {
     /// Manage action when card has been touched
     /// - Parameter cardView: the touched card
     func touchesBegan(on cardView: CardView) {
-        // Check if card was hidden
-        guard cardView.status == .hidden else { return }
-        
-        // Get currently revealed CardViews
-        let otherRevealedCardViews = cardViews.filter { $0.status == .revealed }
-        
-        // Reveal card
-        setStatusAnimated(.revealed, to: cardView)
-        
-        delegate?.cardsContainer(self, didRevealCardView: cardView, otherRevealedCardViews: otherRevealedCardViews)
+        // Just forward to delegate
+        delegate?.cardsContainer(self, touchesBeganOn: cardView)
     }
 }

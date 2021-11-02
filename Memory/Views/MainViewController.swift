@@ -83,13 +83,16 @@ extension MainViewController {
 
 // MARK: - CardsContainerViewControllerDelegate
 extension MainViewController: CardsContainerViewControllerDelegate {
-    func cardsContainer(
-        _ cardsContainer: CardsContainerViewController,
-        didRevealCardView cardView: CardView,
-        otherRevealedCardViews: [CardView]
-    ) {
+    func cardsContainer( _ cardsContainer: CardsContainerViewController, touchesBeganOn cardView: CardView) {
+        // Check if card was hidden
+        guard cardView.status == .hidden else { return }
+        
+        // Get currently revealed CardViews
+        let otherRevealedCardViews = cardsContainer.cardViews.filter { $0.status == .revealed }
+        
         // Increase score and reveal card
         score += 1
+        cardsContainer.setStatusAnimated(.revealed, to: cardView)
         
         // If only 1 card was revealed before touching the card
         if otherRevealedCardViews.count == 1, let otherRevealedCardView = otherRevealedCardViews.first {
