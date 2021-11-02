@@ -1,7 +1,7 @@
 import UIKit
 
-/// A controller that manage all the app
-class MainViewController: UIViewController {
+/// A controller that manage a game
+class GameViewController: UIViewController {
     /// Number of columns on the board
     static let columns: Int = 7
     
@@ -25,7 +25,7 @@ class MainViewController: UIViewController {
 }
 
 // MARK: - View Loading
-extension MainViewController {
+extension GameViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,7 +62,7 @@ extension MainViewController {
 }
 
 // MARK: - Actions
-extension MainViewController {
+extension GameViewController {
     /// Restart the game
     @objc func restartGame() {
         let boardView = boardView
@@ -85,7 +85,7 @@ extension MainViewController {
 }
 
 // MARK: Score
-extension MainViewController {
+extension GameViewController {
     /// Get and set the best score for the current difficulty
     var bestScore: Int {
         get {
@@ -98,7 +98,7 @@ extension MainViewController {
 }
 
 // MARK: - BoardViewDelegate
-extension MainViewController: BoardViewDelegate {
+extension GameViewController: BoardViewDelegate {
     func numberOfColumns(in boardView: BoardView) -> Int {
         Self.columns
     }
@@ -162,7 +162,7 @@ extension MainViewController: BoardViewDelegate {
 }
 
 // Game end management
-extension MainViewController {
+extension GameViewController {
     private func gameDidEnd() {
         // Retrieve current and best score
         var bestScore: Int {
