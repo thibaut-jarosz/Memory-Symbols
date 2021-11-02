@@ -2,6 +2,9 @@ import UIKit
 
 /// A controller that manage all the app
 class MainViewController: UIViewController {
+    /// Number of columns on the board
+    static let columns: Int = 7
+    
     /// A set of cards
     var cardSet: CardSet? = .weather
     
@@ -87,6 +90,10 @@ extension MainViewController {
 
 // MARK: - BoardViewDelegate
 extension MainViewController: BoardViewDelegate {
+    func numberOfColumns(in boardView: BoardView) -> Int {
+        Self.columns
+    }
+    
     func boardView( _ boardView: BoardView, touchesBeganOn cardView: CardView) {
         // Check if card was hidden
         guard cardView.status == .hidden else { return }

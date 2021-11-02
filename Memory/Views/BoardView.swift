@@ -2,6 +2,9 @@ import UIKit
 
 /// Delegate of BoardView
 protocol BoardViewDelegate: AnyObject {
+    
+    /// Get the number of columns that should be displayed
+    func numberOfColumns(in boardView: BoardView) -> Int
     /// Called when a card is touched
     func boardView(_ boardView: BoardView, touchesBeganOn cardView: CardView)
 }
@@ -37,6 +40,7 @@ private extension BoardView {
         
         var constraints: [NSLayoutConstraint] = []
         let spaceBetweenCards = CGFloat(2)
+        let nbColumns = delegate?.numberOfColumns(in: self) ?? 9
         var previousCardView = firstCardView
         
         constraints.append(contentsOf: [
@@ -49,7 +53,7 @@ private extension BoardView {
         
         
         for (index, cardView) in cardViews.enumerated() {
-            let column: Int = index%9
+            let column: Int = index%nbColumns
             
             switch column {
             
@@ -58,7 +62,7 @@ private extension BoardView {
                     // Align leading with superview
                     cardView.leadingAnchor.constraint(equalTo: leadingAnchor)
                 )
-                let row: Int = index/9
+                let row: Int = index/nbColumns
                 
                 if row != 0 { // Not first card but still first in column
                     constraints.append(
@@ -67,7 +71,7 @@ private extension BoardView {
                     )
                 }
                 
-            case 8: // Last card in column
+            case nbColumns-1: // Last card in column
                 constraints.append(
                     // Align trailing with superview
                     cardView.trailingAnchor.constraint(equalTo: trailingAnchor)
