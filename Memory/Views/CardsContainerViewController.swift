@@ -55,11 +55,6 @@ extension CardsContainerViewController {
             }
         }
     }
-    
-    /// Hide all the cards
-    func hideAllCards() {
-        cardViews.forEach { $0.status = .hidden }
-    }
 }
 
 // MARK: - Constraints

@@ -167,7 +167,8 @@ extension MainViewController {
             self.cardsContainerViewController.view.alpha = 0
             self.gameEndedView?.alpha = 1
         } completion: { _ in
-            self.cardsContainerViewController.hideAllCards()
+            // Hide all cards
+            self.cardsContainerViewController.cardViews.forEach { $0.status = .hidden }
         }
     }
     
