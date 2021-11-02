@@ -8,16 +8,16 @@ enum CardSet: String, CaseIterable {
 extension CardSet {
     /// Generate cards
     /// - Returns: generated cards
-    func generateCards() -> [Card] {
+    func generateCards(numberOfPairs: Int) -> [Card] {
         guard let data = NSDataAsset(name: rawValue)?.data else {
             return []
         }
         
         let cards = try? JSONDecoder()
             .decode([String].self, from: data)
-            .map { name in
-                Card(name: name)
-            }
+            .shuffled()
+            .prefix(numberOfPairs)
+            .map { Card(name: $0) }
         
         guard let cards = cards else {
             return []

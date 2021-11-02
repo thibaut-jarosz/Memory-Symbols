@@ -5,6 +5,12 @@ class MainViewController: UIViewController {
     /// Number of columns on the board
     static let columns: Int = 7
     
+    /// Number of rows on the board
+    static let rows: Int = 8
+    
+    /// Number of pairs on the board
+    static var pairs: Int { columns * rows / 2 }
+    
     /// A set of cards
     var cardSet: CardSet? = .weather
     
@@ -25,7 +31,10 @@ extension MainViewController {
         
         // Add cards container
         boardView.delegate = self
-        boardView.cardViews = cardSet?.generateCards().compactMap(CardView.init(card:)).shuffled() ?? []
+        boardView.cardViews = cardSet?
+            .generateCards(numberOfPairs: Self.pairs)
+            .compactMap(CardView.init(card:))
+            .shuffled() ?? []
         view.addSubview(boardView)
         
         view.addConstraints([
