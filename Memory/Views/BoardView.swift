@@ -1,18 +1,15 @@
 import UIKit
 
-/// Delegate of CardsContainerViewController
-protocol CardsContainerViewControllerDelegate: AnyObject {
+/// Delegate of BoardView
+protocol BoardViewDelegate: AnyObject {
     /// Called when a card is touched
-    func cardsContainer(
-        _ cardsContainer: CardsContainerViewController,
-        touchesBeganOn cardView: CardView
-    )
+    func boardView(_ boardView: BoardView, touchesBeganOn cardView: CardView)
 }
 
-/// A controller that manage all game cards
-class CardsContainerViewController: UIView {
-    /// Delegate of the CardsContainerViewController
-    weak var delegate: CardsContainerViewControllerDelegate?
+/// A view that store all game cards
+class BoardView: UIView {
+    /// Delegate of the BoardView
+    weak var delegate: BoardViewDelegate?
     
     /// List of CardView
     var cardViews: [CardView] = [] {
@@ -30,7 +27,7 @@ class CardsContainerViewController: UIView {
 }
 
 // MARK: - Layout
-private extension CardsContainerViewController {
+private extension BoardView {
     func updateCardsLayoutContraints() {
         translatesAutoresizingMaskIntoConstraints = false
         removeConstraints(cardsLayoutContraints)
@@ -100,12 +97,12 @@ private extension CardsContainerViewController {
 }
 
 // MARK: - CardViewDelegate
-extension CardsContainerViewController: CardViewDelegate {
+extension BoardView: CardViewDelegate {
     
     /// Manage action when card has been touched
     /// - Parameter cardView: the touched card
     func touchesBegan(on cardView: CardView) {
         // Just forward to delegate
-        delegate?.cardsContainer(self, touchesBeganOn: cardView)
+        delegate?.boardView(self, touchesBeganOn: cardView)
     }
 }

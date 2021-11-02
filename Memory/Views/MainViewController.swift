@@ -5,8 +5,8 @@ class MainViewController: UIViewController {
     /// A set of cards
     var cardSet: CardSet? = .weather
     
-    /// The cards container
-    let cardsContainerViewController = CardsContainerViewController()
+    /// The board that contains all cards
+    let boardView = BoardView()
     
     /// A view displayed when game ended
     var gameEndedView: UIView?
@@ -21,30 +21,30 @@ extension MainViewController {
         super.viewDidLoad()
         
         // Add cards container
-        cardsContainerViewController.delegate = self
-        cardsContainerViewController.cardViews = cardSet?.generateCards().compactMap(CardView.init(card:)).shuffled() ?? []
-        view.addSubview(cardsContainerViewController)
+        boardView.delegate = self
+        boardView.cardViews = cardSet?.generateCards().compactMap(CardView.init(card:)).shuffled() ?? []
+        view.addSubview(boardView)
         
         view.addConstraints([
-            cardsContainerViewController.centerYAnchor.constraint(
+            boardView.centerYAnchor.constraint(
                 equalTo: view.centerYAnchor
             ),
-            cardsContainerViewController.leadingAnchor.constraint(
+            boardView.leadingAnchor.constraint(
                 equalTo: view.layoutMarginsGuide.leadingAnchor
             ),
-            cardsContainerViewController.trailingAnchor.constraint(
+            boardView.trailingAnchor.constraint(
                 equalTo: view.layoutMarginsGuide.trailingAnchor
             )
         ])
         
-        self.cardsContainerViewController.transform = .init(scaleX: 0, y: 0)
-        self.cardsContainerViewController.alpha = 0
+        boardView.transform = .init(scaleX: 0, y: 0)
+        boardView.alpha = 0
     }
     
     override func viewDidAppear(_ animated: Bool) {
         UIView.transition(with: view, duration: 0.5) {
-            self.cardsContainerViewController.transform = .init(scaleX: 1, y: 1)
-            self.cardsContainerViewController.alpha = 1
+            self.boardView.transform = .init(scaleX: 1, y: 1)
+            self.boardView.alpha = 1
         }
     }
 }
@@ -53,20 +53,20 @@ extension MainViewController {
 extension MainViewController {
     /// Restart the game
     @objc func restartGame() {
-        let cardsContainer = cardsContainerViewController
+        let boardView = boardView
         
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {
             // Restart the game and hide gameEndedView
             self.score = 0
-            cardsContainer.transform = .init(scaleX: 1, y: 1)
-            cardsContainer.alpha = 1
+            boardView.transform = .init(scaleX: 1, y: 1)
+            boardView.alpha = 1
             self.gameEndedView?.alpha = 0
         } completion: { _ in
             // Remove gameEndedView, shuffle the cards and restart timer
             self.gameEndedView?.removeFromSuperview()
-            cardsContainer.cardViews = cardsContainer.cardViews.shuffled()
-            UIView.transition(with: cardsContainer, duration: 0.5) {
-                cardsContainer.layoutIfNeeded()
+            boardView.cardViews = boardView.cardViews.shuffled()
+            UIView.transition(with: boardView, duration: 0.5) {
+                boardView.layoutIfNeeded()
             }
         }
     }
@@ -85,14 +85,14 @@ extension MainViewController {
     }
 }
 
-// MARK: - CardsContainerViewControllerDelegate
-extension MainViewController: CardsContainerViewControllerDelegate {
-    func cardsContainer( _ cardsContainer: CardsContainerViewController, touchesBeganOn cardView: CardView) {
+// MARK: - BoardViewDelegate
+extension MainViewController: BoardViewDelegate {
+    func boardView( _ boardView: BoardView, touchesBeganOn cardView: CardView) {
         // Check if card was hidden
         guard cardView.status == .hidden else { return }
         
         // Get currently revealed CardViews
-        let otherRevealedCardViews = cardsContainer.cardViews.filter { $0.status == .revealed }
+        let otherRevealedCardViews = boardView.cardViews.filter { $0.status == .revealed }
         
         // Increase score and reveal card
         score += 1
@@ -107,7 +107,7 @@ extension MainViewController: CardsContainerViewControllerDelegate {
                 setStatusAnimated(.matched, to: cardView)
                 setStatusAnimated(.matched, to: otherRevealedCardView) { _ in
                     // Check if game ended
-                    if cardsContainer.cardViews.allSatisfy({ $0.status == .matched }) {
+                    if boardView.cardViews.allSatisfy({ $0.status == .matched }) {
                         self.gameDidEnd()
                     }
                 }
@@ -167,18 +167,18 @@ extension MainViewController {
         
         // Move cards away and present gameEndedView
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {            
-            self.cardsContainerViewController.transform = .init(scaleX: 5, y: 5)
-            self.cardsContainerViewController.alpha = 0
+            self.boardView.transform = .init(scaleX: 5, y: 5)
+            self.boardView.alpha = 0
             self.gameEndedView?.alpha = 1
         } completion: { _ in
             // Hide all cards
-            self.cardsContainerViewController.cardViews.forEach { $0.status = .hidden }
+            self.boardView.cardViews.forEach { $0.status = .hidden }
         }
     }
     
     /// Add and configure  gameEndedView
     private func insertGameEndedView(bestScore: Int) {
-        let mainFrame = cardsContainerViewController.frame
+        let mainFrame = boardView.frame
         
         // Add gameEndedView
         let gameEndedView = UIView(frame: mainFrame)
