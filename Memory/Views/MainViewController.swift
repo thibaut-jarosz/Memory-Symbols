@@ -22,7 +22,7 @@ extension MainViewController {
         
         // Add cards container
         cardsContainerViewController.delegate = self
-        cardsContainerViewController.cardViews = cardSet?.generateCards().compactMap(CardView.init(card:)) ?? []
+        cardsContainerViewController.cardViews = cardSet?.generateCards().compactMap(CardView.init(card:)).shuffled() ?? []
         self.addChild(cardsContainerViewController)
         view.addSubview(cardsContainerViewController.view)
         
@@ -65,7 +65,7 @@ extension MainViewController {
         } completion: { _ in
             // Remove gameEndedView, shuffle the cards and restart timer
             self.gameEndedView?.removeFromSuperview()
-            cardsContainer.shuffleCards()
+            cardsContainer.cardViews = cardsContainer.cardViews.shuffled()
             UIView.transition(with: cardsContainer.view, duration: 0.5) {
                 cardsContainer.view.layoutIfNeeded()
             }

@@ -9,19 +9,23 @@ protocol CardsContainerViewControllerDelegate: AnyObject {
     )
 }
 
-
 /// A controller that manage all game cards
 class CardsContainerViewController: UIViewController {
     /// Delegate of the CardsContainerViewController
     weak var delegate: CardsContainerViewControllerDelegate?
     
     /// List of CardView
-    var cardViews: [CardView] = []
+    var cardViews: [CardView] = [] {
+        didSet {
+            if isViewLoaded {
+                configureCardViews()
+            }
+        }
+    }
     
     /// All constraints that manage CardViews position
     var cardsLayoutContraints: [NSLayoutConstraint] = []
 }
-
 
 // MARK: - View Loading
 extension CardsContainerViewController {
@@ -31,23 +35,14 @@ extension CardsContainerViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         
         // Configure CardViews
+        configureCardViews()
+    }
+    
+    private func configureCardViews() {
         cardViews.forEach { cardView in
             cardView.delegate = self
             view.addSubview(cardView)
         }
-        
-        // update layout
-        shuffleCards()
-    }
-}
-
-
-// MARK: - Cards management
-extension CardsContainerViewController {
-    /// Shuffle the cards
-    /// - Parameter animated: Shuffle must be animated
-    func shuffleCards() {
-        cardViews = cardViews.shuffled()
         updateCardsLayoutContraints()
     }
 }
@@ -120,7 +115,6 @@ private extension CardsContainerViewController {
         view.addConstraints(cardsLayoutContraints)
     }
 }
-
 
 // MARK: - CardViewDelegate
 extension CardsContainerViewController: CardViewDelegate {
