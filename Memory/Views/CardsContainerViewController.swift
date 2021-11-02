@@ -60,29 +60,6 @@ extension CardsContainerViewController {
     func hideAllCards() {
         cardViews.forEach { $0.status = .hidden }
     }
-    
-    /// Change the status of a card using animation
-    /// - Parameters:
-    ///   - status: The new status
-    ///   - cardView: The card to update
-    ///   - completion: Completion block called after animation
-    func setStatusAnimated(_ status: Card.Status, to cardView: CardView, completion: ((Bool) -> Void)? = nil) {
-        guard cardView.status != status else { return }
-        
-        let options: UIView.AnimationOptions
-        switch status {
-        case .hidden:
-            options = .transitionFlipFromRight
-        case .revealed:
-            options = .transitionFlipFromLeft
-        case .matched:
-            options = .curveEaseInOut
-        }
-        
-        UIView.transition(with: cardView, duration: 0.5, options: options, animations: {
-            cardView.status = status
-        }, completion: completion)
-    }
 }
 
 // MARK: - Constraints

@@ -92,7 +92,7 @@ extension MainViewController: CardsContainerViewControllerDelegate {
         
         // Increase score and reveal card
         score += 1
-        cardsContainer.setStatusAnimated(.revealed, to: cardView)
+        setStatusAnimated(.revealed, to: cardView)
         
         // If only 1 card was revealed before touching the card
         if otherRevealedCardViews.count == 1, let otherRevealedCardView = otherRevealedCardViews.first {
@@ -100,8 +100,8 @@ extension MainViewController: CardsContainerViewControllerDelegate {
             // If card is matching
             if cardView.card.name == otherRevealedCardView.card.name {
                 // Make cards as matched
-                cardsContainer.setStatusAnimated(.matched, to: cardView)
-                cardsContainer.setStatusAnimated(.matched, to: otherRevealedCardView) { _ in
+                setStatusAnimated(.matched, to: cardView)
+                setStatusAnimated(.matched, to: otherRevealedCardView) { _ in
                     // Check if game ended
                     if cardsContainer.cardViews.allSatisfy({ $0.status == .matched }) {
                         self.gameDidEnd()
@@ -112,11 +112,37 @@ extension MainViewController: CardsContainerViewControllerDelegate {
         else {
             // Unreveal all revealed cards
             for otherRevealedCardView in otherRevealedCardViews {
-                cardsContainer.setStatusAnimated(.hidden, to: otherRevealedCardView)
+                setStatusAnimated(.hidden, to: otherRevealedCardView)
             }
         }
     }
     
+    /// Change the status of a card using animation
+    /// - Parameters:
+    ///   - status: The new status
+    ///   - cardView: The card to update
+    ///   - completion: Completion block called after animation
+    private func setStatusAnimated(_ status: Card.Status, to cardView: CardView, completion: ((Bool) -> Void)? = nil) {
+        guard cardView.status != status else { return }
+        
+        let options: UIView.AnimationOptions
+        switch status {
+        case .hidden:
+            options = .transitionFlipFromRight
+        case .revealed:
+            options = .transitionFlipFromLeft
+        case .matched:
+            options = .curveEaseInOut
+        }
+        
+        UIView.transition(with: cardView, duration: 0.5, options: options, animations: {
+            cardView.status = status
+        }, completion: completion)
+    }
+}
+
+// Game end management
+extension MainViewController {
     private func gameDidEnd() {
         // Retrieve current and best score
         var bestScore: Int {
