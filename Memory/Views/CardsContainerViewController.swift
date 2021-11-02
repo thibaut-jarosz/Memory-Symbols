@@ -16,9 +16,6 @@ class CardsContainerViewController: UIViewController {
     /// Delegate of the CardsContainerViewController
     weak var delegate: CardsContainerViewControllerDelegate?
     
-    /// A set of cards
-    var cardSet: CardSet?
-    
     /// List of CardView
     var cardViews: [CardView] = []
     
@@ -34,9 +31,6 @@ extension CardsContainerViewController {
         
         view.translatesAutoresizingMaskIntoConstraints = false
         
-        // Create all CardViews
-        cardViews = cardSet?.generateCards().shuffled().compactMap(CardView.init(card:)) ?? []
-        
         // Configure CardViews
         cardViews.forEach { cardView in
             cardView.delegate = self
@@ -44,7 +38,7 @@ extension CardsContainerViewController {
         }
         
         // update layout
-        updateCardsLayoutContraints()
+        shuffleCards(animated: false)
     }
 }
 

@@ -22,7 +22,7 @@ extension MainViewController {
         
         // Add cards container
         cardsContainerViewController.delegate = self
-        cardsContainerViewController.cardSet = cardSet
+        cardsContainerViewController.cardViews = cardSet?.generateCards().compactMap(CardView.init(card:)) ?? []
         self.addChild(cardsContainerViewController)
         view.addSubview(cardsContainerViewController.view)
         
