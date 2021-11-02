@@ -10,16 +10,18 @@ protocol CardsContainerViewControllerDelegate: AnyObject {
 }
 
 /// A controller that manage all game cards
-class CardsContainerViewController: UIViewController {
+class CardsContainerViewController: UIView {
     /// Delegate of the CardsContainerViewController
     weak var delegate: CardsContainerViewControllerDelegate?
     
     /// List of CardView
     var cardViews: [CardView] = [] {
         didSet {
-            if isViewLoaded {
-                configureCardViews()
+            cardViews.forEach { cardView in
+                cardView.delegate = self
+                addSubview(cardView)
             }
+            updateCardsLayoutContraints()
         }
     }
     
@@ -27,30 +29,11 @@ class CardsContainerViewController: UIViewController {
     var cardsLayoutContraints: [NSLayoutConstraint] = []
 }
 
-// MARK: - View Loading
-extension CardsContainerViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        // Configure CardViews
-        configureCardViews()
-    }
-    
-    private func configureCardViews() {
-        cardViews.forEach { cardView in
-            cardView.delegate = self
-            view.addSubview(cardView)
-        }
-        updateCardsLayoutContraints()
-    }
-}
-
-// MARK: - Constraints
+// MARK: - Layout
 private extension CardsContainerViewController {
     func updateCardsLayoutContraints() {
-        view.removeConstraints(cardsLayoutContraints)
+        translatesAutoresizingMaskIntoConstraints = false
+        removeConstraints(cardsLayoutContraints)
         cardsLayoutContraints = []
         
         guard let firstCardView = cardViews.first else { return }
@@ -61,10 +44,10 @@ private extension CardsContainerViewController {
         
         constraints.append(contentsOf: [
             // Align first card top to top of superview
-            firstCardView.topAnchor.constraint(equalTo: view.topAnchor),
+            firstCardView.topAnchor.constraint(equalTo: topAnchor),
             
             // Align last card bottom to bottom of superview
-            cardViews[cardViews.count-1].bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            cardViews[cardViews.count-1].bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
         
         
@@ -76,7 +59,7 @@ private extension CardsContainerViewController {
             case 0: // First card in column
                 constraints.append(
                     // Align leading with superview
-                    cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+                    cardView.leadingAnchor.constraint(equalTo: leadingAnchor)
                 )
                 let row: Int = index/9
                 
@@ -90,7 +73,7 @@ private extension CardsContainerViewController {
             case 8: // Last card in column
                 constraints.append(
                     // Align trailing with superview
-                    cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+                    cardView.trailingAnchor.constraint(equalTo: trailingAnchor)
                 )
                 // Also apply default constraints
                 fallthrough
@@ -112,7 +95,7 @@ private extension CardsContainerViewController {
         }
         
         cardsLayoutContraints = constraints
-        view.addConstraints(cardsLayoutContraints)
+        addConstraints(cardsLayoutContraints)
     }
 }
 
