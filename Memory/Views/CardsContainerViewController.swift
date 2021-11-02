@@ -52,6 +52,7 @@ extension CardsContainerViewController {
 // MARK: - Cards management
 extension CardsContainerViewController {
     /// Shuffle the cards
+    /// - Parameter animated: Shuffle must be animated
     func shuffleCards(animated: Bool) {
         cardViews = cardViews.shuffled()
         updateCardsLayoutContraints()
@@ -64,9 +65,30 @@ extension CardsContainerViewController {
     
     /// Hide all the cards
     func hideAllCards() {
-        for cardView in cardViews {
-            cardView.setStatusAnimated(.hidden)
+        cardViews.forEach { $0.status = .hidden }
+    }
+    
+    /// Change the status of a card using animation
+    /// - Parameters:
+    ///   - status: The new status
+    ///   - cardView: The card to update
+    ///   - completion: Completion block called after animation
+    func setStatusAnimated(_ status: Card.Status, to cardView: CardView, completion: ((Bool) -> Void)? = nil) {
+        guard cardView.status != status else { return }
+        
+        let options: UIView.AnimationOptions
+        switch status {
+        case .hidden:
+            options = .transitionFlipFromRight
+        case .revealed:
+            options = .transitionFlipFromLeft
+        case .matched:
+            options = .curveEaseInOut
         }
+        
+        UIView.transition(with: cardView, duration: 0.5, options: options, animations: {
+            cardView.status = status
+        }, completion: completion)
     }
 }
 
@@ -147,13 +169,13 @@ extension CardsContainerViewController: CardViewDelegate {
     /// - Parameter cardView: the touched card
     func touchesBegan(on cardView: CardView) {
         // Check if card was hidden
-        guard cardView.card.status == .hidden else { return }
+        guard cardView.status == .hidden else { return }
         
         // Get currently revealed CardViews
-        let otherRevealedCardViews = cardViews.filter { $0.card.status == .revealed }
+        let otherRevealedCardViews = cardViews.filter { $0.status == .revealed }
         
         // Reveal card
-        cardView.setStatusAnimated(.revealed)
+        setStatusAnimated(.revealed, to: cardView)
         
         delegate?.cardsContainer(self, didRevealCardView: cardView, otherRevealedCardViews: otherRevealedCardViews)
     }

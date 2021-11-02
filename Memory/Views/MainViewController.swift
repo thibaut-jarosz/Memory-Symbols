@@ -97,10 +97,10 @@ extension MainViewController: CardsContainerViewControllerDelegate {
             // If card is matching
             if cardView.card.name == otherRevealedCardView.card.name {
                 // Make cards as matched
-                cardView.setStatusAnimated(.matched)
-                otherRevealedCardView.setStatusAnimated(.matched) { _ in
+                cardsContainer.setStatusAnimated(.matched, to: cardView)
+                cardsContainer.setStatusAnimated(.matched, to: otherRevealedCardView) { _ in
                     // Check if game ended
-                    if cardsContainer.cardViews.allSatisfy({ $0.card.status == .matched }) {
+                    if cardsContainer.cardViews.allSatisfy({ $0.status == .matched }) {
                         self.gameDidEnd()
                     }
                 }
@@ -109,7 +109,7 @@ extension MainViewController: CardsContainerViewControllerDelegate {
         else {
             // Unreveal all revealed cards
             for otherRevealedCardView in otherRevealedCardViews {
-                otherRevealedCardView.setStatusAnimated(.hidden)
+                cardsContainer.setStatusAnimated(.hidden, to: otherRevealedCardView)
             }
         }
     }

@@ -27,6 +27,12 @@ class CardView: UIView {
         }
     }
     
+    /// Helper to access card status, especially because card cannot be modifier ouside CardView
+    var status: Card.Status {
+        get { card.status }
+        set { card.status = newValue }
+    }
+    
     /// Delegate of the CardView
     weak var delegate: CardViewDelegate?
     
@@ -77,30 +83,6 @@ extension CardView {
                 equalTo: widthAnchor, multiplier: 0.8
             )
         ])
-    }
-}
-
-extension CardView {
-    /// Change the status of the card
-    /// - Parameters:
-    ///   - status: The new status
-    ///   - completion: Completion block called after animation
-    func setStatusAnimated(_ status: Card.Status, completion: ((Bool) -> Void)? = nil) {
-        guard card.status != status else { return }
-        
-        let options: UIView.AnimationOptions
-        switch status {
-        case .hidden:
-            options = .transitionFlipFromRight
-        case .revealed:
-            options = .transitionFlipFromLeft
-        case .matched:
-            options = .curveEaseInOut
-        }
-        
-        UIView.transition(with: self, duration: 0.5, options: options, animations: {
-            self.card.status = status
-        }, completion: completion)
     }
 }
 
