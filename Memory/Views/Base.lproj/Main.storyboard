@@ -37,10 +37,29 @@
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ga1-Kd-BHP" customClass="BoardView" customModule="Memory" customModuleProvider="target">
+                                <rect key="frame" x="20" y="223" width="374" height="450"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="450" placeholder="YES" id="QZg-Tu-bSh"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="r4G-Qb-6dR"/>
+                                </connections>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="AppBackground"/>
+                        <constraints>
+                            <constraint firstItem="Ga1-Kd-BHP" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leadingMargin" id="dNF-qH-0z7"/>
+                            <constraint firstItem="Ga1-Kd-BHP" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="gZY-aW-kc2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ga1-Kd-BHP" secondAttribute="trailing" id="tNh-52-gEU"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Memory" id="IGm-1S-3VM"/>
+                    <connections>
+                        <outlet property="boardView" destination="Ga1-Kd-BHP" id="2TX-H2-EOg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

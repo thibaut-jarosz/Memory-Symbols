@@ -15,7 +15,7 @@ class GameViewController: UIViewController {
     var cardSet: CardSet? = .weather
     
     /// The board that contains all cards
-    let boardView = BoardView()
+    @IBOutlet var boardView: BoardView?
     
     /// A view displayed when game ended
     var gameEndedView: UIView?
@@ -29,34 +29,19 @@ extension GameViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Add cards container
-        boardView.delegate = self
-        boardView.cardViews = cardSet?
+        // Configure boardView
+        boardView?.cardViews = cardSet?
             .generateCards(numberOfPairs: Self.pairs)
             .compactMap(CardView.init(card:))
             .shuffled() ?? []
-        view.addSubview(boardView)
-        
-        view.addConstraints([
-            boardView.centerYAnchor.constraint(
-                equalTo: view.centerYAnchor
-            ),
-            boardView.leadingAnchor.constraint(
-                equalTo: view.layoutMarginsGuide.leadingAnchor
-            ),
-            boardView.trailingAnchor.constraint(
-                equalTo: view.layoutMarginsGuide.trailingAnchor
-            )
-        ])
-        
-        boardView.transform = .init(scaleX: 0, y: 0)
-        boardView.alpha = 0
+        boardView?.transform = .init(scaleX: 0, y: 0)
+        boardView?.alpha = 0
     }
     
     override func viewDidAppear(_ animated: Bool) {
         UIView.transition(with: view, duration: 0.5) {
-            self.boardView.transform = .init(scaleX: 1, y: 1)
-            self.boardView.alpha = 1
+            self.boardView?.transform = .init(scaleX: 1, y: 1)
+            self.boardView?.alpha = 1
         }
     }
 }
@@ -65,7 +50,7 @@ extension GameViewController {
 extension GameViewController {
     /// Restart the game
     @objc func restartGame() {
-        let boardView = boardView
+        guard let boardView = boardView else { return }
         
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {
             // Restart the game and hide gameEndedView
@@ -183,18 +168,18 @@ extension GameViewController {
         
         // Move cards away and present gameEndedView
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {            
-            self.boardView.transform = .init(scaleX: 5, y: 5)
-            self.boardView.alpha = 0
+            self.boardView?.transform = .init(scaleX: 5, y: 5)
+            self.boardView?.alpha = 0
             self.gameEndedView?.alpha = 1
         } completion: { _ in
             // Hide all cards
-            self.boardView.cardViews.forEach { $0.status = .hidden }
+            self.boardView?.cardViews.forEach { $0.status = .hidden }
         }
     }
     
     /// Add and configure  gameEndedView
     private func insertGameEndedView(bestScore: Int) {
-        let mainFrame = boardView.frame
+        let mainFrame = boardView?.frame ?? .zero
         
         // Add gameEndedView
         let gameEndedView = UIView(frame: mainFrame)

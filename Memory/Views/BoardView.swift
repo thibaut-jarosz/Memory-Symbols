@@ -1,8 +1,7 @@
 import UIKit
 
 /// Delegate of BoardView
-protocol BoardViewDelegate: AnyObject {
-    
+@objc protocol BoardViewDelegate: AnyObject {
     /// Get the number of columns that should be displayed
     func numberOfColumns(in boardView: BoardView) -> Int
     /// Called when a card is touched
@@ -12,7 +11,7 @@ protocol BoardViewDelegate: AnyObject {
 /// A view that store all game cards
 class BoardView: UIView {
     /// Delegate of the BoardView
-    weak var delegate: BoardViewDelegate?
+    @IBOutlet weak var delegate: BoardViewDelegate?
     
     /// List of CardView
     var cardViews: [CardView] = [] {
