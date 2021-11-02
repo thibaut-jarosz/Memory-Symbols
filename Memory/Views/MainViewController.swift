@@ -54,16 +54,21 @@ extension MainViewController {
 extension MainViewController {
     /// Restart the game
     @objc func restartGame() {
+        let cardsContainer = cardsContainerViewController
+        
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {
             // Restart the game and hide gameEndedView
             self.score = 0
-            self.cardsContainerViewController.view.transform = .init(scaleX: 1, y: 1)
-            self.cardsContainerViewController.view.alpha = 1
+            cardsContainer.view.transform = .init(scaleX: 1, y: 1)
+            cardsContainer.view.alpha = 1
             self.gameEndedView?.alpha = 0
         } completion: { _ in
             // Remove gameEndedView, shuffle the cards and restart timer
             self.gameEndedView?.removeFromSuperview()
-            self.cardsContainerViewController.shuffleCards(animated: true)
+            cardsContainer.shuffleCards()
+            UIView.transition(with: cardsContainer.view, duration: 0.5) {
+                cardsContainer.view.layoutIfNeeded()
+            }
         }
     }
 }

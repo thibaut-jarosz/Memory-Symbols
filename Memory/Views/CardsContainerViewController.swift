@@ -37,7 +37,7 @@ extension CardsContainerViewController {
         }
         
         // update layout
-        shuffleCards(animated: false)
+        shuffleCards()
     }
 }
 
@@ -46,14 +46,9 @@ extension CardsContainerViewController {
 extension CardsContainerViewController {
     /// Shuffle the cards
     /// - Parameter animated: Shuffle must be animated
-    func shuffleCards(animated: Bool) {
+    func shuffleCards() {
         cardViews = cardViews.shuffled()
         updateCardsLayoutContraints()
-        if animated {
-            UIView.transition(with: view, duration: 0.5) {
-                self.view.layoutIfNeeded()
-            }
-        }
     }
 }
 
