@@ -2,6 +2,7 @@ import UIKit
 
 /// Set of cards
 enum CardSet: String, CaseIterable {
+    case transport
     case weather
 }
 
