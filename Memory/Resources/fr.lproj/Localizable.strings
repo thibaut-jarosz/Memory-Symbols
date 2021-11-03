@@ -1,5 +1,5 @@
-"CardSet.name.transport" = "Transports";
-"CardSet.name.weather" = "Météo";
+"deck.name.transport" = "Transports";
+"deck.name.weather" = "Météo";
 
 
 "RESTART"						=	"recommencer";

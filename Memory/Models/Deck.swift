@@ -1,12 +1,12 @@
 import UIKit
 
-/// Set of cards
-enum CardSet: String, CaseIterable {
+/// Deck of cards
+enum Deck: String, CaseIterable {
     case transport
     case weather
 }
 
-extension CardSet {
+extension Deck {
     private func cardNames() -> [String] {
         guard let data = NSDataAsset(name: rawValue)?.data else {
             return []
@@ -36,15 +36,15 @@ extension CardSet {
         }
     }
     
-    /// Icon representing the set
+    /// Icon representing the deck
     var icon: UIImage? {
         guard let name = cardNames().first else { return nil }
         
         return UIImage(systemName: name)
     }
     
-    /// Localized name of the set
+    /// Localized name of the deck
     var localizedName: String {
-        NSLocalizedString("CardSet.name.\(self.rawValue)", comment: "")
+        NSLocalizedString("deck.name.\(self.rawValue)", comment: "")
     }
 }
