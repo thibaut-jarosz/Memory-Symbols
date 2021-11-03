@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>deck.name.transport</key>
+	<string>Transport</string>
+	<key>deck.name.weather</key>
+	<string>Weather</string>
+	<key>deck.selection</key>
+	<string>Choose a theme:</string>
+    <key>RESTART</key>
+    <string>restart</string>
+    <key>GAME_OVER</key>
+    <string>Well done!</string>
+    <key>GAME_SCORE</key>
+    <string>You have touched the screen\n%i times to complete this game.</string>
+    <key>BEST_SCORE_CURRENT</key>
+    <string>Your best score is %i.</string>
+    <key>BEST_SCORE_PREVIOUS</key>
+    <string>Your best score was %i.</string>
+</dict>
+</plist>
