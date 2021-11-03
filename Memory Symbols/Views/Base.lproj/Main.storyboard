@@ -25,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="6" y="62"/>
         </scene>
-        <!--Memory Symbols-->
+        <!--Theme-->
         <scene sceneID="N9b-Lq-dLJ">
             <objects>
-                <tableViewController id="T36-FS-vrm" customClass="DeckSelectionViewController" customModule="Memory" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="T36-FS-vrm" customClass="DeckSelectionViewController" customModule="Memory_Symbols" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="wZb-xS-meY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -65,7 +65,7 @@
                             <outlet property="delegate" destination="T36-FS-vrm" id="tDG-7R-wCW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Memory Symbols" id="sHk-8R-UIT"/>
+                    <navigationItem key="navigationItem" title="Theme" id="sHk-8R-UIT"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GQx-Ui-DYI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -74,12 +74,12 @@
         <!--Game View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="GameViewController" customModule="Memory" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Y6W-OH-hqX" customClass="GameViewController" customModule="Memory_Symbols" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ga1-Kd-BHP" customClass="BoardView" customModule="Memory" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ga1-Kd-BHP" customClass="BoardView" customModule="Memory_Symbols" customModuleProvider="target">
                                 <rect key="frame" x="20" y="223" width="374" height="450"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
