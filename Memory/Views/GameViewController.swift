@@ -12,7 +12,7 @@ class GameViewController: UIViewController {
     static var pairs: Int { columns * rows / 2 }
     
     /// A set of cards
-    var cardSet: CardSet? = .weather
+    var cardSet: CardSet = .weather
     
     /// The board that contains all cards
     @IBOutlet var boardView: BoardView?
@@ -30,10 +30,10 @@ extension GameViewController {
         super.viewDidLoad()
         
         // Configure boardView
-        boardView?.cardViews = cardSet?
+        boardView?.cardViews = cardSet
             .generateCards(numberOfPairs: Self.pairs)
             .compactMap(CardView.init(card:))
-            .shuffled() ?? []
+            .shuffled()
         boardView?.transform = .init(scaleX: 0, y: 0)
         boardView?.alpha = 0
     }
@@ -74,10 +74,10 @@ extension GameViewController {
     /// Get and set the best score for the current difficulty
     var bestScore: Int {
         get {
-            UserDefaults.standard.integer(forKey: "bestScore")
+            UserDefaults.standard.integer(forKey: "\(cardSet.rawValue)-bestScore")
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "bestScore")
+            UserDefaults.standard.set(newValue, forKey: "\(cardSet.rawValue)-bestScore")
         }
     }
 }
