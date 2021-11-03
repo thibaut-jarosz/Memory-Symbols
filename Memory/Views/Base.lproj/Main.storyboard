@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,14 +18,60 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="8gf-XO-AB3"/>
+                        <segue destination="T36-FS-vrm" kind="relationship" relationship="rootViewController" id="SVF-bD-kDG"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RP1-wE-Z3v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6" y="62"/>
         </scene>
-        <!--Memory-->
+        <!--Memory Symbols-->
+        <scene sceneID="N9b-Lq-dLJ">
+            <objects>
+                <tableViewController id="T36-FS-vrm" customClass="DeckSelectionViewController" customModule="Memory" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="wZb-xS-meY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CellID" textLabel="KLj-ut-UUM" imageView="rSr-7V-ayX" rowHeight="75" style="IBUITableViewCellStyleDefault" id="F1G-Nf-BcD">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="75"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="F1G-Nf-BcD" id="hVu-gw-oAH">
+                                    <rect key="frame" x="0.0" y="0.0" width="384.5" height="75"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KLj-ut-UUM">
+                                            <rect key="frame" x="59.25" y="0.0" width="317.25" height="75"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rSr-7V-ayX">
+                                            <rect key="frame" x="16.25" y="27.5" width="28" height="19"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <imageReference key="image" image="cloud" catalog="system" symbolScale="large" renderingMode="template"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Y6W-OH-hqX" kind="show" id="MpP-e9-nZv"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="T36-FS-vrm" id="ize-IP-xMr"/>
+                            <outlet property="delegate" destination="T36-FS-vrm" id="tDG-7R-wCW"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Memory Symbols" id="sHk-8R-UIT"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GQx-Ui-DYI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="850.72463768115949" y="61.607142857142854"/>
+        </scene>
+        <!--Game View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController id="Y6W-OH-hqX" customClass="GameViewController" customModule="Memory" customModuleProvider="target" sceneMemberID="viewController">
@@ -51,17 +98,18 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Ga1-Kd-BHP" secondAttribute="trailing" id="tNh-52-gEU"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Memory" id="IGm-1S-3VM"/>
+                    <navigationItem key="navigationItem" id="IGm-1S-3VM"/>
                     <connections>
                         <outlet property="boardView" destination="Ga1-Kd-BHP" id="2TX-H2-EOg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="778" y="62"/>
+            <point key="canvasLocation" x="1635" y="62"/>
         </scene>
     </scenes>
     <resources>
+        <image name="cloud" catalog="system" width="128" height="88"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

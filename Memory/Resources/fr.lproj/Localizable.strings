@@ -1,6 +1,8 @@
 "deck.name.transport" = "Transports";
 "deck.name.weather" = "Météo";
 
+"deck.selection" = "Choisissez un thème :";
+
 
 "RESTART"						=	"recommencer";
 "GAME_OVER"						=	"Bravo !";

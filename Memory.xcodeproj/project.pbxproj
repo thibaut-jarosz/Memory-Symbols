@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF0C2FD72732BFCD00407ECF /* DeckSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0C2FD62732BFCD00407ECF /* DeckSelectionViewController.swift */; };
 		BF230D99272ABB53003640C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF230D9B272ABB53003640C6 /* Main.storyboard */; };
 		BF4CB71B116BD9EB00F40DD8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF325E6D114478D40059FDB6 /* Localizable.strings */; };
 		BF5C0E9327258EA7007E6808 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5C0E9227258EA7007E6808 /* CardView.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		BF0C2FD62732BFCD00407ECF /* DeckSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckSelectionViewController.swift; sourceTree = "<group>"; };
 		BF1406B411739FF400872873 /* Memory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF230D9D272ABB8F003640C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BF230DA5272B2BFA003640C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				BF230D9B272ABB53003640C6 /* Main.storyboard */,
+				BF0C2FD62732BFCD00407ECF /* DeckSelectionViewController.swift */,
 				BF6E3CF52728153A008DA1C1 /* GameViewController.swift */,
 				BF5C0E962725D509007E6808 /* BoardView.swift */,
 				BF5C0E9227258EA7007E6808 /* CardView.swift */,
@@ -179,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF6E3CFA2728B567008DA1C1 /* AppDelegate.swift in Sources */,
+				BF0C2FD72732BFCD00407ECF /* DeckSelectionViewController.swift in Sources */,
 				BF7357E3272CB11900F6CAF7 /* Deck.swift in Sources */,
 				BF6C00D1272E910A00BA3E63 /* Card.swift in Sources */,
 				BF6E3CF62728153A008DA1C1 /* GameViewController.swift in Sources */,
