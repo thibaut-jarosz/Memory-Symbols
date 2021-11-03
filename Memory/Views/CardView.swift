@@ -45,7 +45,7 @@ class CardView: UIView {
         super.init(frame: .zero)
         
         // Configure view
-        backgroundColor = .white
+        backgroundColor = card.color
         translatesAutoresizingMaskIntoConstraints = false
         addConstraint(widthAnchor.constraint(
             equalTo: heightAnchor
@@ -55,7 +55,7 @@ class CardView: UIView {
         imageView.image = card.image
         imageView.contentMode = .scaleAspectFit
         imageView.isHidden = true
-        imageView.tintColor = .init(named: "Card")
+        imageView.tintColor = .systemBackground
         addSubview(imageView)
         constrainImageView()
     }
