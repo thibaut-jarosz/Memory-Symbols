@@ -17,8 +17,8 @@ class GameViewController: UIViewController {
     /// The board that contains all cards
     @IBOutlet var boardView: BoardView?
     
-    /// A view displayed when game ended
-    var gameEndedView: UIView?
+    /// A score view displayed when game ended
+    @IBOutlet var scoreView: ScoreView?
     
     /// Game score (lower is better)
     var score: Int = 0
@@ -35,13 +35,16 @@ extension GameViewController {
             .generateCards(numberOfPairs: Self.pairs)
             .compactMap(CardView.init(card:))
             .shuffled()
+        
+        // Configure scoreView
+        scoreView?.alpha = 0
     }
 }
 
 // MARK: - Actions
 extension GameViewController {
     /// Restart the game
-    @objc func restartGame() {
+    @IBAction func restartGame() {
         guard let boardView = boardView else { return }
         
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {
@@ -49,10 +52,9 @@ extension GameViewController {
             self.score = 0
             boardView.transform = .init(scaleX: 1, y: 1)
             boardView.alpha = 1
-            self.gameEndedView?.alpha = 0
+            self.scoreView?.alpha = 0
         } completion: { _ in
-            // Remove gameEndedView, shuffle the cards and restart timer
-            self.gameEndedView?.removeFromSuperview()
+            // Shuffle the cards
             boardView.cardViews = boardView.cardViews.shuffled()
             UIView.transition(with: boardView, duration: 0.5) {
                 boardView.layoutIfNeeded()
@@ -150,85 +152,22 @@ extension GameViewController {
             return value
         }
         
-        // Add gameEndedView
-        insertGameEndedView(bestScore: bestScore)
+        // Update scoreView
+        scoreView?.updateView(withScore: score, bestScore: bestScore)
         
         // Update best score
         if bestScore > score {
             self.bestScore = score
         }
         
-        // Move cards away and present gameEndedView
+        // Move cards away and present scoreView
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut) {            
             self.boardView?.transform = .init(scaleX: 5, y: 5)
             self.boardView?.alpha = 0
-            self.gameEndedView?.alpha = 1
+            self.scoreView?.alpha = 1
         } completion: { _ in
             // Hide all cards
             self.boardView?.cardViews.forEach { $0.status = .hidden }
         }
-    }
-    
-    /// Add and configure  gameEndedView
-    private func insertGameEndedView(bestScore: Int) {
-        let mainFrame = boardView?.frame ?? .zero
-        
-        // Add gameEndedView
-        let gameEndedView = UIView(frame: mainFrame)
-        gameEndedView.alpha = 0
-        view.addSubview(gameEndedView)
-        self.gameEndedView = gameEndedView
-        
-        // Add title
-        let titleLabel = UILabel(frame: .init(x: 0, y: 50, width: mainFrame.size.width, height: 40))
-        titleLabel.text = NSLocalizedString("GAME_OVER", value: "Well done!", comment: "")
-        titleLabel.textAlignment = .center
-        titleLabel.backgroundColor = .clear
-        titleLabel.textColor = .white
-        titleLabel.font = UIFont(name: "Marker Felt", size: 40)
-        gameEndedView.addSubview(titleLabel)
-        
-        // Add restart button
-        let restartButton = UIButton(frame: .init(x: 75, y: mainFrame.size.height-40, width: mainFrame.size.width-150, height: 40))
-        restartButton.setTitle(NSLocalizedString("RESTART", value: "Restart", comment: ""), for: .normal)
-        restartButton.addTarget(self, action: #selector(restartGame), for: .touchUpInside)
-        restartButton.backgroundColor = .clear
-        restartButton.titleLabel?.textColor = .white
-        restartButton.titleLabel?.font = UIFont(name: "Marker Felt", size: 28)
-        gameEndedView.addSubview(restartButton)
-        
-        // Add score label
-        let scoreLabel = UILabel(frame: .init(x: 0, y: 125, width: mainFrame.size.width, height: 50))
-        scoreLabel.text = String(
-            format: NSLocalizedString(
-                "GAME_SCORE",
-                value: "You have touch the screen %i times to complete this game.",
-                comment: ""
-            ),
-            score
-        )
-        scoreLabel.numberOfLines = 2
-        scoreLabel.textAlignment = .center
-        scoreLabel.backgroundColor = .clear
-        scoreLabel.textColor = .white
-        scoreLabel.font = UIFont(name: "Marker Felt", size: 20)
-        gameEndedView.addSubview(scoreLabel)
-        
-        // Add best score label
-        let bestScoreLabel = UILabel(frame: .init(x: 0, y: 200, width: mainFrame.size.width, height: 50))
-        bestScoreLabel.text = String(
-            format: NSLocalizedString(
-                bestScore > score ? "BEST_SCORE_PREVIOUS" : "BEST_SCORE_CURRENT",
-                value: "Your best score is %i.",
-                comment: ""
-            ),
-            bestScore
-        )
-        bestScoreLabel.numberOfLines = 2
-        bestScoreLabel.textAlignment = .center
-        bestScoreLabel.backgroundColor = .clear
-        bestScoreLabel.textColor = .white
-        bestScoreLabel.font = UIFont(name: "Marker Felt", size: 20)
-        gameEndedView.addSubview(bestScoreLabel)
     }
 }

@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="6" y="62"/>
         </scene>
-        <!--Theme-->
+        <!--Themes-->
         <scene sceneID="N9b-Lq-dLJ">
             <objects>
                 <tableViewController id="T36-FS-vrm" customClass="DeckSelectionViewController" customModule="Memory_Symbols" customModuleProvider="target" sceneMemberID="viewController">
@@ -65,7 +65,7 @@
                             <outlet property="delegate" destination="T36-FS-vrm" id="tDG-7R-wCW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Theme" id="sHk-8R-UIT"/>
+                    <navigationItem key="navigationItem" title="Themes" id="sHk-8R-UIT"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GQx-Ui-DYI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -79,9 +79,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aR4-oh-TxG" customClass="ScoreView" customModule="Memory_Symbols" customModuleProvider="target">
+                                <rect key="frame" x="20" y="286.5" width="374" height="233"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Well done!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTA-7P-LUj">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HjF-XI-iMX">
+                                        <rect key="frame" x="0.0" y="60" width="374" height="61"/>
+                                        <string key="text">To complete this game,
+you have touched the screen
+%d times!</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your best score is %d." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lzk-nJ-XkX">
+                                        <rect key="frame" x="0.0" y="151" width="374" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhz-OT-hVr">
+                                        <rect key="frame" x="143" y="202" width="88" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Try again!"/>
+                                        <connections>
+                                            <action selector="restartGame" destination="Y6W-OH-hqX" eventType="touchUpInside" id="d07-ck-HqN"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="lzk-nJ-XkX" secondAttribute="trailing" id="0LK-lU-3kG"/>
+                                    <constraint firstItem="mhz-OT-hVr" firstAttribute="top" secondItem="lzk-nJ-XkX" secondAttribute="bottom" constant="30" id="1c3-hw-Kda"/>
+                                    <constraint firstAttribute="trailing" secondItem="bTA-7P-LUj" secondAttribute="trailing" id="3JL-2D-rSk"/>
+                                    <constraint firstItem="HjF-XI-iMX" firstAttribute="top" secondItem="bTA-7P-LUj" secondAttribute="bottom" constant="30" id="CcP-8I-S0u"/>
+                                    <constraint firstItem="lzk-nJ-XkX" firstAttribute="top" secondItem="HjF-XI-iMX" secondAttribute="bottom" constant="30" id="OEM-4H-D2B"/>
+                                    <constraint firstItem="bTA-7P-LUj" firstAttribute="top" secondItem="aR4-oh-TxG" secondAttribute="top" id="ZGY-9T-gtV"/>
+                                    <constraint firstItem="mhz-OT-hVr" firstAttribute="centerX" secondItem="aR4-oh-TxG" secondAttribute="centerX" id="dNC-hy-5wA"/>
+                                    <constraint firstItem="bTA-7P-LUj" firstAttribute="leading" secondItem="aR4-oh-TxG" secondAttribute="leading" id="equ-oE-vEM"/>
+                                    <constraint firstAttribute="trailing" secondItem="HjF-XI-iMX" secondAttribute="trailing" id="kKt-KU-VML"/>
+                                    <constraint firstItem="lzk-nJ-XkX" firstAttribute="leading" secondItem="aR4-oh-TxG" secondAttribute="leading" id="l88-NZ-Bgj"/>
+                                    <constraint firstItem="HjF-XI-iMX" firstAttribute="leading" secondItem="aR4-oh-TxG" secondAttribute="leading" id="lwT-8L-ngU"/>
+                                    <constraint firstAttribute="bottom" secondItem="mhz-OT-hVr" secondAttribute="bottom" id="t88-S9-BXb"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="bestScoreLabel" destination="lzk-nJ-XkX" id="zDQ-G6-kJ5"/>
+                                    <outlet property="scoreLabel" destination="HjF-XI-iMX" id="xvL-jW-eaY"/>
+                                </connections>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ga1-Kd-BHP" customClass="BoardView" customModule="Memory_Symbols" customModuleProvider="target">
-                                <rect key="frame" x="20" y="223" width="374" height="450"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="20" y="178" width="374" height="450"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="450" placeholder="YES" id="QZg-Tu-bSh"/>
                                 </constraints>
@@ -93,19 +144,25 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="aR4-oh-TxG" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" multiplier="0.9" priority="750" id="29s-o4-Ebu"/>
+                            <constraint firstItem="aR4-oh-TxG" firstAttribute="trailing" secondItem="5EZ-qb-Rvc" secondAttribute="trailingMargin" id="CRD-gf-D9r"/>
+                            <constraint firstItem="aR4-oh-TxG" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vDu-zF-Fre" secondAttribute="top" id="EAc-cf-2tH"/>
+                            <constraint firstItem="aR4-oh-TxG" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leadingMargin" id="bmh-B3-OBl"/>
                             <constraint firstItem="Ga1-Kd-BHP" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leadingMargin" id="dNF-qH-0z7"/>
-                            <constraint firstItem="Ga1-Kd-BHP" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="gZY-aW-kc2"/>
+                            <constraint firstItem="Ga1-Kd-BHP" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" multiplier="0.9" priority="750" id="gZY-aW-kc2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ga1-Kd-BHP" secondAttribute="trailing" id="tNh-52-gEU"/>
+                            <constraint firstItem="Ga1-Kd-BHP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vDu-zF-Fre" secondAttribute="top" id="tqg-UH-xh8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="IGm-1S-3VM"/>
                     <connections>
                         <outlet property="boardView" destination="Ga1-Kd-BHP" id="2TX-H2-EOg"/>
+                        <outlet property="scoreView" destination="aR4-oh-TxG" id="cyg-aa-bZN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1635" y="62"/>
+            <point key="canvasLocation" x="1634.7826086956522" y="61.607142857142854"/>
         </scene>
     </scenes>
     <resources>

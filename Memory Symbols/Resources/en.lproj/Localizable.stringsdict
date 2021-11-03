@@ -8,15 +8,53 @@
 	<string>Weather</string>
 	<key>deck.selection</key>
 	<string>Choose a theme:</string>
-    <key>RESTART</key>
-    <string>restart</string>
-    <key>GAME_OVER</key>
-    <string>Well done!</string>
-    <key>GAME_SCORE</key>
-    <string>You have touched the screen\n%i times to complete this game.</string>
-    <key>BEST_SCORE_CURRENT</key>
-    <string>Your best score is %i.</string>
-    <key>BEST_SCORE_PREVIOUS</key>
-    <string>Your best score was %i.</string>
+	<key>score.current</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>To complete this game,
+you have touched the screen
+%#@times@!</string>
+		<key>times</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d time</string>
+			<key>other</key>
+			<string>%d times</string>
+		</dict>
+	</dict>
+	<key>BEST_SCORE_CURRENT</key>
+	<string>Your best score is %i.</string>
+	<key>score.best.previous</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Your best score was %#@score@.</string>
+		<key>score</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d</string>
+		</dict>
+	</dict>
+	<key>score.best.current</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Your best score is %#@score@.</string>
+		<key>score</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>other</key>
+			<string>%d</string>
+		</dict>
+	</dict>
 </dict>
 </plist>
