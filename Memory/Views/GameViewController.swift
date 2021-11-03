@@ -35,15 +35,6 @@ extension GameViewController {
             .generateCards(numberOfPairs: Self.pairs)
             .compactMap(CardView.init(card:))
             .shuffled()
-        boardView?.transform = .init(scaleX: 0, y: 0)
-        boardView?.alpha = 0
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        UIView.transition(with: view, duration: 0.5) {
-            self.boardView?.transform = .init(scaleX: 1, y: 1)
-            self.boardView?.alpha = 1
-        }
     }
 }
 
