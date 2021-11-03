@@ -7,24 +7,22 @@ enum CardSet: String, CaseIterable {
 }
 
 extension CardSet {
-    /// Generate cards
-    /// - Returns: generated cards
-    func generateCards(numberOfPairs: Int) -> [Card] {
+    private func cardNames() -> [String] {
         guard let data = NSDataAsset(name: rawValue)?.data else {
             return []
         }
-        
+                
+        return (try? JSONDecoder().decode([String].self, from: data)) ?? []
+    }
+    
+    /// Generate cards
+    /// - Returns: generated cards
+    func generateCards(numberOfPairs: Int) -> [Card] {
         let color = cardsColor
-        
-        let cards = try? JSONDecoder()
-            .decode([String].self, from: data)
-            .shuffled()
+        let cards = cardNames()
             .prefix(numberOfPairs)
             .map { Card(name: $0, color: color) }
         
-        guard let cards = cards else {
-            return []
-        }
         return cards + cards
     }
     
@@ -36,5 +34,17 @@ extension CardSet {
         case .weather:
             return .systemBlue
         }
+    }
+    
+    /// Icon representing the set
+    var icon: UIImage? {
+        guard let name = cardNames().first else { return nil }
+        
+        return UIImage(systemName: name)
+    }
+    
+    /// Localized name of the set
+    var localizedName: String {
+        NSLocalizedString("CardSet.name.\(self.rawValue)", comment: "")
     }
 }

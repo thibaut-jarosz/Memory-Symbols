@@ -28,6 +28,7 @@ class GameViewController: UIViewController {
 extension GameViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = cardSet.localizedName
         
         // Configure boardView
         boardView?.cardViews = cardSet
