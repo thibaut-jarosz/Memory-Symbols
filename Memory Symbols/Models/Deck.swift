@@ -2,6 +2,14 @@ import UIKit
 
 /// Deck of cards
 enum Deck: String, CaseIterable {
+    case communication
+    case currencies
+    case gamecontroller
+    case hands
+    case nature
+    case media
+    case persons
+    case shapes
     case transport
     case weather
 }
@@ -29,10 +37,26 @@ extension Deck {
     /// Cards color
     var cardsColor: UIColor {
         switch self {
-        case .transport:
-            return .systemGreen
-        case .weather:
+        case .communication:
             return .systemBlue
+        case .currencies:
+            return .systemOrange
+        case .gamecontroller:
+            return .systemPink
+        case .hands:
+            return .systemPurple
+        case .media:
+            return .systemIndigo
+        case .nature:
+            return .systemGreen
+        case .persons:
+            return .systemBrown
+        case .shapes:
+            return .systemMint
+        case .transport:
+            return .systemRed
+        case .weather:
+            return .systemCyan
         }
     }
     
