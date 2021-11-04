@@ -8,6 +8,28 @@
 	<string>Weather</string>
 	<key>deck.selection</key>
 	<string>Choisis un thème :</string>
+	<key>cancel.button</key>
+	<string>Abandonner !</string>
+	<key>cancel.alert.title</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Seulement %#@cards@. Es-tu sûr·e de vouloir abandonner maintenant ?</string>
+		<key>cards</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d carte restante</string>
+			<key>other</key>
+			<string>%d cartes restantes</string>
+		</dict>
+	</dict>
+	<key>cancel.alert.confirm</key>
+	<string>Abandonner !</string>
+	<key>cancel.alert.goback</key>
+	<string>Retourner dans la partie !</string>
 	<key>score.current</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

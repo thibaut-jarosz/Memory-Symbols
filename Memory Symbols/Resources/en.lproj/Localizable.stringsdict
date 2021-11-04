@@ -8,6 +8,28 @@
 	<string>Weather</string>
 	<key>deck.selection</key>
 	<string>Choose a theme:</string>
+	<key>cancel.button</key>
+	<string>Give up!</string>
+	<key>cancel.alert.title</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Only %#@cards@ left. Are you sure you want to give up now?</string>
+		<key>cards</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d card</string>
+			<key>other</key>
+			<string>%d cards</string>
+		</dict>
+	</dict>
+	<key>cancel.alert.confirm</key>
+	<string>Give up!</string>
+	<key>cancel.alert.goback</key>
+	<string>Back to the game!</string>
 	<key>score.current</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -26,8 +48,6 @@ you have touched the screen
 			<string>%d times</string>
 		</dict>
 	</dict>
-	<key>BEST_SCORE_CURRENT</key>
-	<string>Your best score is %i.</string>
 	<key>score.best.previous</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

@@ -106,6 +106,16 @@ extension GameViewController: BoardViewDelegate {
                         self.gameDidEnd()
                     }
                 }
+                
+                // Add cancel button instead of back button
+                if navigationItem.leftBarButtonItem == nil {
+                    navigationItem.setLeftBarButton(.init(
+                        title: NSLocalizedString("cancel.button", comment: ""),
+                        style: .done,
+                        target: self,
+                        action: #selector(cancelGame)
+                    ), animated: true )
+                }
             }
         }
         else {
@@ -114,6 +124,28 @@ extension GameViewController: BoardViewDelegate {
                 setStatusAnimated(.hidden, to: otherRevealedCardView)
             }
         }
+    }
+    
+    @IBAction func cancelGame() {
+        let unmatchedCount = boardView?.cardViews.filter { $0.status != .matched }.count ?? 0
+        
+        let alert = UIAlertController(title: String.localizedStringWithFormat(
+            NSLocalizedString("cancel.alert.title", comment: ""),
+            unmatchedCount
+        ), message: nil, preferredStyle: .alert)
+        
+        alert.addAction(.init(
+            title: NSLocalizedString("cancel.alert.goback", comment: ""),
+            style: .cancel
+        ))
+        alert.addAction(.init(
+            title: NSLocalizedString("cancel.alert.confirm", comment: ""),
+            style: .destructive,
+            handler: { _ in
+                self.navigationController?.popViewController(animated: true)
+            }
+        ))
+        present(alert, animated: true)
     }
     
     /// Change the status of a card using animation
@@ -169,5 +201,8 @@ extension GameViewController {
             // Hide all cards
             self.boardView?.cardViews.forEach { $0.status = .hidden }
         }
+        
+        // Remove cancel button and go back to back button
+        navigationItem.setLeftBarButton(nil, animated: true)
     }
 }
