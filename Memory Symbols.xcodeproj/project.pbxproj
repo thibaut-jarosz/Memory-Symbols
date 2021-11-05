@@ -20,6 +20,7 @@
 		BF7357E3272CB11900F6CAF7 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7357E2272CB11900F6CAF7 /* Deck.swift */; };
 		BF816BB1272940DA00BD48D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF816BB0272940DA00BD48D5 /* Assets.xcassets */; };
 		BF816BD62729794100BD48D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF816BD52729794100BD48D5 /* LaunchScreen.storyboard */; };
+		BFFC45DD2735B1B90069CE07 /* DeckNames.strings in Resources */ = {isa = PBXBuildFile; fileRef = BFFC45DF2735B1B90069CE07 /* DeckNames.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,8 @@
 		BF7357E2272CB11900F6CAF7 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		BF816BB0272940DA00BD48D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF816BD52729794100BD48D5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BFFC45DE2735B1B90069CE07 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DeckNames.strings; sourceTree = "<group>"; };
+		BFFC45E02735B1BB0069CE07 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/DeckNames.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +111,7 @@
 		BF816BB2272969A700BD48D5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BFFC45DF2735B1B90069CE07 /* DeckNames.strings */,
 				BF0C2FE627331DD900407ECF /* Localizable.stringsdict */,
 				BF816BB0272940DA00BD48D5 /* Assets.xcassets */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -176,6 +180,7 @@
 			files = (
 				BF230D99272ABB53003640C6 /* Main.storyboard in Resources */,
 				BF816BD62729794100BD48D5 /* LaunchScreen.storyboard in Resources */,
+				BFFC45DD2735B1B90069CE07 /* DeckNames.strings in Resources */,
 				BF816BB1272940DA00BD48D5 /* Assets.xcassets in Resources */,
 				BF0C2FDC273315DC00407ECF /* InfoPlist.strings in Resources */,
 				BF0C2FE427331DD900407ECF /* Localizable.stringsdict in Resources */,
@@ -229,6 +234,15 @@
 				BF0C2FE727331DDB00407ECF /* fr */,
 			);
 			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
+		BFFC45DF2735B1B90069CE07 /* DeckNames.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BFFC45DE2735B1B90069CE07 /* en */,
+				BFFC45E02735B1BB0069CE07 /* fr */,
+			);
+			name = DeckNames.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

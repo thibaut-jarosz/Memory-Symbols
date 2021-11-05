@@ -69,6 +69,6 @@ extension Deck {
     
     /// Localized name of the deck
     var localizedName: String {
-        NSLocalizedString("deck.name.\(self.rawValue)", comment: "")
+        NSLocalizedString("\(rawValue)", tableName: "DeckNames", comment: "")
     }
 }

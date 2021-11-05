@@ -2,26 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>deck.name.communication</key>
-	<string>Communication</string>
-	<key>deck.name.currencies</key>
-	<string>Monnaies</string>
-	<key>deck.name.gamecontroller</key>
-	<string>Manette de jeu</string>
-	<key>deck.name.hands</key>
-	<string>Mains</string>
-	<key>deck.name.nature</key>
-	<string>Nature</string>
-	<key>deck.name.media</key>
-	<string>Medias</string>
-	<key>deck.name.persons</key>
-	<string>Personnes</string>
-	<key>deck.name.shapes</key>
-	<string>Formes géométriques</string>
-	<key>deck.name.transport</key>
-	<string>Transport</string>
-	<key>deck.name.weather</key>
-	<string>Météo</string>
 	<key>deck.selection</key>
 	<string>Choisis un thème :</string>
 	<key>cancel.button</key>
