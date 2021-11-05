@@ -15,7 +15,7 @@ enum Deck: String, CaseIterable {
 }
 
 extension Deck {
-    private func cardNames() -> [String] {
+    func cardNames() -> [String] {
         guard let data = NSDataAsset(name: rawValue)?.data else {
             return []
         }
