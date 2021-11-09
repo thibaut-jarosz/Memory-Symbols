@@ -27,6 +27,7 @@ extension Deck {
     /// - Returns: generated cards
     func generateCards(numberOfPairs: Int) -> [Card] {
         let cardNames = cardNames()
+            .shuffled()
             .prefix(numberOfPairs)
         
         return (cardNames + cardNames)

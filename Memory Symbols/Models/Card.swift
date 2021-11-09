@@ -1,6 +1,8 @@
 import UIKit
 /// Represents a single card
-struct Card {
+struct Card: Identifiable, Equatable {
+    let id = UUID()
+    
     /// Card Status
     enum Status {
         /// Card is hidden
