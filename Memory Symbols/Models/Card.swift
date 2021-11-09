@@ -4,7 +4,7 @@ struct Card: Identifiable, Equatable {
     let id = UUID()
     
     /// Card Status
-    enum Status {
+    enum Status: CaseIterable {
         /// Card is hidden
         case hidden
         /// Card if revealed but not matched with another card
