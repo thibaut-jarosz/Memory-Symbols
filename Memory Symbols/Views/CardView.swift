@@ -45,7 +45,7 @@ class CardView: UIView {
         super.init(frame: .zero)
         
         // Configure view
-        backgroundColor = card.color
+        backgroundColor = card.deck.cardsColor
         translatesAutoresizingMaskIntoConstraints = false
         addConstraint(widthAnchor.constraint(
             equalTo: heightAnchor

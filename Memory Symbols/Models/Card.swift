@@ -11,11 +11,11 @@ struct Card {
         case matched
     }
     
+    /// Deck of the card
+    let deck: Deck
+    
     /// Name of the card
     let name: String
-    
-    /// Color of the card
-    let color: UIColor
     
     /// Status of the card
     var status: Status = .hidden

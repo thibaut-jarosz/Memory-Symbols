@@ -26,12 +26,11 @@ extension Deck {
     /// Generate cards
     /// - Returns: generated cards
     func generateCards(numberOfPairs: Int) -> [Card] {
-        let color = cardsColor
-        let cards = cardNames()
+        let cardNames = cardNames()
             .prefix(numberOfPairs)
-            .map { Card(name: $0, color: color) }
         
-        return cards + cards
+        return (cardNames + cardNames)
+            .map { Card(deck: self, name: $0) }
     }
     
     /// Cards color
