@@ -80,7 +80,7 @@ struct CardViewUI: View, Animatable {
 }
 
 struct CardViewUI_Previews: PreviewProvider {
-    /// An intermediate container, usefull for having a fonctionnal state on card and for managing tap gesture
+    /// An intermediate container, useful for having a fonctionnal state on card and for managing tap gesture
     struct ContainerView: View {
         @State var card: Card
         
