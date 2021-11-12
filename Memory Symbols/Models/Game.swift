@@ -13,14 +13,30 @@ struct Game {
         }
     }
     
+    // Status of the game
+    enum Status {
+        // Game is ready to start
+        case ready
+        // Game is started
+        case started
+        // Game is ended
+        case ended
+    }
+    
     /// Deck of cards used for the game
     let deck: Deck
     
     /// Size of the board for the game
     let boardSize: BoardSize
     
+    // Status of the game
+    var status: Status = .ready
+    
     /// Cards displayed on the board
     var cards: [Card]
+    
+    /// Score of the game
+    var score: Int = 0
     
     /// Game initializer
     /// - Parameters:
