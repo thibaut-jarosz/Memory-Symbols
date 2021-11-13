@@ -6,22 +6,29 @@ struct BoardViewUI: View {
     @Binding var game: Game
     
     var body: some View {
-        // Create grid of cards
-        LazyVGrid(columns: .init(
-                repeating: .init(
-                    .flexible(minimum: 0),
-                    spacing: 2 // space between columns
+        VStack( alignment: .leading) {
+            // Create grid of cards
+            LazyVGrid(columns: .init(
+                    repeating: .init(
+                        .flexible(minimum: 0),
+                        spacing: 2 // space between columns
+                    ),
+                    count: game.boardSize.columns
                 ),
-                count: game.boardSize.columns
-            ),
-            spacing: 2 // space between rows
-        ) {
-            ForEach($game.cards) { card in
-                CardViewUI(card: card)
-                    .onTapGesture {
-                        game.reveal(card.wrappedValue)
-                    }
+                spacing: 2 // space between rows
+            ) {
+                ForEach($game.cards) { card in
+                    CardViewUI(card: card)
+                        .onTapGesture {
+                            game.reveal(card.wrappedValue)
+                        }
+                }
             }
+            Text("BoardView.score.\(game.score)")
+                .font(.footnote)
+                .foregroundColor(.secondary)
+                .padding(.top)
+                .animation(.none, value: game.score)
         }
     }
 }
@@ -36,6 +43,7 @@ struct BoardViewUI_Previews: PreviewProvider {
                 Button("Restart") {
                     withoutAnimation {
                         $game.cards.forEach { $0.wrappedValue.status = .hidden }
+                        game.score = 0
                     }
                     game.status = .ready
                     waitForAnimation {
@@ -63,6 +71,6 @@ struct BoardViewUI_Previews: PreviewProvider {
             .preferredColorScheme($0)
         }
         .padding()
-        .previewLayout(.fixed(width: 300, height: 200))
+        .previewLayout(.fixed(width: 300, height: 300))
     }
 }
