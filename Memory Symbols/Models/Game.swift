@@ -1,7 +1,7 @@
 /// Represents and manage a game
-struct Game {
+struct Game: Equatable {
     /// The size of the board
-    struct BoardSize {
+    struct BoardSize: Equatable {
         /// Number of columns on the board
         let columns: Int
         /// Number of rows on the board

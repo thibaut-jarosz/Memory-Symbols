@@ -18,6 +18,9 @@ struct BoardViewUI: View {
         ) {
             ForEach($game.cards) { card in
                 CardViewUI(card: card)
+                    .onTapGesture {
+                        game.reveal(card.wrappedValue)
+                    }
             }
         }
     }
@@ -29,7 +32,25 @@ struct BoardViewUI_Previews: PreviewProvider {
         @State var game: Game
         
         var body: some View {
-            BoardViewUI(game: $game)
+            ZStack {
+                Button("Restart") {
+                    withoutAnimation {
+                        $game.cards.forEach { $0.wrappedValue.status = .hidden }
+                    }
+                    game.status = .ready
+                    waitForAnimation {
+                        game.cards.shuffle()
+                    }
+                }
+                .disabled(game.status != .ended)
+                .opacity(game.status == .ended ? 1 : 0)
+                .animation(.default, value: game.status)
+                
+                BoardViewUI(game: $game)
+                    .scaleEffect(game.status == .ended ? 5 : 1)
+                    .opacity(game.status == .ended ? 0 : 1)
+                    .animation(.default, value: game)
+            }
         }
     }
     

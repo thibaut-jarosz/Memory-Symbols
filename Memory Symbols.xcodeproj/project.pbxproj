@@ -22,6 +22,7 @@
 		BF8A0A3D2737FA110099EAA7 /* CardViewUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A0A3C2737FA110099EAA7 /* CardViewUI.swift */; };
 		BFA27039273C123500D027B1 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA27038273C123500D027B1 /* Game.swift */; };
 		BFA2703C273C1A7F00D027B1 /* ArraySlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA2703B273C1A7F00D027B1 /* ArraySlice.swift */; };
+		BFA2703E273D1C3100D027B1 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA2703D273D1C3100D027B1 /* Animation.swift */; };
 		BFCEF748273A9E6A005C440D /* BoardViewUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF508EB7273819D2008FF723 /* BoardViewUI.swift */; };
 		BFFC45D1273580850069CE07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BFFC45D3273580850069CE07 /* Localizable.strings */; };
 		BFFC45D82735813E0069CE07 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5C0E9227258EA7007E6808 /* CardView.swift */; };
@@ -57,6 +58,7 @@
 		BF8A0A3C2737FA110099EAA7 /* CardViewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewUI.swift; sourceTree = "<group>"; };
 		BFA27038273C123500D027B1 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		BFA2703B273C1A7F00D027B1 /* ArraySlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArraySlice.swift; sourceTree = "<group>"; };
+		BFA2703D273D1C3100D027B1 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		BFFC45D2273580850069CE07 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BFFC45D4273580860069CE07 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BFFC45DE2735B1B90069CE07 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DeckNames.strings; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				BFA2703B273C1A7F00D027B1 /* ArraySlice.swift */,
+				BFA2703D273D1C3100D027B1 /* Animation.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFA2703E273D1C3100D027B1 /* Animation.swift in Sources */,
 				BF6E3CFA2728B567008DA1C1 /* AppDelegate.swift in Sources */,
 				BFCEF748273A9E6A005C440D /* BoardViewUI.swift in Sources */,
 				BFFC45D82735813E0069CE07 /* CardView.swift in Sources */,
