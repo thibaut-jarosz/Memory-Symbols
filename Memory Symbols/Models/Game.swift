@@ -79,6 +79,7 @@ extension Game {
         // Increase score and reveal card
         score += 1
         cards[cardIndex].status = .revealed
+        status = .started
         
         // If only 1 card was revealed before touching the card
         if otherRevealedIndexes.count == 1, let otherRevealedIndex = otherRevealedIndexes.first {
