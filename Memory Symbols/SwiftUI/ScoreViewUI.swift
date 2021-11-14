@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ScoreViewUI: View {
     @Binding var game: Game
-    var bestScore: Int
+    let bestScore: Int
     var restart: () -> Void
     
     var body: some View {
