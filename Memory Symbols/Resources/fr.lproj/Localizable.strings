@@ -1,2 +1,6 @@
 "DeckSelection.Title" = "Thèmes";
+
 "BoardView.score.%lld" = "Score : %lld";
+
+"ScoreView.Title" = "Bien joué!";
+"ScoreView.Restart" = "Réessayer !";

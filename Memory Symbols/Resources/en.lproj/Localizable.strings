@@ -1,2 +1,6 @@
 "DeckSelection.Title" = "Themes";
+
 "BoardView.score.%lld" = "Score: %lld";
+
+"ScoreView.Title" = "Well done!";
+"ScoreView.Restart" = "Try again!";

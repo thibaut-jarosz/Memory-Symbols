@@ -2,6 +2,52 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ScoreView.Current.%lld</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>To complete this game,\
+you have touched the screen\
+**%#@times@!**</string>
+		<key>times</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld time</string>
+			<key>other</key>
+			<string>%lld times</string>
+		</dict>
+	</dict>
+	<key>ScoreView.Best.Current.%lld</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Your best score is %#@score@.</string>
+		<key>score</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>other</key>
+			<string>%lld</string>
+		</dict>
+	</dict>
+	<key>ScoreView.Best.Previous.%lld</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Your best score was %#@score@.</string>
+		<key>score</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>other</key>
+			<string>%lld</string>
+		</dict>
+	</dict>
 	<key>deck.selection</key>
 	<string>Choose a theme:</string>
 	<key>cancel.button</key>
