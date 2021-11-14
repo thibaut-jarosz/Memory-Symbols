@@ -93,6 +93,11 @@ extension Game {
                 // Check if game ended
                 if cards.allSatisfy({ $0.status == .matched }) {
                     status = .ended
+                    // Update best score if needed
+                    let bestScore = deck.bestScore
+                    if bestScore == 0 || score < bestScore {
+                        deck.bestScore = score
+                    }
                 }
             }
         }

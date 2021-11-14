@@ -77,7 +77,7 @@ extension Deck {
         get {
             UserDefaults.standard.integer(forKey: "BestScore.\(rawValue)")
         }
-        set {
+        nonmutating set {
             UserDefaults.standard.set(newValue, forKey: "BestScore.\(rawValue)")
         }
     }
