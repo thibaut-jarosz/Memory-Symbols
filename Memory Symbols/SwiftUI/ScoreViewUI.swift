@@ -23,7 +23,7 @@ struct ScoreViewUI: View {
             Text(
                 bestScore > game.score ?
                 "ScoreView.Best.Previous.\(bestScore)" :
-                "ScoreView.Best.Current.\(bestScore)"
+                "ScoreView.Best.Current.\(bestScore != 0 ? bestScore : game.score)"
             )
                 .font(.headline)
                 .padding(.vertical)
