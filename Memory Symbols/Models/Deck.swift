@@ -71,4 +71,14 @@ extension Deck {
     var localizedName: String {
         NSLocalizedString("\(rawValue)", tableName: "DeckNames", comment: "")
     }
+    
+    /// Get and set the best score for the current deck
+    var bestScore: Int {
+        get {
+            UserDefaults.standard.integer(forKey: "BestScore.\(rawValue)")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "BestScore.\(rawValue)")
+        }
+    }
 }
