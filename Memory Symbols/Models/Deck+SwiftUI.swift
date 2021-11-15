@@ -5,7 +5,28 @@ extension Deck: Identifiable {
     var id: String { rawValue }
     
     var iconName: String {
-        cardNames().first ?? ""
+        switch self {
+        case .communication:
+            return "bubble.left"
+        case .currencies:
+            return "dollarsign.circle"
+        case .gamecontroller:
+            return "gamecontroller"
+        case .hands:
+            return "hand.raised"
+        case .media:
+            return "playpause"
+        case .nature:
+            return "leaf"
+        case .persons:
+            return "person"
+        case .shapes:
+            return "seal"
+        case .transport:
+            return "bicycle"
+        case .weather:
+            return "cloud.sun"
+        }
     }
     
     var color: Color {
