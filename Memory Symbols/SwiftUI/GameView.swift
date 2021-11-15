@@ -16,7 +16,7 @@ struct GameView: View {
     var body: some View {
         ZStack {
             // Add Score View
-            ScoreViewUI(game: $game, bestScore: previousBestScore, restart: restartGame)
+            ScoreView(game: $game, bestScore: previousBestScore, restart: restartGame)
                 .disabled(game.status != .ended)
                 .opacity(game.status == .ended ? 1 : 0)
                 .animation(.default, value: game.status)

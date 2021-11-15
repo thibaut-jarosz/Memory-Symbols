@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ScoreViewUI: View {
+struct ScoreView: View {
     @Binding var game: Game
     let bestScore: Int
     var restart: () -> Void
@@ -35,10 +35,10 @@ struct ScoreViewUI: View {
     }
 }
 
-struct ScoreViewUI_Previews: PreviewProvider {
+struct ScoreView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(ColorScheme.allCases, id: \.self) { colorScheme in
-            ScoreViewUI(
+            ScoreView(
                 game: .constant({
                     var game = Game(deck: .weather)
                     game.score = .random(in: 0...1000)
