@@ -1,8 +1,0 @@
-/* Class = "UILabel"; text = "Well done!"; ObjectID = "bTA-7P-LUj"; */
-"bTA-7P-LUj.text" = "Well done!";
-
-/* Class = "UIButton"; configuration.title = "Try again!"; ObjectID = "mhz-OT-hVr"; */
-"mhz-OT-hVr.configuration.title" = "Try again!";
-
-/* Class = "UINavigationItem"; title = "Theme"; ObjectID = "sHk-8R-UIT"; */
-"sHk-8R-UIT.title" = "Themes";
