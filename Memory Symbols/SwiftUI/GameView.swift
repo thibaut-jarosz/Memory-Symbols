@@ -7,24 +7,57 @@ struct GameView: View {
     /// The best score before the game started
     @State private var previousBestScore: Int
     
+    /// Should present cancel alert
+    @State private var isCancelAlertPresented: Bool = false
+    
     /// Dismiss action (automatically set when view is pushed)
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
         ZStack {
+            // Add Score View
             ScoreViewUI(game: $game, bestScore: previousBestScore, restart: restartGame)
                 .disabled(game.status != .ended)
                 .opacity(game.status == .ended ? 1 : 0)
                 .animation(.default, value: game.status)
             
+            // Add Board View
             BoardViewUI(game: $game)
                 .scaleEffect(game.status == .ended ? 5 : 1)
                 .opacity(game.status == .ended ? 0 : 1)
                 .animation(.default, value: game)
         }
         .padding(.horizontal)
+        
+        // Configure navigation bar
         .navigationTitle(game.deck.localizedName)
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(game.status == .started)
+        .toolbar() {
+            // Add Cancel button if game is started
+            ToolbarItemGroup(placement: .cancellationAction) {
+                if game.status == .started {
+                    Button(
+                        "GameView.Cancel.Button",
+                        role: .destructive
+                    ) { isCancelAlertPresented.toggle() }
+                }
+            }
+        }
+        
+        // Add confirmation on cancel
+        .alert(
+            "GameView.Cancel.Alert.Title",
+            isPresented: $isCancelAlertPresented,
+            presenting: game.cards.filter{ $0.status != .matched }
+        ) { _ in
+            Button("GameView.Cancel.Alert.GoBack", role: .cancel) {}
+            Button("GameView.Cancel.Alert.Confirm", role: .destructive) {
+                dismiss.callAsFunction()
+            }
+        } message: { cards in
+            Text("GameView.Cancel.Alert.Message.\(cards.count)")
+        }
     }
     
     /// Restart the game

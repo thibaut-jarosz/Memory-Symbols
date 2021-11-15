@@ -48,6 +48,23 @@ you have touched the screen\
 			<string>%lld</string>
 		</dict>
 	</dict>
+	<key>GameView.Cancel.Alert.Message.%lld</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Only %#@cards@ left.
+You really want to give up now?</string>
+		<key>cards</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>one</key>
+			<string>%lld card</string>
+			<key>other</key>
+			<string>%lld cards</string>
+		</dict>
+	</dict>
 	<key>deck.selection</key>
 	<string>Choose a theme:</string>
 	<key>cancel.button</key>

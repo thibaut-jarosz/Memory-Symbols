@@ -4,3 +4,8 @@
 
 "ScoreView.Title" = "Well done!";
 "ScoreView.Restart" = "Try again!";
+
+"GameView.Cancel.Button" = "Give up!";
+"GameView.Cancel.Alert.Title" = "Are you sure?";
+"GameView.Cancel.Alert.Confirm" = "Give up!";
+"GameView.Cancel.Alert.GoBack" = "Back to the game!";

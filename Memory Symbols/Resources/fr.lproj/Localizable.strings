@@ -4,3 +4,8 @@
 
 "ScoreView.Title" = "Bien joué!";
 "ScoreView.Restart" = "Réessayer !";
+
+"GameView.Cancel.Button" = "Abandonner !";
+"GameView.Cancel.Alert.Title" = "Es-tu sûr·e?";
+"GameView.Cancel.Alert.Confirm" = "Abandonner !";
+"GameView.Cancel.Alert.GoBack" = "Retourner dans la partie !";
