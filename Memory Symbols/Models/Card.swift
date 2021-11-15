@@ -1,8 +1,7 @@
 import UIKit
+
 /// Represents a single card
 struct Card: Identifiable, Equatable {
-    let id = UUID()
-    
     /// Card Status
     enum Status: CaseIterable {
         /// Card is hidden
@@ -13,6 +12,9 @@ struct Card: Identifiable, Equatable {
         case matched
     }
     
+    /// Card unique identifier
+    let id = UUID()
+    
     /// Deck of the card
     let deck: Deck
     
@@ -21,10 +23,4 @@ struct Card: Identifiable, Equatable {
     
     /// Status of the card
     var status: Status = .hidden
-}
-extension Card {
-    /// Image from name
-    var image: UIImage? {
-        UIImage(systemName: name)
-    }
 }
