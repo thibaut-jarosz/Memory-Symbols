@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// A view representing a single card
-struct CardViewUI: View, Animatable {
+struct CardView: View, Animatable {
     
     /// Card associated to the view
     @Binding var card: Card
@@ -79,13 +79,13 @@ struct CardViewUI: View, Animatable {
     }
 }
 
-struct CardViewUI_Previews: PreviewProvider {
+struct CardView_Previews: PreviewProvider {
     /// An intermediate container, useful for having a fonctionnal state on card and for managing tap gesture
     struct ContainerView: View {
         @State var card: Card
         
         var body: some View {
-            CardViewUI(card: $card).onTapGesture {
+            CardView(card: $card).onTapGesture {
                 switch card.status {
                 case .hidden:
                     card.status = .revealed

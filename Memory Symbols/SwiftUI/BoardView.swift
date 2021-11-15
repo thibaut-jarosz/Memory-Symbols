@@ -18,7 +18,7 @@ struct BoardView: View {
                 spacing: 2 // space between rows
             ) {
                 ForEach($game.cards) { card in
-                    CardViewUI(card: card)
+                    CardView(card: card)
                         .onTapGesture {
                             game.reveal(card.wrappedValue)
                         }
