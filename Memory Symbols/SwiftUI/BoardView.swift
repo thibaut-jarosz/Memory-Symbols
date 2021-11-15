@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// A view representing a board
-struct BoardViewUI: View {
+struct BoardView: View {
     /// The game associated to the board
     @Binding var game: Game
     
@@ -33,7 +33,7 @@ struct BoardViewUI: View {
     }
 }
 
-struct BoardViewUI_Previews: PreviewProvider {
+struct BoardView_Previews: PreviewProvider {
     /// An intermediate container, useful for having a fonctionnal state on game
     struct ContainerView: View {
         @State var game: Game
@@ -54,7 +54,7 @@ struct BoardViewUI_Previews: PreviewProvider {
                 .opacity(game.status == .ended ? 1 : 0)
                 .animation(.default, value: game.status)
                 
-                BoardViewUI(game: $game)
+                BoardView(game: $game)
                     .scaleEffect(game.status == .ended ? 5 : 1)
                     .opacity(game.status == .ended ? 0 : 1)
                     .animation(.default, value: game)

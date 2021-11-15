@@ -18,7 +18,7 @@
 		BFA27039273C123500D027B1 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA27038273C123500D027B1 /* Game.swift */; };
 		BFA2703C273C1A7F00D027B1 /* ArraySlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA2703B273C1A7F00D027B1 /* ArraySlice.swift */; };
 		BFA2703E273D1C3100D027B1 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA2703D273D1C3100D027B1 /* Animation.swift */; };
-		BFCEF748273A9E6A005C440D /* BoardViewUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF508EB7273819D2008FF723 /* BoardViewUI.swift */; };
+		BFCEF748273A9E6A005C440D /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF508EB7273819D2008FF723 /* BoardView.swift */; };
 		BFE11E912741DDE500F5B919 /* MemorySymbolsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE11E902741DDE500F5B919 /* MemorySymbolsApp.swift */; };
 		BFFC45D1273580850069CE07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BFFC45D3273580850069CE07 /* Localizable.strings */; };
 		BFFC45D9273581530069CE07 /* DeckSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0914D627356CC800B05D1D /* DeckSelectionView.swift */; };
@@ -34,7 +34,7 @@
 		BF0C2FE527331DD900407ECF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		BF0C2FE727331DDB00407ECF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = fr; path = fr.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		BF1406B411739FF400872873 /* Memory Symbols.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Memory Symbols.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BF508EB7273819D2008FF723 /* BoardViewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BoardViewUI.swift; path = "Memory Symbols/SwiftUI/BoardViewUI.swift"; sourceTree = SOURCE_ROOT; };
+		BF508EB7273819D2008FF723 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BoardView.swift; path = "Memory Symbols/SwiftUI/BoardView.swift"; sourceTree = SOURCE_ROOT; };
 		BF59F5632740556E008AE758 /* ScoreViewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewUI.swift; sourceTree = "<group>"; };
 		BF59F56527407A39008AE758 /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
 		BF6C00D0272E910A00BA3E63 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 			children = (
 				BF0914D627356CC800B05D1D /* DeckSelectionView.swift */,
 				BFFC45E12735F65C0069CE07 /* GameView.swift */,
-				BF508EB7273819D2008FF723 /* BoardViewUI.swift */,
+				BF508EB7273819D2008FF723 /* BoardView.swift */,
 				BF8A0A3C2737FA110099EAA7 /* CardViewUI.swift */,
 				BF59F5632740556E008AE758 /* ScoreViewUI.swift */,
 			);
@@ -211,7 +211,7 @@
 			files = (
 				BF59F56627407A39008AE758 /* AttributedString.swift in Sources */,
 				BFA2703E273D1C3100D027B1 /* Animation.swift in Sources */,
-				BFCEF748273A9E6A005C440D /* BoardViewUI.swift in Sources */,
+				BFCEF748273A9E6A005C440D /* BoardView.swift in Sources */,
 				BFE11E912741DDE500F5B919 /* MemorySymbolsApp.swift in Sources */,
 				BFA2703C273C1A7F00D027B1 /* ArraySlice.swift in Sources */,
 				BFFC45E22735F65C0069CE07 /* GameView.swift in Sources */,
