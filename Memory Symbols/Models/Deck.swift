@@ -1,7 +1,7 @@
-import UIKit
+import SwiftUI
 
 /// Deck of cards
-enum Deck: String, CaseIterable {
+enum Deck: String, CaseIterable, Identifiable {
     case communication
     case currencies
     case gamecontroller
@@ -12,10 +12,18 @@ enum Deck: String, CaseIterable {
     case shapes
     case transport
     case weather
+    
+    var id: String { rawValue }
 }
 
 extension Deck {
-    func cardNames() -> [String] {
+    /// Localized name of the deck
+    var localizedName: String {
+        NSLocalizedString("\(rawValue)", tableName: "DeckNames", comment: "")
+    }
+    
+    /// List of all available card names
+    var cardNames: [String] {
         guard let data = NSDataAsset(name: rawValue)?.data else {
             return []
         }
@@ -23,53 +31,56 @@ extension Deck {
         return (try? JSONDecoder().decode([String].self, from: data)) ?? []
     }
     
-    /// Generate cards
-    /// - Returns: generated cards
-    func generateCards(numberOfPairs: Int) -> [Card] {
-        let cardNames = cardNames()
-            .shuffled()
-            .prefix(numberOfPairs)
-        
-        return (cardNames + cardNames)
-            .map { Card(deck: self, name: $0) }
-    }
-    
     /// Cards color
-    var cardsColor: UIColor {
+    var color: Color {
         switch self {
         case .communication:
-            return .systemBlue
+            return .blue
         case .currencies:
-            return .systemOrange
+            return .orange
         case .gamecontroller:
-            return .systemPink
+            return .pink
         case .hands:
-            return .systemPurple
+            return .purple
         case .media:
-            return .systemIndigo
+            return .indigo
         case .nature:
-            return .systemGreen
+            return .green
         case .persons:
-            return .systemBrown
+            return .brown
         case .shapes:
-            return .systemMint
+            return .mint
         case .transport:
-            return .systemRed
+            return .red
         case .weather:
-            return .systemCyan
+            return .cyan
         }
     }
     
     /// Icon representing the deck
-    var icon: UIImage? {
-        guard let name = cardNames().first else { return nil }
-        
-        return UIImage(systemName: name)
-    }
-    
-    /// Localized name of the deck
-    var localizedName: String {
-        NSLocalizedString("\(rawValue)", tableName: "DeckNames", comment: "")
+    var iconName: String {
+        switch self {
+        case .communication:
+            return "bubble.left"
+        case .currencies:
+            return "dollarsign.circle"
+        case .gamecontroller:
+            return "gamecontroller"
+        case .hands:
+            return "hand.raised"
+        case .media:
+            return "playpause"
+        case .nature:
+            return "leaf"
+        case .persons:
+            return "person"
+        case .shapes:
+            return "seal"
+        case .transport:
+            return "bicycle"
+        case .weather:
+            return "cloud.sun"
+        }
     }
     
     /// Get and set the best score for the current deck

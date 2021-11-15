@@ -46,7 +46,8 @@ struct Game: Equatable {
         self.deck = deck
         self.boardSize = boardSize
         
-        self.cards = deck.cardNames() // Get names of the cards
+        self.cards = deck
+            .cardNames // Get names of the cards
             .shuffled() // Shuffle the names so every game is unique
             .prefix(boardSize.pairs) // Keep only the necessary names
             .duplicated() // Duplicate the names so it became card names instead of pair names

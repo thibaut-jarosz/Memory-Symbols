@@ -22,7 +22,6 @@
 		BFE11E912741DDE500F5B919 /* MemorySymbolsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE11E902741DDE500F5B919 /* MemorySymbolsApp.swift */; };
 		BFFC45D1273580850069CE07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BFFC45D3273580850069CE07 /* Localizable.strings */; };
 		BFFC45D9273581530069CE07 /* DeckSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0914D627356CC800B05D1D /* DeckSelectionView.swift */; };
-		BFFC45DA273581560069CE07 /* Deck+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0914DA2735748C00B05D1D /* Deck+SwiftUI.swift */; };
 		BFFC45DD2735B1B90069CE07 /* DeckNames.strings in Resources */ = {isa = PBXBuildFile; fileRef = BFFC45DF2735B1B90069CE07 /* DeckNames.strings */; };
 		BFFC45E22735F65C0069CE07 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFC45E12735F65C0069CE07 /* GameView.swift */; };
 /* End PBXBuildFile section */
@@ -30,7 +29,6 @@
 /* Begin PBXFileReference section */
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		BF0914D627356CC800B05D1D /* DeckSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckSelectionView.swift; sourceTree = "<group>"; };
-		BF0914DA2735748C00B05D1D /* Deck+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deck+SwiftUI.swift"; sourceTree = "<group>"; };
 		BF0C2FDD273315DC00407ECF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BF0C2FDF273315DE00407ECF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BF0C2FE527331DD900407ECF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -86,7 +84,6 @@
 			isa = PBXGroup;
 			children = (
 				BF7357E2272CB11900F6CAF7 /* Deck.swift */,
-				BF0914DA2735748C00B05D1D /* Deck+SwiftUI.swift */,
 				BFA27038273C123500D027B1 /* Game.swift */,
 				BF6C00D0272E910A00BA3E63 /* Card.swift */,
 			);
@@ -217,7 +214,6 @@
 				BFCEF748273A9E6A005C440D /* BoardViewUI.swift in Sources */,
 				BFE11E912741DDE500F5B919 /* MemorySymbolsApp.swift in Sources */,
 				BFA2703C273C1A7F00D027B1 /* ArraySlice.swift in Sources */,
-				BFFC45DA273581560069CE07 /* Deck+SwiftUI.swift in Sources */,
 				BFFC45E22735F65C0069CE07 /* GameView.swift in Sources */,
 				BF8A0A3D2737FA110099EAA7 /* CardViewUI.swift in Sources */,
 				BF7357E3272CB11900F6CAF7 /* Deck.swift in Sources */,
