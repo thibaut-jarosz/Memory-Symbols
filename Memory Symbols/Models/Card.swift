@@ -1,9 +1,9 @@
 import UIKit
 
 /// Represents a single card
-struct Card: Identifiable, Equatable {
+struct Card: Identifiable, Equatable, Codable {
     /// Card Status
-    enum Status: CaseIterable {
+    enum Status: CaseIterable, Codable {
         /// Card is hidden
         case hidden
         /// Card if revealed but not matched with another card
@@ -13,7 +13,7 @@ struct Card: Identifiable, Equatable {
     }
     
     /// Card unique identifier
-    let id = UUID()
+    var id = UUID()
     
     /// Deck of the card
     let deck: Deck

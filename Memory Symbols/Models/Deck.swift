@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// Deck of cards
-enum Deck: String, CaseIterable, Identifiable {
+enum Deck: String, CaseIterable, Identifiable, Codable {
     case communication
     case currencies
     case gamecontroller

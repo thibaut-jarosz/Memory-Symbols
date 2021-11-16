@@ -1,7 +1,7 @@
 /// Represents and manage a game
-struct Game: Equatable {
+struct Game: Equatable, Codable {
     /// The size of the board
-    struct BoardSize: Equatable {
+    struct BoardSize: Equatable, Codable {
         /// Number of columns on the board
         let columns: Int
         /// Number of rows on the board
@@ -14,7 +14,7 @@ struct Game: Equatable {
     }
     
     // Status of the game
-    enum Status {
+    enum Status: Codable {
         // Game is ready to start
         case ready
         // Game is started
