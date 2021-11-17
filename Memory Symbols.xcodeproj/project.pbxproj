@@ -20,6 +20,7 @@
 		BFA2703E273D1C3100D027B1 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA2703D273D1C3100D027B1 /* Animation.swift */; };
 		BFCEF748273A9E6A005C440D /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF508EB7273819D2008FF723 /* BoardView.swift */; };
 		BFE11E912741DDE500F5B919 /* MemorySymbolsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE11E902741DDE500F5B919 /* MemorySymbolsApp.swift */; };
+		BFED4E9327443CE600DFCD1E /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFED4E9227443CE600DFCD1E /* Binding.swift */; };
 		BFFC45D1273580850069CE07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BFFC45D3273580850069CE07 /* Localizable.strings */; };
 		BFFC45D9273581530069CE07 /* DeckSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0914D627356CC800B05D1D /* DeckSelectionView.swift */; };
 		BFFC45DD2735B1B90069CE07 /* DeckNames.strings in Resources */ = {isa = PBXBuildFile; fileRef = BFFC45DF2735B1B90069CE07 /* DeckNames.strings */; };
@@ -44,6 +45,7 @@
 		BFA2703B273C1A7F00D027B1 /* ArraySlice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArraySlice.swift; sourceTree = "<group>"; };
 		BFA2703D273D1C3100D027B1 /* Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		BFE11E902741DDE500F5B919 /* MemorySymbolsApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemorySymbolsApp.swift; sourceTree = "<group>"; };
+		BFED4E9227443CE600DFCD1E /* Binding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		BFFC45D2273580850069CE07 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BFFC45D4273580860069CE07 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BFFC45DE2735B1B90069CE07 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DeckNames.strings; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				BFA2703D273D1C3100D027B1 /* Animation.swift */,
 				BFA2703B273C1A7F00D027B1 /* ArraySlice.swift */,
 				BF59F56527407A39008AE758 /* AttributedString.swift */,
+				BFED4E9227443CE600DFCD1E /* Binding.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				BFA2703C273C1A7F00D027B1 /* ArraySlice.swift in Sources */,
 				BFFC45E22735F65C0069CE07 /* GameView.swift in Sources */,
 				BF8A0A3D2737FA110099EAA7 /* CardView.swift in Sources */,
+				BFED4E9327443CE600DFCD1E /* Binding.swift in Sources */,
 				BF7357E3272CB11900F6CAF7 /* Deck.swift in Sources */,
 				BFA27039273C123500D027B1 /* Game.swift in Sources */,
 				BF6C00D1272E910A00BA3E63 /* Card.swift in Sources */,
