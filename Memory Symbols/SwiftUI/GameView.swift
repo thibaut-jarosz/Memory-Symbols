@@ -2,7 +2,7 @@ import SwiftUI
 
 struct GameView: View {
     /// The game
-    @State var game: Game
+    @Binding var game: Game
     
     /// The best score before the game started
     @State private var previousBestScore: Int
@@ -81,20 +81,25 @@ struct GameView: View {
 }
 
 extension GameView {
-    init(game: Game) {
-        self.init(game: game, previousBestScore: game.deck.bestScore)
-    }
-    
-    init(deck: Deck) {
-        self.init(game: .init(deck: deck), previousBestScore: deck.bestScore)
+    init(game: Binding<Game>) {
+        self.init(game: game, previousBestScore: game.deck.bestScore.wrappedValue)
     }
 }
 
 struct GameView_Previews: PreviewProvider {
+    /// An intermediate container, useful for having a fonctionnal state on game
+    struct ContainerView: View {
+        @State var game: Game
+        
+        var body: some View {
+            GameView(game: $game)
+        }
+    }
+    
     static var previews: some View {
         ForEach(ColorScheme.allCases, id: \.self) {
             NavigationView {
-                GameView(game: .init(
+                ContainerView(game: Game(
                     deck: .weather,
                     boardSize: .init(columns: 3, rows: 2)
                 ))

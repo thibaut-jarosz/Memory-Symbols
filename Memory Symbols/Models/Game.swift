@@ -24,7 +24,7 @@ struct Game: Equatable, Codable {
     }
     
     /// Deck of cards used for the game
-    let deck: Deck
+    var deck: Deck
     
     /// Size of the board for the game
     let boardSize: BoardSize
