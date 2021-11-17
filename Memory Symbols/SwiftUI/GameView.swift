@@ -32,10 +32,9 @@ struct GameView: View {
         // Configure navigation bar
         .navigationTitle(game.deck.localizedName)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(game.status == .started)
         .toolbar() {
             // Add Cancel button if game is started
-            ToolbarItemGroup(placement: .cancellationAction) {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
                 if game.status == .started {
                     Button(
                         "GameView.Cancel.Button",
@@ -53,7 +52,13 @@ struct GameView: View {
         ) { _ in
             Button("GameView.Cancel.Alert.GoBack", role: .cancel) {}
             Button("GameView.Cancel.Alert.Confirm", role: .destructive) {
-                dismiss.callAsFunction()
+                $game.cards.forEach { $0.wrappedValue.status = .hidden }
+                waitForAnimation {
+                    withoutAnimation {
+                        game = .init(deck: game.deck, boardSize: game.boardSize)
+                    }
+                    game.cards.shuffle()
+                }
             }
         } message: { cards in
             Text("GameView.Cancel.Alert.Message.\(cards.count)")

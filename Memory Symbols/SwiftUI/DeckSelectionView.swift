@@ -18,10 +18,7 @@ struct DeckSelectionView: View {
                         // Should never be called, but just in case...
                         .init(deck: deck)
                     }
-                ).onDisappear {
-                    // Temporary code, here only to prevent breaking the `GameView` interface
-                    games[deck] = nil
-                }
+                )
             }
             else {
                 ProgressView()
