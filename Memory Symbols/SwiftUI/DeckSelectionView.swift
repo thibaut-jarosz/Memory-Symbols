@@ -23,6 +23,8 @@ struct DeckSelectionView: View {
             else {
                 ProgressView()
                     .progressViewStyle(.circular)
+                    .navigationTitle(deck.localizedName)
+                    .navigationBarTitleDisplayMode(.inline)
                     .onAppear {
                         games[deck] = .init(deck: deck)
                     }
