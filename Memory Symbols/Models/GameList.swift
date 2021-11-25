@@ -1,4 +1,4 @@
-import Foundation
+import Combine
 
 /// Manage a list of ongoing games
 class GameList: ObservableObject {

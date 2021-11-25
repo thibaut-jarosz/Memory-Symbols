@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ScoreView: View {
-    @Binding var game: Game
+    @ObservedObject var game: Game
     let bestScore: Int
     var restart: () -> Void
     
@@ -41,11 +41,11 @@ struct ScoreView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(ColorScheme.allCases, id: \.self) { colorScheme in
             ScoreView(
-                game: .constant({
-                    var game = Game(deck: .weather)
+                game: {
+                    let game = Game(deck: .weather)
                     game.score = .random(in: 0...1000)
                     return game
-                }()),
+                }(),
                 bestScore: .random(in: 0...1000),
                 restart: {}
             )

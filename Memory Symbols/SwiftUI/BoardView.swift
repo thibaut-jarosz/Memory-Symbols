@@ -3,7 +3,7 @@ import SwiftUI
 /// A view representing a board
 struct BoardView: View {
     /// The game associated to the board
-    @Binding var game: Game
+    @ObservedObject var game: Game
     
     var body: some View {
         VStack( alignment: .leading) {
@@ -54,7 +54,7 @@ struct BoardView_Previews: PreviewProvider {
                 .opacity(game.status == .ended ? 1 : 0)
                 .animation(.default, value: game.status)
                 
-                BoardView(game: $game)
+                BoardView(game: game)
                     .scaleEffect(game.status == .ended ? 5 : 1)
                     .opacity(game.status == .ended ? 0 : 1)
                     .animation(.default, value: game.status)

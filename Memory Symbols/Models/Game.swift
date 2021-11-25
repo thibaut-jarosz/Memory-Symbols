@@ -1,5 +1,7 @@
+import Combine
+
 /// Represents and manage a game
-struct Game {
+class Game: ObservableObject {
     /// The size of the board
     struct BoardSize: Equatable, Codable {
         /// Number of columns on the board
@@ -24,19 +26,19 @@ struct Game {
     }
     
     /// Deck of cards used for the game
-    var deck: Deck
+    let deck: Deck
     
     /// Size of the board for the game
     let boardSize: BoardSize
     
     // Status of the game
-    var status: Status = .ready
+    @Published var status: Status = .ready
     
     /// Cards displayed on the board
-    var cards: [Card]
+    @Published var cards: [Card]
     
     /// Score of the game
-    var score: Int = 0
+    @Published var score: Int = 0
     
     /// Game initializer
     /// - Parameters:
@@ -59,7 +61,7 @@ struct Game {
 extension Game {
     /// Reveal a card and compare it to other revealed cards
     /// - Parameter card: the card to reveal
-    mutating func reveal(_ card: Card) {
+    func reveal(_ card: Card) {
         // Check if card was hidden & retrieve card index
         guard
             card.status == .hidden,

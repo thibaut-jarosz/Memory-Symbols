@@ -2,7 +2,7 @@ import SwiftUI
 
 struct GameView: View {
     /// The game
-    @Binding var game: Game
+    @ObservedObject var game: Game
     
     /// The best score before the game started
     @State private var previousBestScore: Int
@@ -16,13 +16,13 @@ struct GameView: View {
     var body: some View {
         ZStack {
             // Add Score View
-            ScoreView(game: $game, bestScore: previousBestScore, restart: restartGame)
+            ScoreView(game: game, bestScore: previousBestScore, restart: restartGame)
                 .disabled(game.status != .ended)
                 .opacity(game.status == .ended ? 1 : 0)
                 .animation(.default, value: game.status)
             
             // Add Board View
-            BoardView(game: $game)
+            BoardView(game: game)
                 .scaleEffect(game.status == .ended ? 5 : 1)
                 .opacity(game.status == .ended ? 0 : 1)
                 .animation(.default, value: game.status)
@@ -56,7 +56,9 @@ struct GameView: View {
                 $game.cards.forEach { $0.wrappedValue.status = .hidden }
                 waitForAnimation {
                     withoutAnimation {
-                        game = .init(deck: game.deck, boardSize: game.boardSize)
+                        game.score = 0
+                        game.status = .ready
+                        game.cards = Game(deck: game.deck, boardSize: game.boardSize).cards
                     }
                     game.cards.shuffle()
                 }
@@ -87,25 +89,16 @@ struct GameView: View {
 }
 
 extension GameView {
-    init(game: Binding<Game>) {
-        self.init(game: game, previousBestScore: game.deck.bestScore.wrappedValue)
+    init(game: Game) {
+        self.init(game: game, previousBestScore: game.deck.bestScore)
     }
 }
 
 struct GameView_Previews: PreviewProvider {
-    /// An intermediate container, useful for having a fonctionnal state on game
-    struct ContainerView: View {
-        @State var game: Game
-        
-        var body: some View {
-            GameView(game: $game)
-        }
-    }
-    
     static var previews: some View {
         ForEach(ColorScheme.allCases, id: \.self) {
             NavigationView {
-                ContainerView(game: Game(
+                GameView(game: Game(
                     deck: .weather,
                     boardSize: .init(columns: 3, rows: 2)
                 ))

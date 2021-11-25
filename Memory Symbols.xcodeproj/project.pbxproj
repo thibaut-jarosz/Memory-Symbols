@@ -85,8 +85,8 @@
 		BF7357E1272CB10B00F6CAF7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				BF314EDC274D33EA00297597 /* GameList.swift */,
 				BF7357E2272CB11900F6CAF7 /* Deck.swift */,
+				BF314EDC274D33EA00297597 /* GameList.swift */,
 				BFA27038273C123500D027B1 /* Game.swift */,
 				BF6C00D0272E910A00BA3E63 /* Card.swift */,
 			);
