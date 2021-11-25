@@ -19,6 +19,7 @@ struct ScoreView: View {
                 .font(.subheadline)
                 .multilineTextAlignment(.center)
                 .padding(.vertical)
+                .animation(.none, value: game.score)
             
             Text(
                 bestScore > game.score ?
@@ -27,6 +28,7 @@ struct ScoreView: View {
             )
                 .font(.headline)
                 .padding(.vertical)
+                .animation(.none, value: game.score)
             
             Button("ScoreView.Restart", action: restart)
                 .padding(.vertical)
