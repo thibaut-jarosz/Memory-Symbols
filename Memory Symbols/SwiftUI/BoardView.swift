@@ -57,7 +57,8 @@ struct BoardView_Previews: PreviewProvider {
                 BoardView(game: $game)
                     .scaleEffect(game.status == .ended ? 5 : 1)
                     .opacity(game.status == .ended ? 0 : 1)
-                    .animation(.default, value: game)
+                    .animation(.default, value: game.status)
+                    .animation(.default, value: game.cards)
             }
         }
     }

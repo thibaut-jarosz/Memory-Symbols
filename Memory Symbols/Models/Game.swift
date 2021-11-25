@@ -1,5 +1,5 @@
 /// Represents and manage a game
-struct Game: Equatable, Codable {
+struct Game {
     /// The size of the board
     struct BoardSize: Equatable, Codable {
         /// Number of columns on the board
