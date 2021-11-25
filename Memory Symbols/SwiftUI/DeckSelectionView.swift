@@ -1,12 +1,12 @@
 import SwiftUI
 
 struct DeckSelectionView: View {
-    @State var games: [Deck:Game] = [:]
+    @StateObject var games: GameList = .init()
     
     /// Used to prevent creating a game if link is not opened
     private struct LinkDestination: View {
         let deck: Deck
-        @Binding var games: [Deck:Game]
+        @ObservedObject var games: GameList
         
         var body: some View {
             // If we let `toNonOptional` handle the game creation,
@@ -32,7 +32,7 @@ struct DeckSelectionView: View {
     
     var body: some View {
         List(Deck.allCases, id: \.id) { deck in
-            NavigationLink(destination: LinkDestination(deck: deck, games: $games)){
+            NavigationLink(destination: LinkDestination(deck: deck, games: games)){
                 Label {
                     Text(deck.localizedName)
                 } icon: {
