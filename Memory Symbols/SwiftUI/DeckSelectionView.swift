@@ -24,17 +24,36 @@ struct DeckSelectionView: View {
         }
     }
     
+    private struct LinkLabelStyle: LabelStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            HStack {
+                configuration.icon
+                configuration.title
+            }
+        }
+    }
+    
     var body: some View {
         List(Deck.allCases, id: \.id) { deck in
             NavigationLink(destination: LinkDestination(deck: deck, games: games)){
                 Label {
-                    Text(deck.localizedName)
+                    VStack(alignment: .leading) {
+                        Text(deck.localizedName)
+                        if games[deck]?.status == .started {
+                            Text("DeckSelectionView.PairsLeft.\(games[deck]!.cards.filter({ $0.status != .matched }).count / 2)")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    
                 } icon: {
                     Image(systemName: deck.iconName)
                         .foregroundColor(deck.color)
+                        .frame(minWidth: 30)
                 }
+                .frame(minHeight: 60)
+                .labelStyle(LinkLabelStyle())
             }
-            .padding(.vertical)
         }
         .navigationTitle("DeckSelection.Title")
     }
